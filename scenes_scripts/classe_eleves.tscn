@@ -1,0 +1,228 @@
+[gd_scene load_steps=6 format=3 uid="uid://bhiqovyoupahs"]
+
+[ext_resource type="Script" path="res://scenes_scripts/classe_eleves.gd" id="1_6bsmj"]
+[ext_resource type="PackedScene" uid="uid://ojsqiv526s8c" path="res://scenes_scripts/grille_relations.tscn" id="2_fdlhy"]
+[ext_resource type="PackedScene" uid="uid://dbhr1gmquydx1" path="res://scenes_scripts/pop_up_aide.tscn" id="2_q280m"]
+[ext_resource type="Script" path="res://scenes_scripts/acces_dossier.gd" id="3_qhohh"]
+[ext_resource type="PackedScene" uid="uid://bjjiwy8rrh1a0" path="res://scenes_scripts/ouvrir_sauvegarde.tscn" id="3_ys23t"]
+
+[node name="ClasseEleves" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_6bsmj")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.1
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 4
+theme_override_constants/margin_bottom = 12
+
+[node name="Entrees" type="VBoxContainer" parent="HBoxContainer/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 10
+
+[node name="ClasseQestion" type="RichTextLabel" parent="HBoxContainer/MarginContainer/Entrees"]
+layout_mode = 2
+bbcode_enabled = true
+text = "O11_CLASSE_QUESTION"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+
+[node name="EntreeClasse" type="LineEdit" parent="HBoxContainer/MarginContainer/Entrees"]
+unique_name_in_owner = true
+layout_mode = 2
+placeholder_text = "O12_CLASSE"
+max_length = 20
+context_menu_enabled = false
+caret_blink = true
+
+[node name="PopUpAide" parent="HBoxContainer/MarginContainer/Entrees/EntreeClasse" instance=ExtResource("2_q280m")]
+layout_mode = 0
+anchors_preset = 0
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_right = 1.0
+grow_horizontal = 1
+grow_vertical = 1
+text = "O12_TOOLTIP"
+
+[node name="EntreeQuestion" type="LineEdit" parent="HBoxContainer/MarginContainer/Entrees"]
+unique_name_in_owner = true
+layout_mode = 2
+placeholder_text = "O11_QUESTION"
+context_menu_enabled = false
+caret_blink = true
+
+[node name="PopUpAide" parent="HBoxContainer/MarginContainer/Entrees/EntreeQuestion" instance=ExtResource("2_q280m")]
+layout_mode = 0
+anchors_preset = 0
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_right = 1.0
+grow_horizontal = 1
+grow_vertical = 1
+text = "O11_TOOLTIP"
+
+[node name="HSeparator2" type="HSeparator" parent="HBoxContainer/MarginContainer/Entrees"]
+layout_mode = 2
+
+[node name="TitreEleves" type="RichTextLabel" parent="HBoxContainer/MarginContainer/Entrees"]
+layout_mode = 2
+bbcode_enabled = true
+text = "O13_TITRE_ELEVES"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+
+[node name="EntreeEleve" type="LineEdit" parent="HBoxContainer/MarginContainer/Entrees"]
+unique_name_in_owner = true
+layout_mode = 2
+placeholder_text = "O13_ELEVE"
+max_length = 12
+context_menu_enabled = false
+caret_blink = true
+
+[node name="PopUpAide" parent="HBoxContainer/MarginContainer/Entrees/EntreeEleve" instance=ExtResource("2_q280m")]
+layout_mode = 0
+anchors_preset = 0
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_right = 1.0
+grow_horizontal = 1
+grow_vertical = 1
+text = "O13_TOOLTIP"
+
+[node name="EnleverDernier" type="Button" parent="HBoxContainer/MarginContainer/Entrees"]
+layout_mode = 2
+text = "O13_SUPPR_NOM"
+
+[node name="ResetListe" type="Button" parent="HBoxContainer/MarginContainer/Entrees"]
+layout_mode = 2
+text = "O13_EFFACER_ELEVES"
+
+[node name="HSeparator" type="HSeparator" parent="HBoxContainer/MarginContainer/Entrees"]
+layout_mode = 2
+
+[node name="TitreTableau" type="RichTextLabel" parent="HBoxContainer/MarginContainer/Entrees"]
+layout_mode = 2
+bbcode_enabled = true
+text = "O14_TITRE_TABLEAU"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+
+[node name="Explication" type="RichTextLabel" parent="HBoxContainer/MarginContainer/Entrees"]
+custom_minimum_size = Vector2(50, 0)
+layout_mode = 2
+bbcode_enabled = true
+text = "O14_LECTURE_TABLEAU"
+fit_content = true
+scroll_active = false
+autowrap_mode = 2
+
+[node name="EffacerContenu" type="Button" parent="HBoxContainer/MarginContainer/Entrees"]
+layout_mode = 2
+text = "O14_EFFACER_AFFINITES"
+
+[node name="HSeparator3" type="HSeparator" parent="HBoxContainer/MarginContainer/Entrees"]
+layout_mode = 2
+
+[node name="RichTextLabel" type="RichTextLabel" parent="HBoxContainer/MarginContainer/Entrees"]
+layout_mode = 2
+bbcode_enabled = true
+text = "O15_TITRE_SAUVEGARDES"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+
+[node name="OuvrirSauvegarde" parent="HBoxContainer/MarginContainer/Entrees" instance=ExtResource("3_ys23t")]
+layout_mode = 2
+text = "O15_OUVRIR"
+
+[node name="Sauver" type="Button" parent="HBoxContainer/MarginContainer/Entrees"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "O15_SAUVEGARDER"
+
+[node name="PopUpAide" parent="HBoxContainer/MarginContainer/Entrees/Sauver" instance=ExtResource("2_q280m")]
+layout_mode = 0
+anchors_preset = 0
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_right = 1.0
+grow_horizontal = 1
+grow_vertical = 1
+
+[node name="AccesDossier" type="Button" parent="HBoxContainer/MarginContainer/Entrees"]
+layout_mode = 2
+text = "O15_ACCES_DOSSIER"
+script = ExtResource("3_qhohh")
+
+[node name="VSeparator" type="VSeparator" parent="HBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="MarginContainer2" type="MarginContainer" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.9
+theme_override_constants/margin_left = 4
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer/MarginContainer2"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="Question" type="RichTextLabel" parent="HBoxContainer/MarginContainer2/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+bbcode_enabled = true
+fit_content = true
+
+[node name="ScrollContainer" type="ScrollContainer" parent="HBoxContainer/MarginContainer2/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="GrilleRelations" parent="HBoxContainer/MarginContainer2/VBoxContainer/ScrollContainer" instance=ExtResource("2_fdlhy")]
+layout_mode = 2
+
+[connection signal="focus_entered" from="HBoxContainer/MarginContainer/Entrees/EntreeClasse" to="HBoxContainer/MarginContainer/Entrees/EntreeClasse/PopUpAide" method="perte_survol"]
+[connection signal="mouse_entered" from="HBoxContainer/MarginContainer/Entrees/EntreeClasse" to="HBoxContainer/MarginContainer/Entrees/EntreeClasse/PopUpAide" method="survol"]
+[connection signal="mouse_exited" from="HBoxContainer/MarginContainer/Entrees/EntreeClasse" to="HBoxContainer/MarginContainer/Entrees/EntreeClasse/PopUpAide" method="perte_survol"]
+[connection signal="text_submitted" from="HBoxContainer/MarginContainer/Entrees/EntreeClasse" to="." method="_on_entree_classe_text_submitted"]
+[connection signal="focus_entered" from="HBoxContainer/MarginContainer/Entrees/EntreeQuestion" to="HBoxContainer/MarginContainer/Entrees/EntreeQuestion/PopUpAide" method="perte_survol"]
+[connection signal="mouse_entered" from="HBoxContainer/MarginContainer/Entrees/EntreeQuestion" to="HBoxContainer/MarginContainer/Entrees/EntreeQuestion/PopUpAide" method="survol"]
+[connection signal="mouse_exited" from="HBoxContainer/MarginContainer/Entrees/EntreeQuestion" to="HBoxContainer/MarginContainer/Entrees/EntreeQuestion/PopUpAide" method="perte_survol"]
+[connection signal="text_submitted" from="HBoxContainer/MarginContainer/Entrees/EntreeQuestion" to="." method="_on_entree_question_text_submitted"]
+[connection signal="focus_entered" from="HBoxContainer/MarginContainer/Entrees/EntreeEleve" to="HBoxContainer/MarginContainer/Entrees/EntreeEleve/PopUpAide" method="perte_survol"]
+[connection signal="mouse_entered" from="HBoxContainer/MarginContainer/Entrees/EntreeEleve" to="HBoxContainer/MarginContainer/Entrees/EntreeEleve/PopUpAide" method="survol"]
+[connection signal="mouse_exited" from="HBoxContainer/MarginContainer/Entrees/EntreeEleve" to="HBoxContainer/MarginContainer/Entrees/EntreeEleve/PopUpAide" method="perte_survol"]
+[connection signal="text_submitted" from="HBoxContainer/MarginContainer/Entrees/EntreeEleve" to="." method="_on_entree_eleve_text_submitted"]
+[connection signal="pressed" from="HBoxContainer/MarginContainer/Entrees/EnleverDernier" to="." method="_on_enlever_dernier_pressed"]
+[connection signal="pressed" from="HBoxContainer/MarginContainer/Entrees/ResetListe" to="." method="_on_reset_liste_pressed"]
+[connection signal="pressed" from="HBoxContainer/MarginContainer/Entrees/EffacerContenu" to="." method="_on_effacer_contenu_pressed"]
+[connection signal="pressed" from="HBoxContainer/MarginContainer/Entrees/OuvrirSauvegarde" to="HBoxContainer/MarginContainer/Entrees/OuvrirSauvegarde" method="_on_pressed"]
+[connection signal="mouse_entered" from="HBoxContainer/MarginContainer/Entrees/Sauver" to="HBoxContainer/MarginContainer/Entrees/Sauver/PopUpAide" method="survol"]
+[connection signal="mouse_exited" from="HBoxContainer/MarginContainer/Entrees/Sauver" to="HBoxContainer/MarginContainer/Entrees/Sauver/PopUpAide" method="perte_survol"]
+[connection signal="pressed" from="HBoxContainer/MarginContainer/Entrees/Sauver" to="." method="_on_sauver_pressed"]
+[connection signal="pressed" from="HBoxContainer/MarginContainer/Entrees/Sauver" to="HBoxContainer/MarginContainer/Entrees/Sauver/PopUpAide" method="perte_survol"]
+[connection signal="pressed" from="HBoxContainer/MarginContainer/Entrees/AccesDossier" to="HBoxContainer/MarginContainer/Entrees/AccesDossier" method="_on_pressed"]
