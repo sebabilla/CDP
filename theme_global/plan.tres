@@ -16,14 +16,14 @@ base_font = ExtResource("1_by4wa")
 variation_transform = Transform2D(1, 0.2, 0, 1, 0, 0)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_j0hgb"]
-bg_color = Color(0.188235, 0.156863, 0.2, 1)
+bg_color = Color(0.258824, 0.258824, 0.258824, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gkush"]
 content_margin_left = 3.0
 content_margin_top = 1.0
 content_margin_right = 3.0
 content_margin_bottom = 1.0
-bg_color = Color(0.0470588, 0.141176, 0.380392, 1)
+bg_color = Color(0.305882, 0.203922, 0.180392, 1)
 corner_radius_top_left = 5
 corner_radius_top_right = 5
 corner_radius_bottom_right = 5
@@ -34,7 +34,7 @@ content_margin_left = 3.0
 content_margin_top = 1.0
 content_margin_right = 3.0
 content_margin_bottom = 1.0
-bg_color = Color(0.117647, 0.215686, 0.6, 1)
+bg_color = Color(0.364706, 0.25098, 0.215686, 1)
 corner_radius_top_left = 5
 corner_radius_top_right = 5
 corner_radius_bottom_right = 5
@@ -45,28 +45,28 @@ content_margin_left = 3.0
 content_margin_top = 1.0
 content_margin_right = 3.0
 content_margin_bottom = 1.0
-bg_color = Color(0.0470588, 0.141176, 0.380392, 1)
+bg_color = Color(0.305882, 0.203922, 0.180392, 1)
 corner_radius_top_left = 5
 corner_radius_top_right = 5
 corner_radius_bottom_right = 5
 corner_radius_bottom_left = 5
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6ihja"]
-bg_color = Color(0.0470588, 0.141176, 0.380392, 1)
+bg_color = Color(0.305882, 0.203922, 0.180392, 1)
 corner_radius_top_left = 5
 corner_radius_top_right = 5
 corner_radius_bottom_right = 5
 corner_radius_bottom_left = 5
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4jcsg"]
-bg_color = Color(0.117647, 0.215686, 0.6, 1)
+bg_color = Color(0.364706, 0.25098, 0.215686, 1)
 corner_radius_top_left = 5
 corner_radius_top_right = 5
 corner_radius_bottom_right = 5
 corner_radius_bottom_left = 5
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_x2xqd"]
-bg_color = Color(0.117647, 0.215686, 0.6, 1)
+bg_color = Color(0.305882, 0.203922, 0.180392, 1)
 corner_radius_top_left = 5
 corner_radius_top_right = 5
 corner_radius_bottom_right = 5
@@ -79,7 +79,7 @@ content_margin_right = 0.0
 content_margin_bottom = 0.0
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_mmlwo"]
-bg_color = Color(1, 1, 1, 1)
+bg_color = Color(0.937255, 0.921569, 0.913725, 1)
 corner_radius_top_left = 5
 corner_radius_top_right = 5
 corner_radius_bottom_right = 5
@@ -94,21 +94,21 @@ border_width_bottom = 4
 border_color = Color(0, 0, 0, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ywxqq"]
-bg_color = Color(0.0470588, 0.141176, 0.380392, 1)
+bg_color = Color(0.305882, 0.203922, 0.180392, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_m2dq0"]
-bg_color = Color(0.235294, 0.388235, 0.509804, 1)
+bg_color = Color(0.364706, 0.25098, 0.215686, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0c56f"]
-bg_color = Color(0.0392157, 0.239216, 0.384314, 1)
+bg_color = Color(0.305882, 0.203922, 0.180392, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0f1d6"]
-bg_color = Color(0.0392157, 0.239216, 0.384314, 1)
+bg_color = Color(0.129412, 0.129412, 0.129412, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bx52l"]
 content_margin_left = 5.0
 content_margin_right = 5.0
-bg_color = Color(0.235294, 0.388235, 0.509804, 1)
+bg_color = Color(0.305882, 0.203922, 0.180392, 1)
 border_width_bottom = 2
 border_color = Color(0.992157, 0.937255, 0.94902, 1)
 corner_radius_top_left = 9
@@ -117,14 +117,14 @@ corner_radius_top_right = 9
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_717f2"]
 content_margin_left = 5.0
 content_margin_right = 5.0
-bg_color = Color(0.235294, 0.388235, 0.509804, 1)
+bg_color = Color(0.364706, 0.25098, 0.215686, 1)
 corner_radius_top_left = 9
 corner_radius_top_right = 9
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_46dy8"]
 content_margin_left = 5.0
 content_margin_right = 5.0
-bg_color = Color(0.235294, 0.388235, 0.509804, 1)
+bg_color = Color(0.305882, 0.203922, 0.180392, 1)
 border_width_bottom = 2
 border_color = Color(0.992157, 0.937255, 0.94902, 1)
 corner_radius_top_left = 9
@@ -133,22 +133,22 @@ corner_radius_top_right = 9
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_b7ymk"]
 content_margin_left = 5.0
 content_margin_right = 5.0
-bg_color = Color(0.0392157, 0.239216, 0.384314, 1)
+bg_color = Color(0.243137, 0.152941, 0.137255, 1)
 corner_radius_top_left = 9
 corner_radius_top_right = 9
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_t1ihv"]
-bg_color = Color(0.0392157, 0.239216, 0.384314, 1)
+bg_color = Color(0.258824, 0.258824, 0.258824, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_fw26f"]
-bg_color = Color(0.117647, 0.215686, 0.6, 1)
+bg_color = Color(0.364706, 0.25098, 0.215686, 1)
 corner_radius_top_left = 5
 corner_radius_top_right = 5
 corner_radius_bottom_right = 5
 corner_radius_bottom_left = 5
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_153jf"]
-bg_color = Color(0.117647, 0.215686, 0.6, 1)
+bg_color = Color(0.305882, 0.203922, 0.180392, 1)
 corner_radius_top_left = 5
 corner_radius_top_right = 5
 corner_radius_bottom_right = 5
@@ -156,13 +156,13 @@ corner_radius_bottom_left = 5
 
 [resource]
 Aide/base_type = &"RichTextLabel"
-Aide/colors/default_color = Color(0.721569, 0.913725, 0.580392, 1)
+Aide/colors/default_color = Color(0.980392, 0.980392, 0.980392, 1)
 Aide/fonts/bold_font = SubResource("FontVariation_6xy00")
 Aide/fonts/bold_italics_font = SubResource("FontVariation_21lh5")
 Aide/fonts/italics_font = SubResource("FontVariation_yahac")
 Aide/styles/normal = SubResource("StyleBoxFlat_j0hgb")
-Button/colors/font_color = Color(0.862745, 0.866667, 0.882353, 1)
-Button/colors/font_hover_color = Color(0.862745, 0.866667, 0.882353, 1)
+Button/colors/font_color = Color(0.937255, 0.921569, 0.913725, 1)
+Button/colors/font_hover_color = Color(0.937255, 0.921569, 0.913725, 1)
 Button/font_sizes/font_size = 14
 Button/styles/focus = SubResource("StyleBoxFlat_gkush")
 Button/styles/hover = SubResource("StyleBoxFlat_n1jq5")
@@ -170,35 +170,35 @@ Button/styles/normal = SubResource("StyleBoxFlat_gid00")
 Button/styles/pressed = SubResource("StyleBoxFlat_6ihja")
 HScrollBar/styles/grabber_highlight = SubResource("StyleBoxFlat_4jcsg")
 HScrollBar/styles/grabber_pressed = SubResource("StyleBoxFlat_x2xqd")
-Label/colors/font_color = Color(0.862745, 0.866667, 0.882353, 1)
+Label/colors/font_color = Color(0.937255, 0.921569, 0.913725, 1)
 Label/font_sizes/font_size = 14
 Label/styles/normal = SubResource("StyleBoxEmpty_os0pj")
 LabelEtiquette/base_type = &"Label"
-LabelEtiquette/colors/font_color = Color(0, 0, 0, 1)
+LabelEtiquette/colors/font_color = Color(0.243137, 0.152941, 0.137255, 1)
 LabelEtiquette/font_sizes/font_size = 20
 LabelEtiquette/styles/normal = SubResource("StyleBoxFlat_mmlwo")
 LabelTable/base_type = &"Label"
 LabelTable/colors/font_color = Color(0, 0, 0, 1)
 LabelTable/font_sizes/font_size = 20
 LabelTable/styles/normal = SubResource("StyleBoxFlat_lji7v")
-LineEdit/colors/caret_color = Color(0.415686, 0.537255, 0.8, 1)
-LineEdit/colors/font_color = Color(0.862745, 0.866667, 0.882353, 1)
+LineEdit/colors/caret_color = Color(0.843137, 0.8, 0.784314, 1)
+LineEdit/colors/font_color = Color(0.937255, 0.921569, 0.913725, 1)
 LineEdit/font_sizes/font_size = 14
 LineEdit/styles/normal = SubResource("StyleBoxFlat_ywxqq")
-PopupMenu/colors/font_color = Color(0.862745, 0.866667, 0.882353, 1)
-PopupMenu/colors/font_hover_color = Color(0.862745, 0.866667, 0.882353, 1)
+PopupMenu/colors/font_color = Color(0.937255, 0.921569, 0.913725, 1)
+PopupMenu/colors/font_hover_color = Color(0.937255, 0.921569, 0.913725, 1)
 PopupMenu/font_sizes/font_separator_size = 14
 PopupMenu/font_sizes/font_size = 14
 PopupMenu/font_sizes/title_font_size = 14
 PopupMenu/styles/hover = SubResource("StyleBoxFlat_m2dq0")
 PopupMenu/styles/panel = SubResource("StyleBoxFlat_0c56f")
-RichTextLabel/colors/default_color = Color(0.862745, 0.866667, 0.882353, 1)
+RichTextLabel/colors/default_color = Color(0.937255, 0.921569, 0.913725, 1)
 RichTextLabel/font_sizes/bold_font_size = 14
 RichTextLabel/font_sizes/bold_italics_font_size = 14
 RichTextLabel/font_sizes/italics_font_size = 14
 RichTextLabel/font_sizes/mono_font_size = 14
 RichTextLabel/font_sizes/normal_font_size = 14
-TabContainer/colors/font_selected_color = Color(0.862745, 0.866667, 0.882353, 1)
+TabContainer/colors/font_selected_color = Color(0.937255, 0.921569, 0.913725, 1)
 TabContainer/font_sizes/font_size = 14
 TabContainer/styles/panel = SubResource("StyleBoxFlat_0f1d6")
 TabContainer/styles/tab_focus = SubResource("StyleBoxFlat_bx52l")

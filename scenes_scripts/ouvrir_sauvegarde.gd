@@ -20,10 +20,10 @@ func _trouver_sauvegardes() -> void:
 	var fichiers: PackedStringArray = dir.get_files()
 	noms_sauvegardes.clear()
 	for nom in fichiers:
-		if nom.get_extension() == "csv":
+		if nom.get_extension() == "tres":
 			noms_sauvegardes.append(nom)
 	if noms_sauvegardes.is_empty():
-		noms_sauvegardes.append("pas_de_fichier")
+		noms_sauvegardes.append("O15_RIEN_A_OUVRIR")
 
 func _maj_menu_ouvrir() -> void:
 	get_popup().clear()
@@ -33,7 +33,7 @@ func _maj_menu_ouvrir() -> void:
 
 # Laisse Globals ouvrir la sauvegarde et la vérifier
 func _on_popup_pressed(index: int) -> void:
-	if noms_sauvegardes[index].get_extension() == "csv":
+	if noms_sauvegardes[index].get_extension() == "tres":
 		Globals.ouvrir_tableau(noms_sauvegardes[index])
 
 # check s'il y a de nouveaux fichiers à l'ouverture

@@ -10,6 +10,8 @@ var vue_prof: bool = true
 func _ready() -> void:
 	Globals.nouveau_plan.connect(_afficher_nouveau_plan)
 	Globals.maj_classe_question.connect(_maj_tooltip_capture)
+	Globals.maj_classe_question.connect(_texte_tooltip_sauvegarde)
+	_texte_tooltip_sauvegarde()
 	_maj_tooltip_capture()
 
 # Bouger les tables
@@ -57,8 +59,8 @@ func _acirculer(_noeud: Control) -> void:
 func _afficher_nouveau_plan() -> void:
 	for noeud in %PorteTables.get_children():
 		noeud.queue_free()
-	for eleve in Globals.plan_classe:
-		_table_mobile(%PorteTables, Globals.noms_eleves[eleve.z], eleve.x, eleve.y)
+	for eleve in Globals.eleves.plan:
+		_table_mobile(%PorteTables, Globals.eleves.noms[eleve.z], eleve.x, eleve.y)
 
 func _table_mobile(noeud: Control, texte: String, x: float, y: float) -> void:
 	var table: Label = Label.new()
@@ -142,7 +144,7 @@ func _on_capture_pressed() -> void:
 	var plan: Image = tout_l_ecran.get_region(capture)
 	
 	var vue: String = "_prof" if vue_prof else "_eleve"
-	var nom_sauvegarde: String = Globals.CHEMIN_SAUVEGARDE + Globals.nom_classe + vue + ".png"
+	var nom_sauvegarde: String = Globals.CHEMIN_SAUVEGARDE + Globals.eleves.classe + vue + ".png"
 	plan.save_png(nom_sauvegarde)
 	son_a_emettre.emit("important")
 	
@@ -151,5 +153,19 @@ func _on_capture_pressed() -> void:
 	
 func _maj_tooltip_capture() -> void:
 	var vue: String = "_prof" if vue_prof else "_eleve"
-	var message: String = tr("O35_TOOLTIP") + "[b]" + Globals.nom_classe + vue + ".png[/b]."
+	var message: String = tr("O35_TOOLTIP") + "[b]" + Globals.eleves.classe + vue + ".png[/b]."
 	%Capture/PopUpAide.text = message
+
+func _on_sauver_pressed() -> void:
+	if %PorteTables.get_child_count() == 0:
+		return
+	for i in range(Globals.nombre_eleves):
+		Globals.eleves.plan[i].x = %PorteTables.get_child(i).position.x
+		Globals.eleves.plan[i].y = %PorteTables.get_child(i).position.y
+	Globals.sauvegarder_tableau()
+	
+func _texte_tooltip_sauvegarde() -> void:
+	var nom_fichier: String = Globals.eleves.classe
+	var intro: String = tr("O15_TOOLTIP")
+	var texte: String = intro + "[b]" + nom_fichier + ".tres[/b]."
+	%Sauver/PopUpAide.text = texte

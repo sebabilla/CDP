@@ -17,8 +17,8 @@ func _generer_binomes() -> void:
 	binomes_negatifs.clear()
 	for i in range(Globals.nombre_eleves - 1):
 		for j in range(i + 1, Globals.nombre_eleves):
-			var aff1: int = Globals.tableau_relations[i * Globals.nombre_eleves + j]
-			var aff2: int = Globals.tableau_relations[j * Globals.nombre_eleves + i]
+			var aff1: int = Globals.eleves.relations[i * Globals.nombre_eleves + j]
+			var aff2: int = Globals.eleves.relations[j * Globals.nombre_eleves + i]
 			if aff1 < 0 or aff2 < 0:
 				binomes_negatifs.append([i, aff1, j, aff2])
 			elif aff1 > 0 or aff2 > 0:
@@ -33,10 +33,10 @@ func _afficher_goupes() -> void:
 	var positif: String = ""
 	var negatif: String = ""
 	for b in binomes_positifs:
-		positif +=Globals.noms_eleves[b[0]] + " " + str(b[1]) + " " +Globals.noms_eleves[b[2]] + " " + str(b[3]) + "\n"
+		positif +=Globals.eleves.noms[b[0]] + " " + str(b[1]) + " " +Globals.eleves.noms[b[2]] + " " + str(b[3]) + "\n"
 	for b in binomes_negatifs:
-		negatif +=Globals.noms_eleves[b[0]] + " " + str(b[1]) + " " +Globals.noms_eleves[b[2]] + " " + str(b[3]) + "\n"
-	%GroupesPositifs.text = "[color=#b8e994]" + positif + "[/color]"
-	%GroupesNegatifs.text = "[color=#e58e26]" + negatif + "[/color]"
+		negatif +=Globals.eleves.noms[b[0]] + " " + str(b[1]) + " " +Globals.eleves.noms[b[2]] + " " + str(b[3]) + "\n"
+	%GroupesPositifs.text = "[color=#76FF03]" + positif + "[/color]"
+	%GroupesNegatifs.text = "[color=#FF9100]" + negatif + "[/color]"
 	%GroupesNegatifs.cacher()
 	%GroupesPositifs.cacher()

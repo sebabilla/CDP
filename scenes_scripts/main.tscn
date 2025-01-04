@@ -34,6 +34,7 @@ layout_mode = 2
 metadata/_tab_index = 0
 
 [node name="Sociogramme" parent="TabContainer" instance=ExtResource("3_02y75")]
+unique_name_in_owner = true
 visible = false
 layout_mode = 2
 metadata/_tab_index = 1

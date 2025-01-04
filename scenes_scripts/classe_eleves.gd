@@ -7,8 +7,8 @@ func _ready() -> void:
 	_texte_tooltip_sauvegarde()
 
 func _afficher_question() -> void:
-	var classe: String = "[b]" + Globals.nom_classe + "[/b]" + " : "
-	var question: String = Globals.question
+	var classe: String = "[b]" + Globals.eleves.classe + "[/b]" + " : "
+	var question: String = Globals.eleves.question
 	%Question.text = classe + question
 
 
@@ -20,14 +20,14 @@ func _on_entree_question_text_submitted(new_text: String) -> void:
 	var texte_formate: String = new_text.strip_edges().strip_escapes().replace('"', '')
 	if texte_formate == "":
 		return
-	Globals.question = texte_formate
+	Globals.changer_question(texte_formate)
 
 func _on_entree_classe_text_submitted(new_text: String) -> void:
-	%EntreeQuestion.clear()
+	%EntreeClasse.clear()
 	var texte_formate_sauvegarde: String = new_text.strip_edges().dedent().strip_escapes().replace(" ", "_").replace('"', '').validate_filename()
 	if texte_formate_sauvegarde == "":
 		return
-	Globals.nom_classe = texte_formate_sauvegarde
+	Globals.changer_nom_classe(texte_formate_sauvegarde)
 	
 func _on_entree_eleve_text_submitted(new_text: String) -> void:
 	%EntreeQuestion.clear()
@@ -51,7 +51,7 @@ func _on_sauver_pressed() -> void:
 	Globals.sauvegarder_tableau()
 	
 func _texte_tooltip_sauvegarde() -> void:
-	var nom_fichier: String = Globals.nom_classe
+	var nom_fichier: String = Globals.eleves.classe
 	var intro: String = tr("O15_TOOLTIP")
-	var texte: String = intro + "[b]" + nom_fichier + ".csv[/b]."
+	var texte: String = intro + "[b]" + nom_fichier + ".tres[/b]."
 	%Sauver/PopUpAide.text = texte

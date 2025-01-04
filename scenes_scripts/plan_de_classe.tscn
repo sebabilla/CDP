@@ -21,7 +21,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(0.992157, 0.937255, 0.94902, 1)
+color = Color(0.937255, 0.921569, 0.913725, 1)
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 0
@@ -97,6 +97,20 @@ offset_right = 1.0
 grow_horizontal = 1
 grow_vertical = 1
 
+[node name="Sauver" type="Button" parent="MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "O15_SAUVEGARDER"
+
+[node name="PopUpAide" parent="MarginContainer/VBoxContainer/Sauver" instance=ExtResource("2_c6eg6")]
+layout_mode = 0
+anchors_preset = 0
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_right = 1.0
+grow_horizontal = 1
+grow_vertical = 1
+
 [node name="AccesDossier" type="Button" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
 text = "O15_ACCES_DOSSIER"
@@ -137,4 +151,8 @@ script = ExtResource("2_h0ghx")
 [connection signal="mouse_exited" from="MarginContainer/VBoxContainer/Capture" to="MarginContainer/VBoxContainer/Capture/PopUpAide" method="perte_survol"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/Capture" to="." method="_on_capture_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/Capture" to="MarginContainer/VBoxContainer/Capture/PopUpAide" method="perte_survol"]
+[connection signal="mouse_entered" from="MarginContainer/VBoxContainer/Sauver" to="MarginContainer/VBoxContainer/Sauver/PopUpAide" method="survol"]
+[connection signal="mouse_exited" from="MarginContainer/VBoxContainer/Sauver" to="MarginContainer/VBoxContainer/Sauver/PopUpAide" method="perte_survol"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/Sauver" to="." method="_on_sauver_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/Sauver" to="MarginContainer/VBoxContainer/Sauver/PopUpAide" method="perte_survol"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/AccesDossier" to="MarginContainer/VBoxContainer/AccesDossier" method="_on_pressed"]

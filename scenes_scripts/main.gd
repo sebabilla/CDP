@@ -20,8 +20,13 @@ func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("ui_cancel"):
 		get_tree().quit()
 
-func _on_tab_container_tab_changed(_tab: int) -> void:
+func _on_tab_container_tab_changed(tab: int) -> void:
 	_jouer_son("page")
+	match tab:
+		1:
+			%Sociogramme.ouverture()
+		_:
+			pass
 	
 func _ouvrir_onglet_plan() -> void:
 	%TabContainer.current_tab = 2

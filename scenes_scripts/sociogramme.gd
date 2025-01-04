@@ -2,12 +2,13 @@ extends Control
 
 signal son_a_emettre(son: String)
 
-const COUL_POSITIVES: Array[Color] = [Color.FLORAL_WHITE, Color("38ada9"), Color("78e08f"), Color("b8e994")]
-const COUL_NEGATIVES: Array[Color] = [Color.FLORAL_WHITE, Color("e58e26"), Color("e55039")]
+const COUL_POSITIVES: Array[Color] = [Color("EFEBE9"), Color("CCFF90"), Color("B2FF59"), Color("76FF03")]
+const COUL_NEGATIVES: Array[Color] = [Color("EFEBE9"), Color("FFD180"), Color("FF9100")]
 
 var etiquette_en_mouvement: Label = null
 var fleches: Array #[noeud de depart, noeud d'arrivee, affinite]
 var affichage: int = 0 #-1 que les négatifs, 1 que les positifs
+var en_cours_modif: bool = false
 
 @onready var shader_ligne = preload("res://shaders/ligne.gdshader")
 
@@ -34,40 +35,50 @@ func _bouger_etiquette(event: InputEvent, etiquette: Label) -> void:
 				_maj_lignes()
 
 
-func _nouveau_sociogramme() -> void:
-	_placer_eleves()
-	# pour calculer la nouvelle matrice de flèches à l'image d'après, sinon,
-	# la matrice se formait avec les coordonnés des noeuds effacés???	
+func ouverture():
+	if Globals.nombre_eleves == 0 or Globals.eleves.plan.size() == 0 or en_cours_modif:
+		return
+	_nettoyer_l_onglet()
+	en_cours_modif = true
+	_placer_eleves(false)
 	get_tree().process_frame.connect(_placer_relations, CONNECT_ONE_SHOT)
+	
 
-func _placer_eleves() -> void:
+func _placer_eleves(tracer_nouveau: bool) -> void:
 	for noeud in %PorteLabels.get_children():
 		noeud.queue_free()
-		
 	var N : int = Globals.nombre_eleves
-	if N == 0:
-		return
-	var coin: Vector2 = get_viewport_rect().size / 4
-	var lignes: int = floor(sqrt(N))
+	var etiquettes_rangees: Array = _ordonner_popularite() if tracer_nouveau else [""]
+	
+	for i in range(N):
+		var etiquette: Label = Label.new()
+		var eleve: String = Globals.eleves.noms[i]
+		etiquette.text = eleve
+		etiquette.theme_type_variation = "LabelEtiquette"
+		etiquette.mouse_filter = Control.MOUSE_FILTER_STOP
+		etiquette.gui_input.connect(_bouger_etiquette.bind(etiquette))
+		if tracer_nouveau:
+			var coin: Vector2 = get_viewport_rect().size / 4
+			var lignes: int = floor(sqrt(N))
+			var indice: int =  etiquettes_rangees.find(eleve)
+			etiquette.position = Vector2(indice / lignes * 128, indice % lignes * 80) + coin
+		else:
+			etiquette.position.x = Globals.eleves.plan[i].x
+			etiquette.position.y = Globals.eleves.plan[i].y
+		%PorteLabels.add_child(etiquette)
+		
+func _ordonner_popularite() -> Array:
+	var N : int = Globals.nombre_eleves
 	var eleves_ranges: Array
 	eleves_ranges.resize(N)
 	for i in range(N):
-		eleves_ranges[i] = [Globals.noms_eleves[i], Globals.scores_individuels[i]]
+		eleves_ranges[i] = [Globals.eleves.noms[i], Globals.scores_individuels[i]]
 	eleves_ranges.sort_custom((func(a, b): return a[1] > b[1]))
 	var etiquettes_rangees : Array
 	etiquettes_rangees.resize(N)
 	for i in range(N):
 		etiquettes_rangees[i] = eleves_ranges[i][0]
-		
-	for eleve in Globals.noms_eleves:
-		var etiquette: Label = Label.new()
-		etiquette.text = eleve
-		var indice: int = etiquettes_rangees.find(eleve)
-		etiquette.position = Vector2(indice / lignes * 128, indice % lignes * 80) + coin		
-		etiquette.theme_type_variation = "LabelEtiquette"
-		etiquette.mouse_filter = Control.MOUSE_FILTER_STOP
-		etiquette.gui_input.connect(_bouger_etiquette.bind(etiquette))
-		%PorteLabels.add_child(etiquette)
+	return etiquettes_rangees
 		
 func _placer_relations() -> void:
 	_remplir_fleches()
@@ -76,7 +87,7 @@ func _placer_relations() -> void:
 func _remplir_fleches() -> void:	
 	fleches.clear()
 	for i in range(Globals.nombre_eleves * Globals.nombre_eleves):
-		var valeur: int = Globals.tableau_relations[i]
+		var valeur: int = Globals.eleves.relations[i]
 		if valeur != 0:
 			fleches.append([i / Globals.nombre_eleves, i % Globals.nombre_eleves, valeur])
 
@@ -123,10 +134,16 @@ func reglage_ligne(noeud: ColorRect, fleche: Array, epaisseur_max: float):
 	noeud.material.set_shader_parameter("color1", couleur)
 	noeud.material.set_shader_parameter("color2", Color(0, 0, 0, 0))
 				
-# fonctions pour répondre à la demande de l'utilisateur d'afficher le sociogramme
+# fonctions pour répondre à la demande de l'utilisateur d'afficher un nouveau sociogramme
 # et exporter le résultat ver le plan de classe. 
 func _on_tracer_pressed() -> void:
-	_nouveau_sociogramme()
+	if Globals.nombre_eleves == 0:
+		return
+	en_cours_modif = true
+	_placer_eleves(true)
+	# pour calculer la nouvelle matrice de flèches à l'image d'après, sinon,
+	# la matrice se formait avec les coordonnés des noeuds effacés???	
+	get_tree().process_frame.connect(_placer_relations, CONNECT_ONE_SHOT)
 	son_a_emettre.emit("valider")
 
 func _on_exporte_vers_plan_pressed() -> void:
@@ -138,12 +155,14 @@ func _on_exporte_vers_plan_pressed() -> void:
 		var place: Vector2 = %PorteLabels.get_child(indice).global_position
 		plan.append(Vector3(place.x, place.y, indice))
 	Globals.plan_de_classe(plan)
+	en_cours_modif = false
 	son_a_emettre.emit("important")
 	
 
 # nettoie quand la liste des eleves a changé (et donc probablement le nombre 
 # de noeuds à explorer par ou la mise à jour des étiquettes
 func _nettoyer_l_onglet() -> void:
+	en_cours_modif = false
 	fleches.clear()
 	for noeud in %PorteLabels.get_children():
 		noeud.queue_free()

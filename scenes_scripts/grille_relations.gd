@@ -1,7 +1,7 @@
 extends GridContainer
 
-const COUL_POSITIVES: Array[Color] = [Color.FLORAL_WHITE, Color("38ada9"), Color("78e08f"), Color("b8e994")]
-const COUL_NEGATIVES: Array[Color] = [Color.FLORAL_WHITE, Color("e58e26"), Color("e55039")]
+const COUL_POSITIVES: Array[Color] = [Color("EFEBE9"), Color("CCFF90"), Color("B2FF59"), Color("76FF03")]
+const COUL_NEGATIVES: Array[Color] = [Color("EFEBE9"), Color("FFD180"), Color("FF9100")]
 
 func _ready() -> void:
 	Globals.nouveau_tableau_relations.connect(_afficher_nouvelle_grille_relations)
@@ -20,9 +20,9 @@ func _afficher_nouveau_tableau_relations() -> void:
 	$Affinites.columns = Globals.nombre_eleves
 	$PointsH.columns = Globals.nombre_eleves
 	for i in range(Globals.nombre_eleves):
-		_ajouter_label($NomsH, Globals.noms_eleves[i], HORIZONTAL_ALIGNMENT_CENTER)
-		_ajouter_label($NomsV, Globals.noms_eleves[i], HORIZONTAL_ALIGNMENT_RIGHT)
-		_ajouter_label($NomsVCopie, Globals.noms_eleves[i], HORIZONTAL_ALIGNMENT_LEFT)
+		_ajouter_label($NomsH, Globals.eleves.noms[i], HORIZONTAL_ALIGNMENT_CENTER)
+		_ajouter_label($NomsV, Globals.eleves.noms[i], HORIZONTAL_ALIGNMENT_RIGHT)
+		_ajouter_label($NomsVCopie, Globals.eleves.noms[i], HORIZONTAL_ALIGNMENT_LEFT)
 		_ajouter_label($PointsV, str(_points_a_distribuer(i)), HORIZONTAL_ALIGNMENT_CENTER)
 		_ajouter_label($PointsH, str(Globals.scores_individuels[i]), HORIZONTAL_ALIGNMENT_CENTER)
 	# une ligne par élève avec ses valeurs
@@ -57,7 +57,7 @@ func _ajouter_label(noeud: Control, texte: String, alignement := HORIZONTAL_ALIG
 	noeud.add_child(nouveau)
 
 func _ajouter_button_a_grille_relations(indice: int) -> void:
-	var valeur: int = Globals.tableau_relations[indice]
+	var valeur: int = Globals.eleves.relations[indice]
 	var couleur: Color = COUL_POSITIVES[valeur] if valeur >= 0 else COUL_NEGATIVES[-valeur]
 	var nouveau: Button = Button.new()
 	nouveau.text =  str(valeur)
@@ -71,7 +71,7 @@ func _points_a_distribuer(indice: int) -> int:
 	var score_max: int = tous_les_points.reduce(func(accum, number): return accum + abs(number), 0)
 	var score_existant: int = 0
 	for i in range(indice * Globals.nombre_eleves, indice * Globals.nombre_eleves + Globals.nombre_eleves):
-		score_existant += abs(Globals.tableau_relations[i])
+		score_existant += abs(Globals.eleves.relations[i])
 	return score_max - score_existant
 
 # mise à jour de l'affichage quand une valeur a été modifiée
@@ -82,7 +82,7 @@ func _maj_case_score(indice: int) -> void:
 	_maj_points_distribues(indice)
 
 func _maj_une_case(indice) -> void:
-	var valeur: int = Globals.tableau_relations[indice]
+	var valeur: int = Globals.eleves.relations[indice]
 	var couleur: Color = COUL_POSITIVES[valeur] if valeur >= 0 else COUL_NEGATIVES[-valeur]
 	var noeud: Button = $Affinites.get_child(indice)
 	noeud.text = str(valeur)
@@ -98,7 +98,7 @@ func _maj_un_score(indice: int) -> void:
 func _maj_points_distribues(indice: int) -> void:
 	var noeud: Label = $PointsV.get_child(indice / Globals.nombre_eleves)
 	var points_actuels = int(noeud.text)
-	var point_case: int = Globals.tableau_relations[indice]
+	var point_case: int = Globals.eleves.relations[indice]
 	points_actuels = points_actuels + 1 if point_case <= 0 else points_actuels - 1
 	noeud.text = str(points_actuels)
 	var couleur = COUL_POSITIVES[0] if points_actuels >= 0 else COUL_NEGATIVES[2]
