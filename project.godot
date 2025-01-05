@@ -14,7 +14,8 @@ config/name="Clan de place"
 run/main_scene="res://scenes_scripts/main.tscn"
 config/use_custom_user_dir=true
 config/features=PackedStringArray("4.3", "GL Compatibility")
-config/icon="res://icon.svg"
+config/icon="res://icones/cdp.png"
+config/windows_native_icon="res://icones/cdp.ico"
 
 [autoload]
 
