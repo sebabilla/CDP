@@ -10,15 +10,12 @@ func verifier_dossier_sauvegarder() -> bool:
 	elif dir.make_dir("sauvegarder") == OK: return true
 	return false
 	
-func verifier_exemple_sauvegarde() -> bool:
+func verifier_exemple_sauvegarde() -> void:
 	var dirU: DirAccess = DirAccess.open("user://")
-	var dirP: DirAccess = DirAccess.open("res://")
-	if dirU.file_exists("sauvegarder/exemple.tres"): return true
-	elif dirP.file_exists("exemples/exemple.tres"):
-		if dirP.copy("exemples/exemple.tres", "user://sauvegarder/exemple.tres") == OK:
-			return true
-	return false		
-
+	if dirU.file_exists("sauvegarder/exemple.tres"): return
+	var exemple: Section = ResourceLoader.load("res://exemples/exemple.tres")
+	ResourceSaver.save(exemple, CHEMIN_SAUVEGARDE + "/exemple.tres")
+	
 func sauvegarder(nom: String) -> bool:
 	var nom_sauvegarde: String = CHEMIN_SAUVEGARDE + "/" + nom + ".tres"
 	var sauvegarde = ResourceSaver.save(Gestion.section, nom_sauvegarde)

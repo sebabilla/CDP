@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="Section" load_steps=8 format=3]
+[gd_resource type="Resource" script_class="Section" load_steps=8 format=3 uid="uid://1572b4u8oywf"]
 
 [ext_resource type="Script" path="res://scripts/eleve.gd" id="1_ddigd"]
 [ext_resource type="Script" path="res://scripts/section.gd" id="2_n85q8"]
