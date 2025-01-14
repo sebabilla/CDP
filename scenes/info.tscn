@@ -1,0 +1,24 @@
+[gd_scene load_steps=2 format=3 uid="uid://ct5c8oe1c58wf"]
+
+[ext_resource type="Script" path="res://scenes/info.gd" id="1_gs3s7"]
+
+[node name="Info" type="ColorRect"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.258824, 0.258824, 0.258824, 1)
+script = ExtResource("1_gs3s7")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+bbcode_enabled = true
+
+[connection signal="meta_clicked" from="RichTextLabel" to="." method="_on_rich_text_label_meta_clicked"]
+[connection signal="mouse_exited" from="RichTextLabel" to="." method="_on_rich_text_label_mouse_exited"]

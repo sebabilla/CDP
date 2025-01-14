@@ -40,6 +40,6 @@ negatifs = Array[String](["Astérix", "César"])
 
 [resource]
 script = ExtResource("2_n85q8")
-classe = ""
-question = ""
+classe = "50AEC"
+question = "Construire une pyramide ensemble?"
 eleves = Array[ExtResource("1_ddigd")]([SubResource("Resource_sg65j"), SubResource("Resource_oyxfg"), SubResource("Resource_rqd73"), SubResource("Resource_uktim"), SubResource("Resource_butf0")])

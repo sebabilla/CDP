@@ -1,10 +1,10 @@
-extends RichTextLabel
+extends ColorRect
 
 var ouvert: bool = false
 
 func _ready() -> void:
 	_set_taille()
-	position.x = get_viewport_rect().size.x + 1
+	position.x = 4000
 	
 func ouverture_fermeture() -> void:
 	if ouvert: _fermeture()
@@ -33,7 +33,7 @@ func _set_taille() -> void:
 func _maj_textes() -> void:
 	var t1 = _aide()
 	var t2 = _a_propos()
-	text = t1 + t2
+	$RichTextLabel.text = t1 + t2
 	
 func _aide() -> String:
 	var aide: Array[String] = [
@@ -44,16 +44,16 @@ func _aide() -> String:
 		" ",
 		tr("A1_SAUVEGARDES"),
 		" ",
-		"[i]" + tr("O0_CLASSE_ELEVES") + "[/i]",
+		"[center][i]" + tr("O0_CLASSE_ELEVES") + "[/i][/center]",
 		tr("A1_CLASSE_ELEVES"),
 		" ",
-		"[i]" + tr("O1_AFFINITES") + "[/i]",
+		"[center][i]" + tr("O1_AFFINITES") + "[/i][/center]",
 		tr("A1_AFFINITES"),
 		" ",
-		"[i]" + tr("O2_SOCIOGRAMME") + "[/i]",
+		"[center][i]" + tr("O2_SOCIOGRAMME") + "[/i][/center]",
 		tr("A1_SOCIOGRAMME"),
 		" ",
-		"[i]" + tr("O3_PLAN") + "[/i]",
+		"[center][i]" + tr("O3_PLAN") + "[/i][/center]",
 		tr("A1_PLAN1"),
 		tr("A1_PLAN2"),
 		tr("A1_PLAN3"),
@@ -75,7 +75,7 @@ func _a_propos() -> String:
 		texte += "[p]" + a + "[/p]"
 	return texte
 
-func _on_meta_clicked(meta: Variant) -> void:
+func _on_rich_text_label_meta_clicked(meta: Variant) -> void:
 	if str(meta).contains("~/.local/") and OS.get_name() == "Linux":
 		OS.shell_open(OS.get_data_dir() + "/Clan de place")
 	elif str(meta).contains("%APPDATA%") and OS.get_name() == "Windows":
@@ -83,7 +83,6 @@ func _on_meta_clicked(meta: Variant) -> void:
 	else:
 		OS.shell_open(str(meta))
 		
-func _on_mouse_exited() -> void:
+func _on_rich_text_label_mouse_exited() -> void:
 	if get_global_mouse_position().x < get_viewport_rect().size.x * 0.75:
 		ouverture_fermeture()
-		

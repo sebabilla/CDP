@@ -5,11 +5,12 @@ func _ready() -> void:
 
 func ouverture(extension: String) -> void:
 	%NomSauveg.grab_focus()
+	_set_sauvegarde_conseillee()
 	_set_extension(extension)
 	show()
 
-func _set_sauvegarde_conseillee(texte: String) -> void:
-	%NomSauveg.text = texte
+func _set_sauvegarde_conseillee() -> void:
+	%NomSauveg.text = Gestion.get_nom_section()
 
 func _set_extension(texte: String) -> void:
 	%Extension.text = texte

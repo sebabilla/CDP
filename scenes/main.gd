@@ -36,5 +36,5 @@ func _on_message(message: String) -> void:
 		"sauvegarde_ouverte": %TabContainer.get_current_tab_control().ouverture()
 		"sauvegarder": $PopUpSauvegarde.ouverture(".tres")
 		"capturer": $PopUpSauvegarde.ouverture(".png")
-		"aide": $Aide.ouverture_fermeture()
+		"info": $Info.ouverture_fermeture()
 		_: return

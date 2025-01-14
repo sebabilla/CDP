@@ -3,6 +3,11 @@ extends Control
 
 const COULEURS = [Color("FF9100"), Color("EFEBE9"), Color("76FF03")]
 var N: int = 0
+var soulignage: Rect2 = Rect2(Vector2.ZERO, Vector2.ZERO)
+
+func _draw() -> void:
+	draw_rect(soulignage, Color("424242"))
+	print(soulignage)
 
 func ouverture() -> void:
 	_tout_nettoyer()
@@ -14,14 +19,19 @@ func ouverture() -> void:
 	%Affinites.columns = N
 	_ajouter_les_cases()
 	_ajuster_les_tailles()
-	get_tree().process_frame.connect(_afficher_score_initiaux, CONNECT_ONE_SHOT)
-	get_tree().process_frame.connect(_desactiver_diagonale, CONNECT_ONE_SHOT)
+	get_tree().process_frame.connect(_ouverture_decalee, CONNECT_ONE_SHOT)
 	
+func _ouverture_decalee() -> void:
+	_def_rect_souslignage()
+	_afficher_score_initiaux()
+	_desactiver_diagonale()
+	
+
 func _tout_nettoyer() -> void:
 	for portenoeuds in [%NomsH, %NomsV, %Affinites]:
 		for noeud in portenoeuds.get_children():
 			noeud.queue_free()
-	
+
 func _ajouter_les_cases() -> void:
 	# titres des lignes et des colonnes
 	var noms: Array[String] = Gestion.liste_eleves()
@@ -51,9 +61,7 @@ func _ajouter_button_a_grille_relations() -> void:
 	%Affinites.add_child(nouveau)
 	
 func _ajuster_les_tailles() -> void:
-	if Gestion.section.eleves.size() <= 1:
-		return
-	var hauteur: int = %Affinites.get_child(1).size.y
+	var hauteur: int = %Affinites.get_child(0).size.y
 	var largeur: int = 0
 	for nom in %NomsH.get_children():
 		largeur = nom.size.x if nom.size.x > largeur else largeur
@@ -61,7 +69,22 @@ func _ajuster_les_tailles() -> void:
 		for noeud in portenoeuds.get_children():
 			noeud.custom_minimum_size = Vector2(largeur, hauteur)
 			
+func _def_rect_souslignage() -> void:
+	var largeur: float = get_viewport_rect().size.x
+	var hauteur: int = %Affinites.get_child(0).size.y + 4
+	var decalagey: int = $MarginContainer.global_position.y - $MarginContainer.position.y
+	var posy: float = %Affinites.get_child(0).global_position.y - decalagey - 2
+	soulignage = Rect2(0, posy, largeur, hauteur)
+	queue_redraw()
+	
+func _maj_soulignage(noeud: Button) -> void:
+	var decalagey: int = $MarginContainer.global_position.y - $MarginContainer.position.y
+	var posy: float = noeud.global_position.y - decalagey - 2
+	soulignage.position.y = posy
+	queue_redraw()
+			
 func _on_button_grille_affinite_pressed(noeud: Button) -> void:
+	_maj_soulignage(noeud)
 	var indice: int = noeud.get_index()
 	var donneur: int = indice / N
 	var receveur: int = indice % N

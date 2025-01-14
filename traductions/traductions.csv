@@ -16,6 +16,7 @@ O03_TITRE_ELEVES,[b]Élèves[/b],[b]Pupils[/b]
 O03_ELEVE,Nom à ajouter,New name
 O03_SUPPR_NOM,Effacer dernier,Delete last
 O03_EFFACER_ELEVES,Effacer tous,Delete all
+O04_ELEVES,Élève(s),Pupil(s)
 O1_AFFINITES,    Affinités    ,    Affinities    
 O11_LECTURE_TABLEAU,Lecture : Les élèves de la colonne de gauche ont donné des points d’affinité aux élèves de la ligne du haut.,Reading : Pupils in the left-hand column have awarded affinity points to pupils in the top row.
 O12_EFFACER_AFFINITES,Effacer toutes les affinités,Delete all affinities

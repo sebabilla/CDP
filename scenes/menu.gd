@@ -4,7 +4,6 @@ signal message(message: String) #sauvegarde_ouverte, sauvegarder, capturer, lang
 
 var sauvegarde_possible: bool = true
 var noms_sauvegardes: PackedStringArray = ["rien"]
-var dossier: String = "pas de dossier de sauvegarde"
 var fr: Array[String] = ["fr", "fr_FR", "fr_BE", "fr_CA", "fr_CH", "fr_LU"]
 
 func _ready() -> void:
@@ -35,17 +34,17 @@ func _on_capturer_pressed() -> void:
 	message.emit("capturer")
 	
 func cacher_capturer() -> void:
-	$Capturer.hide()
+	$Capturer.disabled = true
 	
 func montrer_capturer() -> void:
 	if not sauvegarde_possible: return
-	$Capturer.show()
+	$Capturer.disabled = false
 	
 func cacher_manip_sauveg() -> void:
-	$Ouvrir.hide()
-	$Dossier.hide()
-	$Sauvegarder.hide()
-	$Capturer.hide()
+	$Ouvrir.disabled = true
+	$Dossier.disabled = true
+	$Sauvegarder.disabled = true
+	$Capturer.disabled = true
 	sauvegarde_possible = false
 
 func _on_langue_pressed() -> void:
@@ -58,4 +57,4 @@ func _on_langue_pressed() -> void:
 	message.emit("langue_changee")
 	
 func _on_aide_pressed() -> void:
-	message.emit("aide")
+	message.emit("info")

@@ -181,6 +181,7 @@ Aide/fonts/bold_italics_font = SubResource("FontVariation_21lh5")
 Aide/fonts/italics_font = SubResource("FontVariation_yahac")
 Aide/styles/normal = SubResource("StyleBoxFlat_j0hgb")
 BoutonMenu/base_type = &"Button"
+BoutonMenu/colors/font_disabled_color = Color(0.741176, 0.741176, 0.741176, 1)
 BoutonMenu/styles/disabled = SubResource("StyleBoxEmpty_2pu2m")
 BoutonMenu/styles/focus = SubResource("StyleBoxEmpty_weyq6")
 BoutonMenu/styles/hover = SubResource("StyleBoxEmpty_o4sdg")

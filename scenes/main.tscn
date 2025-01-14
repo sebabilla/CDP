@@ -6,7 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://0dxdn3mt4t5n" path="res://scenes/grille_affinites.tscn" id="4_n7g6h"]
 [ext_resource type="PackedScene" uid="uid://reoh1tvug01v" path="res://scenes/sociogr.tscn" id="5_56d66"]
 [ext_resource type="PackedScene" uid="uid://pe052tr7qrf1" path="res://scenes/plan.tscn" id="6_4wbmv"]
-[ext_resource type="PackedScene" uid="uid://de4pmja24fjak" path="res://scenes/aide.tscn" id="7_1wosq"]
+[ext_resource type="PackedScene" uid="uid://ct5c8oe1c58wf" path="res://scenes/info.tscn" id="7_r3fpg"]
 [ext_resource type="PackedScene" uid="uid://biao1gflwm3w0" path="res://scenes/pop_up_sauvegarde.tscn" id="7_up58a"]
 
 [sub_resource type="Theme" id="Theme_at23l"]
@@ -63,8 +63,13 @@ visible = false
 layout_mode = 2
 metadata/_tab_index = 3
 
-[node name="Aide" parent="." instance=ExtResource("7_1wosq")]
+[node name="Info" parent="." instance=ExtResource("7_r3fpg")]
 layout_mode = 0
+anchors_preset = 0
+anchor_right = 0.0
+anchor_bottom = 0.0
+grow_horizontal = 1
+grow_vertical = 1
 
 [node name="PopUpSauvegarde" parent="." instance=ExtResource("7_up58a")]
 visible = false

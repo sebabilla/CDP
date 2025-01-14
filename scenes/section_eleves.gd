@@ -14,7 +14,7 @@ func _on_entree_classe_text_submitted(new_text: String) -> void:
 	if texte_formate == "": 
 		return
 	if Gestion.set_nom_section(texte_formate):
-		_set_titre_fenetre()
+		Gestion._set_titre_fenetre()
 
 func _on_entree_question_text_submitted(new_text: String) -> void:
 	%EntreeQuestion.clear()
@@ -22,7 +22,7 @@ func _on_entree_question_text_submitted(new_text: String) -> void:
 	if texte_formate == "": 
 		return
 	if Gestion.set_question(texte_formate):
-		_set_titre_fenetre()
+		Gestion._set_titre_fenetre()
 
 # changer les eleves
 func _on_entree_eleve_text_submitted(new_text: String) -> void:
@@ -42,13 +42,8 @@ func _on_reset_liste_pressed() -> void:
 		_afficher_liste()
 
 func _afficher_liste() -> void:
+	%Comptage.text = str(Gestion.get_nb_eleve())
 	var liste: String = ""
 	for nom in Gestion.liste_eleves():
 		liste = liste + nom + "\n"
 	%Liste.text = liste
-
-func _set_titre_fenetre() -> void:
-	var classe: String = "    " + Gestion.section.classe + " : "
-	var question: String = Gestion.section.question
-	var titre: String = tr("TITRE") + classe + question
-	DisplayServer.window_set_title(titre)

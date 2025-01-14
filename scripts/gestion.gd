@@ -5,19 +5,22 @@
 ## Toutes les fonctions devraient retourner une valeur interpretable.
 extends Node
 
-const TAILLE_TABLE: Vector2 = Vector2(128, 96)
+const TAILLE_TABLE: Vector2 = Vector2(128, 80)
 
 var section: Section = Section.new()
 
 func nouvelle_section(sec: Section):
 	section = sec
 
-# fonctions pour definir la classe et ses eleves ou les lire
+# fonctions pour gerer la classe et la question
 func set_nom_section(nom: String) -> bool:
 	if nom.length() > 0 and nom != section.classe:
 		section.classe = nom
 		return true
 	return false
+	
+func get_nom_section() -> String:
+	return section.classe
 		
 func set_question(question: String) -> bool:
 	if question.length() > 0 and question != section.question:
@@ -25,6 +28,13 @@ func set_question(question: String) -> bool:
 		return true
 	return false
 	
+func _set_titre_fenetre() -> void:
+	var classe: String = "    " + section.classe + " : "
+	var question: String = section.question
+	var titre: String = tr("TITRE") + classe + question
+	DisplayServer.window_set_title(titre)
+	
+# functions pour gerer les eleves	
 func get_nb_eleve() -> int:
 	return section.eleves.size()
 	

@@ -31,6 +31,7 @@ func ouvrir(nom_fichier: String) -> bool:
 		var nouveau: Resource = ResourceLoader.load(nom_sauvegarde)
 		if nouveau is Section:
 			Gestion.nouvelle_section(nouveau)
+			Gestion._set_titre_fenetre()
 		else: return false
 	return true
 	
