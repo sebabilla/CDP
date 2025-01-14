@@ -1,0 +1,12 @@
+[gd_scene load_steps=2 format=3 uid="uid://de4pmja24fjak"]
+
+[ext_resource type="Script" path="res://scenes/aide.gd" id="1_my0bf"]
+
+[node name="Aide" type="RichTextLabel"]
+offset_right = 40.0
+offset_bottom = 40.0
+bbcode_enabled = true
+script = ExtResource("1_my0bf")
+
+[connection signal="meta_clicked" from="." to="." method="_on_meta_clicked"]
+[connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]

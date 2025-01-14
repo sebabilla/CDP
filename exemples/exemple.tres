@@ -1,0 +1,45 @@
+[gd_resource type="Resource" script_class="Section" load_steps=8 format=3]
+
+[ext_resource type="Script" path="res://scripts/eleve.gd" id="1_ddigd"]
+[ext_resource type="Script" path="res://scripts/section.gd" id="2_n85q8"]
+
+[sub_resource type="Resource" id="Resource_sg65j"]
+script = ExtResource("1_ddigd")
+nom = "Astérix"
+pos = Vector2(624, 448)
+positifs = Array[String](["Obélix", "Idéfix"])
+negatifs = Array[String](["César"])
+
+[sub_resource type="Resource" id="Resource_oyxfg"]
+script = ExtResource("1_ddigd")
+nom = "Obélix"
+pos = Vector2(752, 448)
+positifs = Array[String](["Astérix", "Idéfix", "Cléopâtre"])
+negatifs = Array[String](["César"])
+
+[sub_resource type="Resource" id="Resource_rqd73"]
+script = ExtResource("1_ddigd")
+nom = "Idéfix"
+pos = Vector2(624, 272)
+positifs = Array[String](["Astérix", "Obélix", "Cléopâtre"])
+negatifs = Array[String](["César"])
+
+[sub_resource type="Resource" id="Resource_uktim"]
+script = ExtResource("1_ddigd")
+nom = "César"
+pos = Vector2(1072, 272)
+positifs = Array[String](["Cléopâtre"])
+negatifs = Array[String](["Astérix", "Obélix"])
+
+[sub_resource type="Resource" id="Resource_butf0"]
+script = ExtResource("1_ddigd")
+nom = "Cléopâtre"
+pos = Vector2(752, 272)
+positifs = Array[String](["Obélix", "Idéfix"])
+negatifs = Array[String](["Astérix", "César"])
+
+[resource]
+script = ExtResource("2_n85q8")
+classe = ""
+question = ""
+eleves = Array[ExtResource("1_ddigd")]([SubResource("Resource_sg65j"), SubResource("Resource_oyxfg"), SubResource("Resource_rqd73"), SubResource("Resource_uktim"), SubResource("Resource_butf0")])

@@ -1,0 +1,65 @@
+[gd_scene load_steps=3 format=3 uid="uid://pe052tr7qrf1"]
+
+[ext_resource type="Script" path="res://scenes/plan.gd" id="1_kncc2"]
+[ext_resource type="Script" path="res://scenes/murs.gd" id="2_wrbdn"]
+
+[node name="Plan" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_kncc2")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="Ajouter" type="Button" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "O31_AJOUTER"
+
+[node name="Enlever" type="Button" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "O32_ENLEVER"
+
+[node name="HSeparator" type="HSeparator" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Retourner" type="Button" parent="MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "O33_VERS_VE"
+
+[node name="Murs" type="Control" parent="."]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("2_wrbdn")
+
+[node name="Timer" type="Timer" parent="Murs"]
+wait_time = 0.5
+one_shot = true
+
+[node name="PorteTables" type="Control" parent="."]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="PorteTablesVierges" type="Control" parent="."]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[connection signal="pressed" from="MarginContainer/VBoxContainer/Ajouter" to="." method="_on_ajouter_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/Enlever" to="." method="_on_enlever_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/Retourner" to="." method="_on_retourner_pressed"]
+[connection signal="timeout" from="Murs/Timer" to="Murs" method="_on_timer_timeout"]

@@ -1,0 +1,12 @@
+[gd_scene load_steps=2 format=3 uid="uid://ccu46cdmhirc4"]
+
+[ext_resource type="Script" path="res://scenes/etiquette.gd" id="1_usugo"]
+
+[node name="Etiquette" type="Label"]
+offset_right = 40.0
+offset_bottom = 21.0
+theme_type_variation = &"LabelEtiquette"
+text = "texte"
+script = ExtResource("1_usugo")
+
+[connection signal="gui_input" from="." to="." method="_on_gui_input"]

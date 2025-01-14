@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="Clan de place"
-run/main_scene="res://scenes_scripts/main.tscn"
+run/main_scene="res://scenes/main.tscn"
 config/use_custom_user_dir=true
 config/features=PackedStringArray("4.3", "GL Compatibility")
 config/icon="res://icones/cdp.png"
@@ -19,7 +19,8 @@ config/windows_native_icon="res://icones/cdp.ico"
 
 [autoload]
 
-Globals="*res://scenes_scripts/globals.gd"
+Gestion="*res://scripts/gestion.gd"
+Enregistrer="*res://scripts/enregistrer.gd"
 
 [debug]
 
@@ -30,7 +31,6 @@ gdscript/warnings/integer_division=0
 window/size/viewport_width=1280
 window/size/viewport_height=720
 window/size/mode=2
-window/stretch/mode="canvas_items"
 
 [filesystem]
 
@@ -49,3 +49,4 @@ locale/translations=PackedStringArray("res://traductions/traductions.en.translat
 
 renderer/rendering_method="gl_compatibility"
 renderer/rendering_method.mobile="gl_compatibility"
+environment/defaults/default_clear_color=Color(0.258824, 0.258824, 0.258824, 1)

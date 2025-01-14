@@ -1,0 +1,75 @@
+[gd_scene load_steps=10 format=3 uid="uid://djrjf0s7kmr1d"]
+
+[ext_resource type="Script" path="res://scenes/main.gd" id="1_kncc2"]
+[ext_resource type="PackedScene" uid="uid://cn3swvne85rok" path="res://scenes/menu.tscn" id="2_sp3qf"]
+[ext_resource type="PackedScene" uid="uid://c02eop8tsk5x3" path="res://scenes/section_eleves.tscn" id="3_g52lv"]
+[ext_resource type="PackedScene" uid="uid://0dxdn3mt4t5n" path="res://scenes/grille_affinites.tscn" id="4_n7g6h"]
+[ext_resource type="PackedScene" uid="uid://reoh1tvug01v" path="res://scenes/sociogr.tscn" id="5_56d66"]
+[ext_resource type="PackedScene" uid="uid://pe052tr7qrf1" path="res://scenes/plan.tscn" id="6_4wbmv"]
+[ext_resource type="PackedScene" uid="uid://de4pmja24fjak" path="res://scenes/aide.tscn" id="7_1wosq"]
+[ext_resource type="PackedScene" uid="uid://biao1gflwm3w0" path="res://scenes/pop_up_sauvegarde.tscn" id="7_up58a"]
+
+[sub_resource type="Theme" id="Theme_at23l"]
+
+[node name="Main" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = SubResource("Theme_at23l")
+script = ExtResource("1_kncc2")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 5
+
+[node name="Menu" parent="VBoxContainer" instance=ExtResource("2_sp3qf")]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="TabContainer" type="TabContainer" parent="VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 3
+current_tab = 0
+
+[node name="SectionEleves" parent="VBoxContainer/TabContainer" instance=ExtResource("3_g52lv")]
+unique_name_in_owner = true
+layout_mode = 2
+metadata/_tab_index = 0
+
+[node name="GrilleAffinites" parent="VBoxContainer/TabContainer" instance=ExtResource("4_n7g6h")]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+metadata/_tab_index = 1
+
+[node name="Sociogr" parent="VBoxContainer/TabContainer" instance=ExtResource("5_56d66")]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+metadata/_tab_index = 2
+
+[node name="Plan" parent="VBoxContainer/TabContainer" instance=ExtResource("6_4wbmv")]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+metadata/_tab_index = 3
+
+[node name="Aide" parent="." instance=ExtResource("7_1wosq")]
+layout_mode = 0
+
+[node name="PopUpSauvegarde" parent="." instance=ExtResource("7_up58a")]
+visible = false
+z_index = 0
+layout_mode = 1
+
+[connection signal="message" from="VBoxContainer/Menu" to="." method="_on_message"]
+[connection signal="tab_changed" from="VBoxContainer/TabContainer" to="." method="_on_tab_container_tab_changed"]
