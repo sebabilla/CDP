@@ -25,7 +25,7 @@ func sauvegarder(nom: String) -> bool:
 func ouvrir(nom_fichier: String) -> bool:
 	var nom_sauvegarde: String = CHEMIN_SAUVEGARDE + "/" + nom_fichier
 	if ResourceLoader.exists(nom_sauvegarde):
-		var nouveau: Resource = ResourceLoader.load(nom_sauvegarde)
+		var nouveau: Resource = ResourceLoader.load(nom_sauvegarde, "", ResourceLoader.CACHE_MODE_IGNORE)
 		if nouveau is Section:
 			Gestion.nouvelle_section(nouveau)
 			Gestion._set_titre_fenetre()

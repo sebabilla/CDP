@@ -1,19 +1,19 @@
 extends Control
 
-@onready var table: PackedScene = preload("res://scenes/table.tscn")
+@onready var table: PackedScene = preload("res://scenes/bureau.tscn")
 var N: int = 0
 var vue_prof: bool = true
 
 func ouverture():
-	_nettoyer_l_onglet()
+	nettoyer_l_onglet()
 	N = Gestion.get_nb_eleve()
 	if N == 0:
 		return
 	if Gestion.get_pos_eleve(0) == Vector2.ZERO:
-		Gestion.set_pos_selon_alpha()
+		if not Gestion.set_nouvelles_pos(): return
 	get_tree().process_frame.connect(_placer_tables, CONNECT_ONE_SHOT)
 	
-func _nettoyer_l_onglet() -> void:
+func nettoyer_l_onglet() -> void:
 	for noeud in $PorteTables.get_children():
 		noeud.queue_free()
 	for noeud in $PorteTablesVierges.get_children():
@@ -21,7 +21,7 @@ func _nettoyer_l_onglet() -> void:
 		
 func _placer_tables() -> void:
 	for i in range(N):
-		var t: Label = table.instantiate()
+		var t: Control = table.instantiate()
 		$PorteTables.add_child(t)
 		t.initialiser(i)
 		
@@ -29,7 +29,7 @@ func _on_ajouter_pressed() -> void:
 	var nombre: int = $PorteTablesVierges.get_child_count()
 	if nombre >= 50:
 		return 
-	var t: Label = table.instantiate()
+	var t: Control = table.instantiate()
 	$PorteTablesVierges.add_child(t)
 	t.initialiser(-nombre - 1)
 

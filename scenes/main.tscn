@@ -45,19 +45,19 @@ unique_name_in_owner = true
 layout_mode = 2
 metadata/_tab_index = 0
 
-[node name="GrilleAffinites" parent="VBoxContainer/TabContainer" instance=ExtResource("4_n7g6h")]
+[node name="Plan" parent="VBoxContainer/TabContainer" instance=ExtResource("6_4wbmv")]
 unique_name_in_owner = true
 visible = false
 layout_mode = 2
 metadata/_tab_index = 1
 
-[node name="Sociogr" parent="VBoxContainer/TabContainer" instance=ExtResource("5_56d66")]
+[node name="GrilleAffinites" parent="VBoxContainer/TabContainer" instance=ExtResource("4_n7g6h")]
 unique_name_in_owner = true
 visible = false
 layout_mode = 2
 metadata/_tab_index = 2
 
-[node name="Plan" parent="VBoxContainer/TabContainer" instance=ExtResource("6_4wbmv")]
+[node name="Sociogr" parent="VBoxContainer/TabContainer" instance=ExtResource("5_56d66")]
 unique_name_in_owner = true
 visible = false
 layout_mode = 2
@@ -78,3 +78,6 @@ layout_mode = 1
 
 [connection signal="message" from="VBoxContainer/Menu" to="." method="_on_message"]
 [connection signal="tab_changed" from="VBoxContainer/TabContainer" to="." method="_on_tab_container_tab_changed"]
+[connection signal="message" from="VBoxContainer/TabContainer/SectionEleves" to="." method="_on_message"]
+[connection signal="message" from="VBoxContainer/TabContainer/GrilleAffinites" to="." method="_on_message"]
+[connection signal="message" from="PopUpSauvegarde" to="." method="_on_message"]

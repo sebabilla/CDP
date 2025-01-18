@@ -1,12 +1,12 @@
 [gd_scene load_steps=8 format=3 uid="uid://cn3swvne85rok"]
 
-[ext_resource type="Texture2D" uid="uid://c8agctm876uu2" path="res://icones/file_open_24dp_E8EAED_FILL0_wght400_GRAD0_opsz24.svg" id="1_qdbc8"]
 [ext_resource type="Script" path="res://scenes/menu.gd" id="1_wvo4r"]
-[ext_resource type="Texture2D" uid="uid://b5xa0rjgra2wq" path="res://icones/folder_open_24dp_E8EAED_FILL0_wght400_GRAD0_opsz24.svg" id="2_qchqb"]
-[ext_resource type="Texture2D" uid="uid://dltyys7p4iptq" path="res://icones/save_24dp_E8EAED_FILL0_wght400_GRAD0_opsz24.svg" id="3_uyse5"]
-[ext_resource type="Texture2D" uid="uid://cqo0xdgvf21vl" path="res://icones/photo_camera_24dp_E8EAED_FILL0_wght400_GRAD0_opsz24.svg" id="5_kyp1k"]
-[ext_resource type="Texture2D" uid="uid://ccb2sgkoi2u0n" path="res://icones/language_24dp_E8EAED_FILL0_wght400_GRAD0_opsz24.svg" id="6_pcjb1"]
-[ext_resource type="Texture2D" uid="uid://c4ql4bx0hwwvi" path="res://icones/help_24dp_E8EAED_FILL0_wght400_GRAD0_opsz24.svg" id="7_2axbw"]
+[ext_resource type="Texture2D" uid="uid://cimaj4pyvqmss" path="res://images/document-open.svg" id="2_kybg1"]
+[ext_resource type="Texture2D" uid="uid://dfwdqjwqv0h8r" path="res://images/document-open-folder.svg" id="3_1dym8"]
+[ext_resource type="Texture2D" uid="uid://2ns0l6s1axaa" path="res://images/document-save.svg" id="4_aqyiu"]
+[ext_resource type="Texture2D" uid="uid://dcxb2t5bpimg7" path="res://images/camera-photo.svg" id="5_tgoep"]
+[ext_resource type="Texture2D" uid="uid://cbpvoro46ati7" path="res://images/folder-language.svg" id="6_mj6nw"]
+[ext_resource type="Texture2D" uid="uid://ydpohhmlfrob" path="res://images/help-about.svg" id="7_w1aqd"]
 
 [node name="Menu" type="HBoxContainer"]
 anchors_preset = 15
@@ -15,6 +15,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 size_flags_vertical = 0
+theme_override_constants/separation = 10
 script = ExtResource("1_wvo4r")
 
 [node name="Ouvrir" type="MenuButton" parent="."]
@@ -22,13 +23,14 @@ layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 0
 text = "M1_OUVRIR"
-icon = ExtResource("1_qdbc8")
+icon = ExtResource("2_kybg1")
 
 [node name="Dossier" type="Button" parent="."]
 layout_mode = 2
+size_flags_vertical = 0
 theme_type_variation = &"BoutonMenu"
 text = "M2_ACCES_DOSSIER"
-icon = ExtResource("2_qchqb")
+icon = ExtResource("3_1dym8")
 
 [node name="Sauvegarder" type="Button" parent="."]
 layout_mode = 2
@@ -36,7 +38,7 @@ size_flags_horizontal = 0
 size_flags_vertical = 0
 theme_type_variation = &"BoutonMenu"
 text = "M3_SAUVEGARDER"
-icon = ExtResource("3_uyse5")
+icon = ExtResource("4_aqyiu")
 
 [node name="Capturer" type="Button" parent="."]
 layout_mode = 2
@@ -44,14 +46,14 @@ size_flags_horizontal = 0
 size_flags_vertical = 0
 theme_type_variation = &"BoutonMenu"
 text = "M4_CAPTURER"
-icon = ExtResource("5_kyp1k")
+icon = ExtResource("5_tgoep")
 
 [node name="Langue" type="Button" parent="."]
 layout_mode = 2
 size_flags_horizontal = 10
 size_flags_vertical = 0
 theme_type_variation = &"BoutonMenu"
-icon = ExtResource("6_pcjb1")
+icon = ExtResource("6_mj6nw")
 
 [node name="Aide" type="Button" parent="."]
 layout_mode = 2
@@ -59,7 +61,7 @@ size_flags_horizontal = 8
 size_flags_vertical = 0
 theme_type_variation = &"BoutonMenu"
 text = " "
-icon = ExtResource("7_2axbw")
+icon = ExtResource("7_w1aqd")
 
 [connection signal="about_to_popup" from="Ouvrir" to="." method="_on_ouvrir_about_to_popup"]
 [connection signal="pressed" from="Dossier" to="." method="_on_dossier_pressed"]

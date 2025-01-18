@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://by04qcip2bvd7"
-path="res://.godot/imported/check_24dp_E8EAED_FILL0_wght400_GRAD0_opsz24.svg-b2d4392fe37cda8a050006fa02ccd71b.ctex"
+uid="uid://b0uko6nlt02ux"
+path="res://.godot/imported/camera-video.svg-68b4ba714fcf58bc50e0e2bf18b2029c.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://icones/check_24dp_E8EAED_FILL0_wght400_GRAD0_opsz24.svg"
-dest_files=["res://.godot/imported/check_24dp_E8EAED_FILL0_wght400_GRAD0_opsz24.svg-b2d4392fe37cda8a050006fa02ccd71b.ctex"]
+source_file="res://images/camera-video.svg"
+dest_files=["res://.godot/imported/camera-video.svg-68b4ba714fcf58bc50e0e2bf18b2029c.ctex"]
 
 [params]
 

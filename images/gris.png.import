@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dltyys7p4iptq"
-path="res://.godot/imported/save_24dp_E8EAED_FILL0_wght400_GRAD0_opsz24.svg-a6ac647775825878cab7fedcd56db7fe.ctex"
+uid="uid://d2s34lvdwfd1"
+path="res://.godot/imported/gris.png-e2884bba1a47e22c9c1035920ca333af.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://icones/save_24dp_E8EAED_FILL0_wght400_GRAD0_opsz24.svg"
-dest_files=["res://.godot/imported/save_24dp_E8EAED_FILL0_wght400_GRAD0_opsz24.svg-a6ac647775825878cab7fedcd56db7fe.ctex"]
+source_file="res://images/gris.png"
+dest_files=["res://.godot/imported/gris.png-e2884bba1a47e22c9c1035920ca333af.ctex"]
 
 [params]
 
@@ -32,6 +32,3 @@ process/hdr_as_srgb=false
 process/hdr_clamp_exposure=false
 process/size_limit=0
 detect_3d/compress_to=1
-svg/scale=1.0
-editor/scale_with_editor_scale=false
-editor/convert_colors_with_editor_theme=false

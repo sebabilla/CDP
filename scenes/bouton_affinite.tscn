@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://dxrutoc27jwnw"]
+
+[ext_resource type="Script" path="res://scenes/bouton_affinite.gd" id="1_yko14"]
+
+[node name="bouton_affinite" type="TextureRect"]
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("1_yko14")
+
+[connection signal="gui_input" from="." to="." method="_on_gui_input"]

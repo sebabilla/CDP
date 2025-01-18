@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://t66w25088sba"
-path="res://.godot/imported/close_24dp_E8EAED_FILL0_wght400_GRAD0_opsz24.svg-593313fa13181c2e2a08025d35db01f4.ctex"
+uid="uid://bsdu030hw6okp"
+path="res://.godot/imported/dialog-cancel.svg-45afa8b83ff617ce5f5faf45fd45e68f.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://icones/close_24dp_E8EAED_FILL0_wght400_GRAD0_opsz24.svg"
-dest_files=["res://.godot/imported/close_24dp_E8EAED_FILL0_wght400_GRAD0_opsz24.svg-593313fa13181c2e2a08025d35db01f4.ctex"]
+source_file="res://images/dialog-cancel.svg"
+dest_files=["res://.godot/imported/dialog-cancel.svg-45afa8b83ff617ce5f5faf45fd45e68f.ctex"]
 
 [params]
 

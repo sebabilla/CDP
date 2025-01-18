@@ -14,7 +14,9 @@ config/name="Clan de place"
 run/main_scene="res://scenes/main.tscn"
 config/use_custom_user_dir=true
 config/features=PackedStringArray("4.3", "GL Compatibility")
-config/icon="res://icones/cdp.png"
+run/max_fps=30
+boot_splash/image="res://images/splash.png"
+config/icon="res://images/cdp.png"
 config/windows_native_icon="res://icones/cdp.ico"
 
 [autoload]
@@ -38,8 +40,16 @@ import/blender/enabled=false
 
 [gui]
 
-theme/custom="res://theme_global/plan.tres"
+theme/custom="res://theme/plan.tres"
 theme/custom_font="res://polices/Carlito-Regular.ttf"
+
+[input]
+
+Sauvegarder={
+"deadzone": 0.5,
+"events": [Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":true,"meta_pressed":false,"pressed":false,"keycode":83,"physical_keycode":0,"key_label":0,"unicode":115,"location":0,"echo":false,"script":null)
+]
+}
 
 [internationalization]
 

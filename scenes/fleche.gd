@@ -1,13 +1,14 @@
 extends ColorRect
 
-const COULEURS = [Color("FF9100"), Color("EFEBE9"), Color("76FF03")]
+enum {ORANGE, BLANC, VERT}
+const COULEURS = [Color("FFA726"), Color("EFEBE9"), Color("00E676")]
 
 var donneur : int
 var receveur : int
 var couleur : int
 var depart: Vector2 = Vector2.ZERO
 var arrivee: Vector2 = Vector2.ZERO
-var epaisseur_max : float
+var longueur_max : float = 1000
 var shader_ligne = load("res://shaders/ligne.gdshader")
 
 func _ready() -> void:
@@ -30,21 +31,22 @@ func initialiser(don: int, rec: int, col: int) -> void:
 	depart = Gestion.get_pos_eleve(donneur)
 	global_position = depart
 	arrivee = Gestion.get_pos_eleve(receveur)
-	epaisseur_max = log(max(get_viewport_rect().size.x, get_viewport_rect().size.y))
-	material.set_shader_parameter("color1", COULEURS[couleur + 1])
+	longueur_max = Vector2.ZERO.distance_to(get_viewport_rect().size)
+	material.set_shader_parameter("color1", COULEURS[couleur])
 	_def_forme()
 	set_process(false)
 	
 func _def_forme() -> void:
 	size.x = depart.distance_to(arrivee)
 	rotation = depart.angle_to_point(arrivee)
-	var epaisseur: float = (epaisseur_max - log(size.x + 0.001)) * 2
+	var epaisseur: float = longueur_max / max(size.x, 1.0) / 2
+	epaisseur = min(epaisseur, 10)
 	size.y = epaisseur
-	material.set_shader_parameter("frequency", 300 / epaisseur)
+	material.set_shader_parameter("frequency", size.x / 5.0) # phase du sinus du shader constante
 	
 func maj_col_arret(col: int) -> void:
-	if col == 0 or col == couleur:
-		material.set_shader_parameter("color1", COULEURS[couleur + 1])
+	if col == BLANC or col == couleur:
+		material.set_shader_parameter("color1", COULEURS[couleur])
 	else:
 		material.set_shader_parameter("color1", Color(0, 0, 0, 0))
 		

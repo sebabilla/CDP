@@ -24,20 +24,19 @@ theme_override_constants/separation = 20
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_stretch_ratio = 0.1
-theme_override_constants/margin_left = 20
+theme_override_constants/margin_left = 10
 theme_override_constants/margin_top = 10
-theme_override_constants/margin_right = 4
-theme_override_constants/margin_bottom = 12
+theme_override_constants/margin_bottom = 10
 
 [node name="Entrees" type="VBoxContainer" parent="HBoxContainer/MarginContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_constants/separation = 10
 
-[node name="ClasseQestion" type="RichTextLabel" parent="HBoxContainer/MarginContainer/Entrees"]
+[node name="Classe" type="RichTextLabel" parent="HBoxContainer/MarginContainer/Entrees"]
 layout_mode = 2
 bbcode_enabled = true
-text = "O01_CLASSE_QUESTION"
+text = "O01_CLASSE"
 fit_content = true
 scroll_active = false
 autowrap_mode = 0
@@ -47,13 +46,6 @@ unique_name_in_owner = true
 layout_mode = 2
 placeholder_text = "O02_CLASSE"
 max_length = 20
-context_menu_enabled = false
-caret_blink = true
-
-[node name="EntreeQuestion" type="LineEdit" parent="HBoxContainer/MarginContainer/Entrees"]
-unique_name_in_owner = true
-layout_mode = 2
-placeholder_text = "O01_QUESTION"
 context_menu_enabled = false
 caret_blink = true
 
@@ -87,6 +79,17 @@ text = "O03_EFFACER_ELEVES"
 [node name="HSeparator" type="HSeparator" parent="HBoxContainer/MarginContainer/Entrees"]
 layout_mode = 2
 
+[node name="Tris" type="RichTextLabel" parent="HBoxContainer/MarginContainer/Entrees"]
+layout_mode = 2
+bbcode_enabled = true
+text = "O04_TRIS"
+fit_content = true
+
+[node name="Alphabet" type="Button" parent="HBoxContainer/MarginContainer/Entrees"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "O04_AZ"
+
 [node name="VSeparator" type="VSeparator" parent="HBoxContainer"]
 layout_mode = 2
 theme_override_constants/separation = 0
@@ -95,13 +98,14 @@ theme_override_constants/separation = 0
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_stretch_ratio = 0.9
-theme_override_constants/margin_left = 4
-theme_override_constants/margin_top = 8
-theme_override_constants/margin_right = 8
-theme_override_constants/margin_bottom = 8
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
 
 [node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer/MarginContainer2"]
+custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
+size_flags_horizontal = 0
 
 [node name="HBoxContainer" type="HBoxContainer" parent="HBoxContainer/MarginContainer2/VBoxContainer"]
 layout_mode = 2
@@ -113,7 +117,10 @@ size_flags_horizontal = 0
 
 [node name="Label" type="Label" parent="HBoxContainer/MarginContainer2/VBoxContainer/HBoxContainer"]
 layout_mode = 2
-text = "O04_ELEVES"
+text = "O05_ELEVES"
+
+[node name="HSeparator" type="HSeparator" parent="HBoxContainer/MarginContainer2/VBoxContainer"]
+layout_mode = 2
 
 [node name="Liste" type="RichTextLabel" parent="HBoxContainer/MarginContainer2/VBoxContainer"]
 unique_name_in_owner = true
@@ -122,7 +129,7 @@ bbcode_enabled = true
 fit_content = true
 
 [connection signal="text_submitted" from="HBoxContainer/MarginContainer/Entrees/EntreeClasse" to="." method="_on_entree_classe_text_submitted"]
-[connection signal="text_submitted" from="HBoxContainer/MarginContainer/Entrees/EntreeQuestion" to="." method="_on_entree_question_text_submitted"]
 [connection signal="text_submitted" from="HBoxContainer/MarginContainer/Entrees/EntreeEleve" to="." method="_on_entree_eleve_text_submitted"]
 [connection signal="pressed" from="HBoxContainer/MarginContainer/Entrees/EnleverDernier" to="." method="_on_enlever_dernier_pressed"]
 [connection signal="pressed" from="HBoxContainer/MarginContainer/Entrees/ResetListe" to="." method="_on_reset_liste_pressed"]
+[connection signal="pressed" from="HBoxContainer/MarginContainer/Entrees/Alphabet" to="." method="_on_alphabet_pressed"]

@@ -1,8 +1,8 @@
 [gd_scene load_steps=4 format=3 uid="uid://biao1gflwm3w0"]
 
 [ext_resource type="Script" path="res://scenes/pop_up_sauvegarde.gd" id="1_ackgj"]
-[ext_resource type="Texture2D" uid="uid://by04qcip2bvd7" path="res://icones/check_24dp_E8EAED_FILL0_wght400_GRAD0_opsz24.svg" id="1_qx7w0"]
-[ext_resource type="Texture2D" uid="uid://t66w25088sba" path="res://icones/close_24dp_E8EAED_FILL0_wght400_GRAD0_opsz24.svg" id="2_8trv0"]
+[ext_resource type="Texture2D" uid="uid://dnbrhgh7r124k" path="res://images/dialog-ok-apply.svg" id="2_r5tmr"]
+[ext_resource type="Texture2D" uid="uid://bsdu030hw6okp" path="res://images/dialog-cancel.svg" id="3_nceo1"]
 
 [node name="PopUpSauvegarde" type="ColorRect"]
 z_index = 10
@@ -75,11 +75,11 @@ theme_override_constants/separation = 10
 
 [node name="Oui" type="Button" parent="ColorRect/VBoxContainer/HBoxContainer2"]
 layout_mode = 2
-icon = ExtResource("1_qx7w0")
+icon = ExtResource("2_r5tmr")
 
 [node name="Non" type="Button" parent="ColorRect/VBoxContainer/HBoxContainer2"]
 layout_mode = 2
-icon = ExtResource("2_8trv0")
+icon = ExtResource("3_nceo1")
 
 [connection signal="text_submitted" from="ColorRect/VBoxContainer/HBoxContainer/NomSauveg" to="." method="_on_nom_sauveg_text_submitted"]
 [connection signal="pressed" from="ColorRect/VBoxContainer/HBoxContainer2/Oui" to="." method="_on_oui_pressed"]
