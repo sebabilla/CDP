@@ -17,7 +17,12 @@ func set_nom_section(nom: String) -> bool:
 	if nom.is_empty() or nom == section.classe:
 		return false
 	section.classe = nom
+	_set_titre_fenetre()
 	return true
+	
+func _set_titre_fenetre() -> void:
+	var titre: String = tr("TITRE") + "    " + section.classe
+	DisplayServer.window_set_title(titre)
 	
 func get_nom_section() -> String:
 	return section.classe
@@ -31,14 +36,8 @@ func set_question(question: String) -> bool:
 func get_question() -> String:
 	return section.question
 	
-func _set_titre_fenetre() -> void:
-	var classe: String = "    " + section.classe + " : "
-	var question: String = section.question
-	var titre: String = tr("TITRE") + classe + question
-	DisplayServer.window_set_title(titre)
-	
 # functions pour gerer les eleves	
-func get_nb_eleve() -> int:
+func get_nb_eleves() -> int:
 	return section.eleves.size()
 	
 func ajouter_eleve(nom: String) -> bool:
@@ -53,7 +52,7 @@ func enlever_dernier_eleve() -> bool:
 	if section.eleves.is_empty():
 		return false
 	var nom_dernier: String = section.eleves.back().nom
-	for i in get_nb_eleve():
+	for i in get_nb_eleves():
 		if positif_existe(i, nom_dernier):
 			enlever_positif(i, nom_dernier)
 		if negatif_existe(i, nom_dernier):
@@ -68,12 +67,12 @@ func enlever_tous_eleves() -> bool:
 	return true
 	
 func get_nom_eleve(indice: int) -> String:
-	if indice < 0 or indice >= get_nb_eleve():
+	if indice < 0 or indice >= get_nb_eleves():
 		return ""
 	return section.eleves[indice].nom
 
 func trouver_indice_eleve(nom: String) -> int:
-	for i in get_nb_eleve():
+	for i in get_nb_eleves():
 		if section.eleves[i].nom == nom:
 			return i
 	return -1
@@ -81,7 +80,7 @@ func trouver_indice_eleve(nom: String) -> int:
 # obtenir la liste des eleves de trois facons
 func liste_eleves() -> Array[String]:
 	var liste: Array[String] = []
-	for i in get_nb_eleve():
+	for i in get_nb_eleves():
 		liste.append(section.eleves[i].nom)
 	return liste
 	
@@ -106,7 +105,7 @@ func ajouter_positif(indice: int, nom: String) -> bool:
 	
 func enlever_positif(indice: int, nom: String) -> bool:
 	var id: int = section.eleves[indice].positifs.find(nom)
-	if id < 0 or id >= get_nb_eleve(): 
+	if id < 0 or id >= get_nb_eleves(): 
 		return false
 	section.eleves[indice].positifs.pop_at(id)
 	return true
@@ -123,7 +122,7 @@ func ajouter_negatif(indice: int, nom: String) -> bool:
 	
 func enlever_negatif(indice: int, nom: String) -> bool:
 	var id: int = section.eleves[indice].negatifs.find(nom)
-	if id < 0 or id >= get_nb_eleve(): 
+	if id < 0 or id >= get_nb_eleves(): 
 		return false
 	section.eleves[indice].negatifs.pop_at(id)
 	return true
@@ -136,11 +135,11 @@ func effacer_toutes_affinites() -> bool:
 	return true
 	
 func liste_positifs(indice: int) -> Array[String]:
-	if indice < 0 or indice >= get_nb_eleve(): return []
+	if indice < 0 or indice >= get_nb_eleves(): return []
 	return section.eleves[indice].positifs.duplicate()
 	
 func liste_negatifs(indice: int) -> Array[String]:
-	if indice < 0 or indice >= get_nb_eleve(): return []
+	if indice < 0 or indice >= get_nb_eleves(): return []
 	return section.eleves[indice].negatifs.duplicate()
 
 func popularite_eleve(nom: String) -> int:
@@ -157,26 +156,84 @@ func set_pos_eleve(indice: int, pos: Vector2) -> void:
 
 func get_pos_eleve(indice: int) -> Vector2:
 	return section.eleves[indice].pos
+
+func set_angle_eleve(indice: int, angle_degres: float) -> void:
+	section.eleves[indice].angle = angle_degres
 	
+func get_angle_eleve(indice: int) -> float:
+	return section.eleves[indice].angle
+
+func set_pos_eleves_sym_c(centre: Vector2) -> void:
+	for eleve in section.eleves:
+		eleve.pos = 2 * centre - eleve.pos
+	
+func set_nouvelles_pos() -> bool:
+	var lignes: int = floor(sqrt(get_nb_eleves()))
+	if lignes == 0: return false
+	for i in range(get_nb_eleves()):
+		var nv_pos: Vector2 = Vector2(i / lignes * TAILLE_TABLE.x, i % lignes * TAILLE_TABLE.y) + 2*TAILLE_TABLE
+		set_pos_eleve(i, nv_pos)
+	return true
+
+# https://fr.wikipedia.org/wiki/Tournoi_toutes_rondes
+func pos_paires_tournantes() -> Array[Array]:
+	if get_nb_eleves() <= 2:
+		return []
+	var positions: Array = []
+	for eleve in section.eleves:
+		positions.append(eleve.pos)
+	var tirages: Array[Array] = []
+	for  i in (get_nb_eleves() - 1):
+		tirages.append(positions)
+		positions = [positions[0]] + [positions[-1]] + positions.slice(1, -1)
+	return tirages
+	
+func set_pos_tous_eleves(positions: Array) -> bool:
+	if positions.size() != get_nb_eleves():
+		return false
+	for i in get_nb_eleves():
+		set_pos_eleve(i, positions[i])
+	return true
+	
+# gerer les tables vierges
+func get_nb_tables_vierges() -> int:
+	return  section.tables_vierges_pos.size()
+
+func ajouter_table_vierge() -> void:
+	var decalage: int = get_nb_tables_vierges()
+	section.tables_vierges_pos.append( 2 * TAILLE_TABLE + Vector2(1,3) * decalage)
+	section.tables_vierges_angle.append(0)
+
+func enlever_derniere_table_vierge() -> void:
+	if section.tables_vierges_pos.is_empty() : return
+	section.tables_vierges_pos.pop_back()
+	section.tables_vierges_angle.pop_back()
+	
+func set_pos_table_vierge(indice: int, pos: Vector2) -> void:
+	section.tables_vierges_pos[indice] = pos
+	
+func get_pos_table_vierge(indice: int) -> Vector2:
+	return section.tables_vierges_pos[indice]
+	
+func set_angle_table_vierge(indice: int, angle_degres: float) -> void:
+	section.tables_vierges_angle[indice] = angle_degres
+	
+func get_angle_table_vierge(indice: int) -> float:
+	return section.tables_vierges_angle[indice]
+	
+func set_pos_tables_sym_c(centre: Vector2) -> void:
+	for i in get_nb_tables_vierges():
+		section.tables_vierges_pos[i] = 2 * centre - section.tables_vierges_pos[i]
+
 func get_pos_min_max() -> Rect2:
-	if section.eleves.is_empty():
+	if section.eleves.is_empty() and section.tables_vierges.is_empty():
 		return Rect2(Vector2.ZERO, Vector2.ZERO)
 	var x: Array[float]
 	var y: Array[float]
 	for eleve in section.eleves:
 		x.append(eleve.pos.x)
 		y.append(eleve.pos.y)
-	return Rect2(x.min(), y.min(), x.max() - x.min(), y.max() - y.min())
-	
-func set_pos_eleves_sym_c(centre: Vector2) -> void:
-	for eleve in section.eleves:
-		eleve.pos = 2 * centre - eleve.pos
-	
-func set_nouvelles_pos() -> bool:
-	var lignes: int = floor(sqrt(get_nb_eleve()))
-	if lignes == 0: return false
-	for i in range(get_nb_eleve()):
-		var nv_pos: Vector2 = Vector2(i / lignes * TAILLE_TABLE.x, i % lignes * TAILLE_TABLE.y) + 2*TAILLE_TABLE
-		set_pos_eleve(i, nv_pos)
-	return true
-	
+	for table in section.tables_vierges_pos:
+		x.append(table.x)
+		y.append(table.y)
+	return Rect2(x.min(), y.min(), x.max() - x.min(), y.max() - y.min())	

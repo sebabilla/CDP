@@ -3,7 +3,6 @@ extends Control
 func _ready() -> void:
 	_nom_des_onglets()
 	$PopUpSauvegarde.hide()
-	%Menu.cacher_capturer()
 	if not Enregistrer.verifier_dossier_sauvegarder():
 		%Menu.cacher_manip_sauveg()
 	else: Enregistrer.verifier_exemple_sauvegarde()
@@ -17,16 +16,18 @@ func _input(event: InputEvent) -> void:
 
 func _nom_des_onglets() -> void:
 	%TabContainer.set_tab_title(0, "O0_CLASSE_ELEVES")
+	%TabContainer.set_tab_icon(0, load("res://images/user-group-new.svg"))
 	%TabContainer.set_tab_title(1, "O3_PLAN")
+	%TabContainer.set_tab_icon(1, load("res://images/homerun.svg"))
 	%TabContainer.set_tab_title(2, "O1_AFFINITES")
+	%TabContainer.set_tab_icon(2, load("res://images/view-grid.svg"))
 	%TabContainer.set_tab_title(3, "O2_SOCIOGRAMME")
+	%TabContainer.set_tab_icon(3, load("res://images/path-mode-polyline.svg"))
 
 func _on_tab_container_tab_changed(tab: int) -> void:
 	for noeud in %TabContainer.get_children():
 		noeud.nettoyer_l_onglet() # prend normalement du temps seulement pour nettoyer le dernier onglet puisque les autres devraient déjà être clean?
 	%TabContainer.get_child(tab).ouverture()
-	if tab == 1: %Menu.montrer_capturer()
-	else: %Menu.cacher_capturer()
 
 # gestion des évènements du menu et des onglets
 func _on_message(message: String) -> void:
@@ -34,6 +35,9 @@ func _on_message(message: String) -> void:
 		"sauvegarde_ouverte": %TabContainer.get_current_tab_control().ouverture()
 		"sauvegarder": $PopUpSauvegarde.ouverture(".tres")
 		"capturer": $PopUpSauvegarde.ouverture(".png")
+		"paires_tournantes": $PopUpSauvegarde.ouverture("/")
+		"debuter_capture": %Plan.capturer()
+		"debuter_ronde": %Plan.paires_tournantes()
 		"info": $Info.ouverture_fermeture()
 		"echec": _trembler()
 		_: return

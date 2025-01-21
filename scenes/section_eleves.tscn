@@ -1,6 +1,11 @@
-[gd_scene load_steps=2 format=3 uid="uid://c02eop8tsk5x3"]
+[gd_scene load_steps=7 format=3 uid="uid://c02eop8tsk5x3"]
 
 [ext_resource type="Script" path="res://scenes/section_eleves.gd" id="1_62hxx"]
+[ext_resource type="Texture2D" uid="uid://cb0v22pb5kj61" path="res://images/resource-group-new.svg" id="2_2cc8e"]
+[ext_resource type="Texture2D" uid="uid://dn0a40dtluin2" path="res://images/list-add-user.svg" id="3_y3p7b"]
+[ext_resource type="Texture2D" uid="uid://ccc1wypxk6wte" path="res://images/filename-dash-amarok.svg" id="4_mysub"]
+[ext_resource type="Texture2D" uid="uid://dspcbbsm5fysm" path="res://images/edit-clear-history.svg" id="5_rtyxr"]
+[ext_resource type="Texture2D" uid="uid://dh3j05i7rv6fn" path="res://images/view-sort.svg" id="6_f56p3"]
 
 [node name="SectionEleves" type="Control"]
 layout_mode = 3
@@ -33,7 +38,14 @@ layout_mode = 2
 size_flags_horizontal = 3
 theme_override_constants/separation = 10
 
-[node name="Classe" type="RichTextLabel" parent="HBoxContainer/MarginContainer/Entrees"]
+[node name="HBoxContainer" type="HBoxContainer" parent="HBoxContainer/MarginContainer/Entrees"]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="HBoxContainer/MarginContainer/Entrees/HBoxContainer"]
+layout_mode = 2
+texture = ExtResource("2_2cc8e")
+
+[node name="Classe" type="RichTextLabel" parent="HBoxContainer/MarginContainer/Entrees/HBoxContainer"]
 layout_mode = 2
 bbcode_enabled = true
 text = "O01_CLASSE"
@@ -52,7 +64,14 @@ caret_blink = true
 [node name="HSeparator2" type="HSeparator" parent="HBoxContainer/MarginContainer/Entrees"]
 layout_mode = 2
 
-[node name="TitreEleves" type="RichTextLabel" parent="HBoxContainer/MarginContainer/Entrees"]
+[node name="HBoxContainer2" type="HBoxContainer" parent="HBoxContainer/MarginContainer/Entrees"]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="HBoxContainer/MarginContainer/Entrees/HBoxContainer2"]
+layout_mode = 2
+texture = ExtResource("3_y3p7b")
+
+[node name="TitreEleves" type="RichTextLabel" parent="HBoxContainer/MarginContainer/Entrees/HBoxContainer2"]
 layout_mode = 2
 bbcode_enabled = true
 text = "O03_TITRE_ELEVES"
@@ -71,16 +90,26 @@ caret_blink = true
 [node name="EnleverDernier" type="Button" parent="HBoxContainer/MarginContainer/Entrees"]
 layout_mode = 2
 text = "O03_SUPPR_NOM"
+icon = ExtResource("4_mysub")
 
 [node name="ResetListe" type="Button" parent="HBoxContainer/MarginContainer/Entrees"]
 layout_mode = 2
 text = "O03_EFFACER_ELEVES"
+icon = ExtResource("5_rtyxr")
 
 [node name="HSeparator" type="HSeparator" parent="HBoxContainer/MarginContainer/Entrees"]
 layout_mode = 2
 
-[node name="Tris" type="RichTextLabel" parent="HBoxContainer/MarginContainer/Entrees"]
+[node name="HBoxContainer3" type="HBoxContainer" parent="HBoxContainer/MarginContainer/Entrees"]
 layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="HBoxContainer/MarginContainer/Entrees/HBoxContainer3"]
+layout_mode = 2
+texture = ExtResource("6_f56p3")
+
+[node name="Tris" type="RichTextLabel" parent="HBoxContainer/MarginContainer/Entrees/HBoxContainer3"]
+layout_mode = 2
+size_flags_horizontal = 3
 bbcode_enabled = true
 text = "O04_TRIS"
 fit_content = true

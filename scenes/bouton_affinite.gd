@@ -1,7 +1,7 @@
 extends TextureRect
 
 const LARG_HAUT_MIN: Vector2 = Vector2(48, 16)
-const COULEURS: Array[Texture] = [
+var couleurs: Array[Texture] = [
 	preload("res://images/gris.png"),
 	preload("res://images/vert.png"),
 	preload("res://images/orange.png")
@@ -24,11 +24,11 @@ func qui_suis_je(i: int, j: int, chemin: NodePath) -> void:
 	receveur_indice = j
 	receveur_nom = Gestion.get_nom_eleve(receveur_indice)
 	if Gestion.positif_existe(donneur_indice, receveur_nom):
-		texture = COULEURS[1]
+		texture = couleurs[1]
 	elif Gestion.negatif_existe(donneur_indice, receveur_nom):
-		texture = COULEURS[2]
+		texture = couleurs[2]
 	else:
-		texture = COULEURS[0]
+		texture = couleurs[0]
 	chemin_parent = chemin
 
 func _on_gui_input(event: InputEvent) -> void:
@@ -37,10 +37,10 @@ func _on_gui_input(event: InputEvent) -> void:
 		if Gestion.positif_existe(donneur_indice, receveur_nom):
 			Gestion.enlever_positif(donneur_indice, receveur_nom)
 			Gestion.ajouter_negatif(donneur_indice, receveur_nom)
-			texture = COULEURS[2]
+			texture = couleurs[2]
 		elif Gestion.negatif_existe(donneur_indice, receveur_nom):
 			Gestion.enlever_negatif(donneur_indice, receveur_nom)
-			texture = COULEURS[0]
+			texture = couleurs[0]
 		else:
 			Gestion.ajouter_positif(donneur_indice, receveur_nom)
-			texture = COULEURS[1]
+			texture = couleurs[1]

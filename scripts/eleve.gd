@@ -5,5 +5,6 @@ class_name Eleve
 
 @export var nom: String
 @export var pos: Vector2 = Vector2.ZERO
+@export var angle: float = 0
 @export var positifs: Array[String] = []
 @export var negatifs: Array[String] = []

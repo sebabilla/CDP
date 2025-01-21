@@ -13,7 +13,7 @@ func ouverture() -> void:
 	else: %Question.text = Gestion.get_question()  
 	
 	nettoyer_l_onglet()
-	N = Gestion.get_nb_eleve()
+	N = Gestion.get_nb_eleves()
 	if N == 0: return
 	%Affinites.columns = N + 1
 	_ajouter_les_cases()
@@ -67,12 +67,9 @@ func maj_soulignage(globaly: float) -> void: #Appelé "en dur" par les boutons
 # Entrees hors tableau
 func _on_question_text_submitted(new_text: String) -> void:
 	var texte_formate: String = new_text.strip_edges().strip_escapes().replace('"', '')
-	if texte_formate == "":
-		_mauvaise_question()
-	elif Gestion.set_question(texte_formate):
-		Gestion._set_titre_fenetre()
-	else:
-		_mauvaise_question()
+	if texte_formate == "": _mauvaise_question()
+	elif Gestion.set_question(texte_formate): return
+	else: _mauvaise_question()
 
 func _mauvaise_question() -> void:
 	%Question.clear()

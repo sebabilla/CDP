@@ -1,45 +1,60 @@
-[gd_resource type="Resource" script_class="Section" load_steps=8 format=3 uid="uid://1572b4u8oywf"]
+[gd_resource type="Resource" script_class="Section" load_steps=9 format=3]
 
-[ext_resource type="Script" path="res://scripts/eleve.gd" id="1_ddigd"]
-[ext_resource type="Script" path="res://scripts/section.gd" id="2_n85q8"]
+[ext_resource type="Script" path="res://scripts/eleve.gd" id="1_ojn2c"]
+[ext_resource type="Script" path="res://scripts/section.gd" id="2_23b10"]
 
-[sub_resource type="Resource" id="Resource_sg65j"]
-script = ExtResource("1_ddigd")
-nom = "Astérix"
-pos = Vector2(624, 448)
-positifs = Array[String](["Obélix", "Idéfix"])
-negatifs = Array[String](["César"])
+[sub_resource type="Resource" id="Resource_qc41x"]
+script = ExtResource("1_ojn2c")
+nom = "Chandler"
+pos = Vector2(384, 176)
+angle = 0.0
+positifs = Array[String](["Joey", "Monica"])
+negatifs = Array[String](["Phoebe", "Rachel"])
 
-[sub_resource type="Resource" id="Resource_oyxfg"]
-script = ExtResource("1_ddigd")
-nom = "Obélix"
-pos = Vector2(752, 448)
-positifs = Array[String](["Astérix", "Idéfix", "Cléopâtre"])
-negatifs = Array[String](["César"])
+[sub_resource type="Resource" id="Resource_rp8s5"]
+script = ExtResource("1_ojn2c")
+nom = "Joey"
+pos = Vector2(512, 176)
+angle = 0.0
+positifs = Array[String](["Chandler", "Rachel"])
+negatifs = Array[String]([])
 
-[sub_resource type="Resource" id="Resource_rqd73"]
-script = ExtResource("1_ddigd")
-nom = "Idéfix"
-pos = Vector2(624, 272)
-positifs = Array[String](["Astérix", "Obélix", "Cléopâtre"])
-negatifs = Array[String](["César"])
+[sub_resource type="Resource" id="Resource_34f7t"]
+script = ExtResource("1_ojn2c")
+nom = "Monica"
+pos = Vector2(384, 480)
+angle = 180.0
+positifs = Array[String](["Chandler", "Phoebe"])
+negatifs = Array[String](["Ross"])
 
-[sub_resource type="Resource" id="Resource_uktim"]
-script = ExtResource("1_ddigd")
-nom = "César"
-pos = Vector2(1072, 272)
-positifs = Array[String](["Cléopâtre"])
-negatifs = Array[String](["Astérix", "Obélix"])
+[sub_resource type="Resource" id="Resource_d60je"]
+script = ExtResource("1_ojn2c")
+nom = "Phoebe"
+pos = Vector2(512, 480)
+angle = 180.0
+positifs = Array[String](["Monica", "Rachel"])
+negatifs = Array[String](["Ross", "Chandler"])
 
-[sub_resource type="Resource" id="Resource_butf0"]
-script = ExtResource("1_ddigd")
-nom = "Cléopâtre"
-pos = Vector2(752, 272)
-positifs = Array[String](["Obélix", "Idéfix"])
-negatifs = Array[String](["Astérix", "César"])
+[sub_resource type="Resource" id="Resource_5wil7"]
+script = ExtResource("1_ojn2c")
+nom = "Rachel"
+pos = Vector2(704, 256)
+angle = 90.0
+positifs = Array[String](["Ross", "Joey"])
+negatifs = Array[String](["Chandler"])
+
+[sub_resource type="Resource" id="Resource_hiyie"]
+script = ExtResource("1_ojn2c")
+nom = "Ross"
+pos = Vector2(704, 384)
+angle = 90.0
+positifs = Array[String](["Rachel"])
+negatifs = Array[String](["Monica"])
 
 [resource]
-script = ExtResource("2_n85q8")
-classe = "50AEC"
-question = "Construire une pyramide ensemble?"
-eleves = Array[ExtResource("1_ddigd")]([SubResource("Resource_sg65j"), SubResource("Resource_oyxfg"), SubResource("Resource_rqd73"), SubResource("Resource_uktim"), SubResource("Resource_butf0")])
+script = ExtResource("2_23b10")
+classe = "Friends"
+question = "Partager un sofa?"
+eleves = Array[ExtResource("1_ojn2c")]([SubResource("Resource_qc41x"), SubResource("Resource_rp8s5"), SubResource("Resource_34f7t"), SubResource("Resource_d60je"), SubResource("Resource_5wil7"), SubResource("Resource_hiyie")])
+tables_vierges_pos = Array[Vector2]([Vector2(448, 320)])
+tables_vierges_angle = Array[float]([10.0])

@@ -20,10 +20,8 @@ func _on_entree_classe_text_submitted(new_text: String) -> void:
 	var texte_formate: String = new_text.strip_edges().strip_escapes().replace('"', '')
 	if texte_formate == "": 
 		message.emit("echec")
-	elif Gestion.set_nom_section(texte_formate):
-		Gestion._set_titre_fenetre()
-	else:
-		message.emit("echec")
+	elif Gestion.set_nom_section(texte_formate): return
+	else: message.emit("echec")
 
 # changer les eleves
 func _on_entree_eleve_text_submitted(new_text: String) -> void:
@@ -49,7 +47,7 @@ func _on_reset_liste_pressed() -> void:
 		message.emit("echec")
 
 func _afficher_liste() -> void:
-	%Comptage.text = str(Gestion.get_nb_eleve())
+	%Comptage.text = str(Gestion.get_nb_eleves())
 	var liste: String = ""
 	for nom in Gestion.liste_eleves():
 		liste = liste + nom + "\n"

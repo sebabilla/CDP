@@ -8,6 +8,7 @@ M4_CAPTURER,Capturer comme,Capture as
 M5_FRANCAIS,fr,fr
 M5_ANGLAIS,en,en
 M6_AIDE,Aide et à propos,Help & About
+M7_RONDE,Ronde des paires,Round-robin pairing
 O0_CLASSE_ELEVES,Classe et élèves,Division and pupils
 O01_CLASSE,[b]Classe[/b],[b]Division[/b]
 O02_CLASSE,Nom de la classe,Division name
@@ -19,20 +20,17 @@ O04_TRIS,[b]Trier[/b],[b]Sort[/b]
 O04_AZ,A → Z,A → Z
 O04_ZA,Z → A,Z → A
 O05_ELEVES,Élève(s),Pupil(s)
-O1_AFFINITES,    Affinités    ,    Affinities    
+O1_AFFINITES,Affinités         ,Affinities         
 O11_LECTURE_TABLEAU,Lecture : Les élèves de la colonne de gauche ont donné des points d’affinité aux élèves de la ligne du haut.,Reading : Pupils in the left-hand column have awarded affinity points to pupils in the top row.
 O12_EFFACER_AFFINITES,Effacer toutes les affinités,Delete all affinities
 O13_QUESTION,Question posée,Poll question
-O2_SOCIOGRAMME, Sociogramme ,   Sociogram   
+O2_SOCIOGRAMME,Sociogramme  ,Sociogram      
 O21_RESET_SOCIO,Réinitialiser,Reset
-O22_TOUS,Toutes les affinités,All affinities
-O22_POSITIF,Positif seulement,Positive only
-O22_NEGATIF,Négatif seulement,Negative only
-O3_PLAN, Plan de classe ,  Seating plan  
+O22_LIENS,[b]Liens[/b],[b]Links[/b]
+O3_PLAN,Plan de classe      ,Seating plan        
 O31_AJOUTER,Ajouter une table,Add a desk
 O32_ENLEVER,Enlever une table,Remove a desk
-O33_VERS_VE,Vers vue élève,Go to student view
-O33_VERS_VP,Vers vue prof,Go to teacher view
+O33_RETOURNER,Retourner le plan,Flip the plan
 A_AIDE_AP,Aide et à propos,Help & About
 A1_INTRO," est un logiciel d'aide à la décision pour faire des plans de classe. Avec 30 élèves, et 30 places, vous avez 30! solutions possibles pour les installer (un nombre à 33 chiffres). Ce logiciel devrait vous permettre d'y voir un peu plus clair à un instant t."," is a decision-support program for creating seating plans. With 30 students, and 30 seats, you have 30! possible solutions to install them (a 33-digit number). This software should let you get a clearer picture at a given moment."
 A1_JAMAIS,"Avant toute chose, vous ne devriez [b]jamais[/b] montrer le sociogramme à vos élèves si vous en faites un, seulement le plan de classe.","First and foremost, were you to draw one, you should [b]never[/b] show the the sociogram to your pupils, only the seating plan."
@@ -41,10 +39,11 @@ A1_CLASSE_ELEVES,Renseignez la classe et la liste de vos élèves.,"In this tab,
 A1_QUESTION,La question posée devrait uniquement concerner les affinités des élèves pour travailler ensemble.,The poll question should only be about pupils’ affinities to study together.
 A1_AFFINITES,"En cliquant dans une case du tableau, vous changez le lien : neutre, vert, orange, neutre.","By clicking in a cell of the table, you change the link : neutral, green, orange, neutral. "
 A1_SOCIOGRAMME,"Déplacez les étiquettes pour avoir des liens positifs (verts) forts et des liens oranges les plus minces possibles. Il ne s’agit pas que de créer des binômes efficaces, mais aussi de préparer des relations apaisées avec les élèves placés devant ou derrière. Avec de la patience, vous devriez pouvoir placer les élèves à peu près comme dans votre salle de cours.","Move the labels around in order to get strong positive (green) links and as thin orange links as possible. It's not just about creating effective pairs, it's also about preparing for peaceful relationships with the pupils in front or behind. With a little patience, you should be able to place the students roughly as you would in your classroom."
-A1_PLAN1,"Les tables de vos élèves sont  disposées par ordre alphabétique au début, puis, au même endroit que dans le sociogramme si vous en faites un. Vous pouvez les déplacer avec le clic-gauche ou les faire tourner avec le clic-droit.","Students' desks are layed down by alphabetical order at start, then, according to the sociogram were you to draw one. You can move them with a left-click and rotate them with a right-click."
+A1_PLAN1,"Pour la première ouverture, les bureaux sont disposées par ordre alphabétique, puis selon la sauvegarde (n’oubliez pas), ou au même endroit que dans le sociogramme si vous en faites un. Vous pouvez déplacer les tables avec le clic-gauche ou les faire tourner avec le clic-droit.","On first opening, the desks are layed down in alphabetical order, then, according to the backup (don't forget it), or according to the sociogram were you to draw one. You can move desks with a left-click and rotate them with a right-click."
 A1_PLAN2,Vous pouvez ajouter des tables vierges pour combler les trous.,You can add blank desks to fill in the gaps.
 A1_PLAN3,"Vous pouvez capturer deux versions du plan: une dans le sens dans lequel vous regardez la classe de votre bureau (ex : appel, interrogation), une dans le sens dont vos élèves voient la classe (ex: pour projeter le plan).","You can capture two versions of the plan: one in the direction you look at the classroom from your desk (ex : to call the register or quiz the students), and one in the direction in which your students look at the classroom (ex : to screen it)."
-A1_CAPTURE,"La capture d’image, débloquée seulement dans cet onglet, enregistre un fichier .png sur fond blanc.","Image capture, unlocked only in this tab, saves a .png file against a white background."
+A1_CAPTURE,"La capture d’image, enregistre un fichier .png sur fond blanc simple à imprimer ou à projeter.","Image capture saves a .png file against a white background, easy to print or screen."
+A1_VIDEO,"La ronde des paires enregistre un série d’images dans un dossier représentant les permutations de vos binômes d’élève. Par exemple, pour avoir des paires différents à chaque TP et les projeter à l’entrée en classe.","The round-robin pairing saves a series of images in a folder representing the permutations of the pupils' pairs. For example, to have different pairs at each practical session and project them at the start of the class."
 A2_AUTEUR," est développé par Sébastien Abilla, professeur de SVT, sur [i]son temps libre[/i]."," is developed by Sébastien Abilla, science teacher at a junior high school, in his [i]spare time[/i]."
 A2_INSPIRATION,Partie sociogramme d'après une idée glanée sur le super site de [color=#00E676][url=http://www.stephanecote.org/2014/03/27/gestion-de-classe-le-post-it-qui-supporte-lautonomie/]Stéphane Côté[/url][/color].,Sociogram part based on an idea I picked up from [color=#00E676][url=http://www.stephanecote.org/2014/03/27/gestion-de-classe-le-post-it-qui-supporte-lautonomie/]Stéphane Côté[/url][/color]'s great website.
 A2_CREDITS,"Fait sous [color=#00E676][url=https://godotengine.org/]Godot[/url][/color], icones: [color=#00E676][url=https://github.com/KDE/breeze-icons]Breeze Dark[/url][/color], shader :  [color=#00E676][url=https://godotshaders.com/shader/line2d-animation/]cpt_metal[/url][/color].","Made with [color=#00E676][url=https://godotengine.org/]Godot[/url][/color], icons: [color=#00E676][url=https://github.com/KDE/breeze-icons]Breeze Dark[/url][/color], shader :  [color=#00E676][url=https://godotshaders.com/shader/line2d-animation/]cpt_metal[/url][/color]."

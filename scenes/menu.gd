@@ -33,22 +33,9 @@ func _on_dossier_pressed() -> void:
 func _on_sauvegarder_pressed() -> void:
 	message.emit("sauvegarder")
 	
-func _on_capturer_pressed() -> void:
-	message.emit("capturer")
-	
-func cacher_capturer() -> void:
-	$Capturer.disabled = true
-	
-func montrer_capturer() -> void:
-	if not sauvegarde_possible: return
-	$Capturer.disabled = false
-	
 func cacher_manip_sauveg() -> void:
-	$Ouvrir.disabled = true
 	$Dossier.disabled = true
 	$Sauvegarder.disabled = true
-	$Capturer.disabled = true
-	sauvegarde_possible = false
 
 func _on_langue_pressed() -> void:
 	if TranslationServer.get_locale() in fr:

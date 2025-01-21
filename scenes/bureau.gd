@@ -12,11 +12,12 @@ func _ready() -> void:
 	
 func _process(_delta: float) -> void:
 	if deplacer:
-		var pos: Vector2 = get_global_mouse_position()
-		pos = pos.clamp(Vector2.ZERO, ecran)
+		var pos: Vector2 = get_global_mouse_position().clamp(Vector2.ZERO, ecran)
 		global_position = pos
 		if eleve >= 0:
 			Gestion.set_pos_eleve(eleve, pos)
+		else:
+			Gestion.set_pos_table_vierge(-eleve-1, pos)
 	else:
 		$Label.rotation = global_position.angle_to_point(get_global_mouse_position())
 		
@@ -27,10 +28,12 @@ func initialiser(don: int) -> void:
 	$Label.position = -$Label.size / 2
 	$Label.pivot_offset = $Label.size / 2
 	if eleve < 0:
-		global_position = 2 * Gestion.TAILLE_TABLE + Vector2(-1*eleve,-3*eleve)
+		global_position = Gestion.get_pos_table_vierge(-eleve-1)
+		rotation_degrees = Gestion.get_angle_table_vierge(-eleve-1)
 	else:
 		$Label.text = Gestion.get_nom_eleve(eleve)
 		global_position = Gestion.get_pos_eleve(eleve)
+		rotation_degrees = Gestion.get_angle_eleve(eleve)
 	set_process(false)
 
 func _on_label_gui_input(event: InputEvent) -> void:
@@ -51,6 +54,12 @@ func _aligner() -> void:
 		global_position = global_position.snapped(Vector2(16, 16))
 		if eleve >= 0:
 			Gestion.set_pos_eleve(eleve, global_position)
+		else:
+			Gestion.set_pos_table_vierge(-eleve-1, global_position)
 	else:
 		$Label.rotation_degrees = snapped($Label.rotation_degrees, 10)
+		if eleve >= 0:
+			Gestion.set_angle_eleve(eleve, $Label.rotation_degrees)
+		else:
+			Gestion.set_angle_table_vierge(-eleve-1, $Label.rotation_degrees)
 		

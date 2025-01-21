@@ -1,6 +1,10 @@
-[gd_scene load_steps=2 format=3 uid="uid://reoh1tvug01v"]
+[gd_scene load_steps=6 format=3 uid="uid://reoh1tvug01v"]
 
 [ext_resource type="Script" path="res://scenes/sociogr.gd" id="1_s2jwi"]
+[ext_resource type="Texture2D" uid="uid://cadml6ihbw6fj" path="res://images/view-refresh.svg" id="2_l51td"]
+[ext_resource type="Texture2D" uid="uid://b4vlntrrwe2ef" path="res://images/vert.png" id="3_aumt3"]
+[ext_resource type="Texture2D" uid="uid://oy0fmca38uhs" path="res://images/path-mode-polyline.svg" id="3_stiey"]
+[ext_resource type="Texture2D" uid="uid://wq6fgygo56jg" path="res://images/orange.png" id="4_b76em"]
 
 [node name="Sociogr" type="Control"]
 layout_mode = 3
@@ -31,12 +35,41 @@ theme_override_constants/separation = 10
 layout_mode = 2
 size_flags_vertical = 0
 text = "O21_RESET_SOCIO"
+icon = ExtResource("2_l51td")
 
-[node name="CouleurSociogr" type="Button" parent="MarginContainer/VBoxContainer"]
+[node name="HSeparator" type="HSeparator" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+texture = ExtResource("3_stiey")
+
+[node name="TitreLiens" type="RichTextLabel" parent="MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+bbcode_enabled = true
+text = "O22_LIENS"
+fit_content = true
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_constants/separation = 10
+
+[node name="Orange" type="CheckButton" parent="MarginContainer/VBoxContainer/HBoxContainer2"]
 unique_name_in_owner = true
 layout_mode = 2
-size_flags_vertical = 0
-text = "O22_POSITIF"
+icon = ExtResource("4_b76em")
+icon_alignment = 1
+
+[node name="Vert" type="CheckButton" parent="MarginContainer/VBoxContainer/HBoxContainer2"]
+unique_name_in_owner = true
+layout_mode = 2
+icon = ExtResource("3_aumt3")
+icon_alignment = 1
 
 [node name="PorteFleches" type="Control" parent="."]
 anchors_preset = 0
@@ -49,4 +82,5 @@ offset_right = 40.0
 offset_bottom = 40.0
 
 [connection signal="pressed" from="MarginContainer/VBoxContainer/Reset" to="." method="_on_reset_pressed"]
-[connection signal="pressed" from="MarginContainer/VBoxContainer/CouleurSociogr" to="." method="_on_couleur_pressed"]
+[connection signal="toggled" from="MarginContainer/VBoxContainer/HBoxContainer2/Orange" to="." method="_on_orange_toggled"]
+[connection signal="toggled" from="MarginContainer/VBoxContainer/HBoxContainer2/Vert" to="." method="_on_vert_toggled"]

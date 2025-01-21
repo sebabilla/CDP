@@ -1,7 +1,12 @@
-[gd_scene load_steps=3 format=3 uid="uid://pe052tr7qrf1"]
+[gd_scene load_steps=8 format=3 uid="uid://pe052tr7qrf1"]
 
 [ext_resource type="Script" path="res://scenes/plan.gd" id="1_kncc2"]
+[ext_resource type="Texture2D" uid="uid://chryqun5spfyo" path="res://images/list-add.svg" id="2_g0xb0"]
 [ext_resource type="Script" path="res://scenes/murs.gd" id="2_wrbdn"]
+[ext_resource type="Texture2D" uid="uid://ccc1wypxk6wte" path="res://images/filename-dash-amarok.svg" id="3_u0i8o"]
+[ext_resource type="Texture2D" uid="uid://bit831pbja5e3" path="res://images/object-rotate-left.svg" id="4_1ukos"]
+[ext_resource type="Texture2D" uid="uid://b0uko6nlt02ux" path="res://images/camera-video.svg" id="5_lccy1"]
+[ext_resource type="Texture2D" uid="uid://dcxb2t5bpimg7" path="res://images/camera-photo.svg" id="5_nxwvh"]
 
 [node name="Plan" type="Control"]
 layout_mode = 3
@@ -26,10 +31,12 @@ theme_override_constants/separation = 10
 [node name="Ajouter" type="Button" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
 text = "O31_AJOUTER"
+icon = ExtResource("2_g0xb0")
 
 [node name="Enlever" type="Button" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
 text = "O32_ENLEVER"
+icon = ExtResource("3_u0i8o")
 
 [node name="HSeparator" type="HSeparator" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
@@ -37,7 +44,21 @@ layout_mode = 2
 [node name="Retourner" type="Button" parent="MarginContainer/VBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
-text = "O33_VERS_VE"
+text = "O33_RETOURNER"
+icon = ExtResource("4_1ukos")
+
+[node name="HSeparator2" type="HSeparator" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Capturer" type="Button" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "M4_CAPTURER"
+icon = ExtResource("5_nxwvh")
+
+[node name="Ronde" type="Button" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "M7_RONDE"
+icon = ExtResource("5_lccy1")
 
 [node name="Murs" type="Control" parent="."]
 anchors_preset = 0
@@ -62,4 +83,6 @@ offset_bottom = 40.0
 [connection signal="pressed" from="MarginContainer/VBoxContainer/Ajouter" to="." method="_on_ajouter_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/Enlever" to="." method="_on_enlever_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/Retourner" to="." method="_on_retourner_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/Capturer" to="." method="_on_capturer_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/Ronde" to="." method="_on_ronde_pressed"]
 [connection signal="timeout" from="Murs/Timer" to="Murs" method="_on_timer_timeout"]

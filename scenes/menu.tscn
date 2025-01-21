@@ -1,10 +1,9 @@
-[gd_scene load_steps=8 format=3 uid="uid://cn3swvne85rok"]
+[gd_scene load_steps=7 format=3 uid="uid://cn3swvne85rok"]
 
 [ext_resource type="Script" path="res://scenes/menu.gd" id="1_wvo4r"]
 [ext_resource type="Texture2D" uid="uid://cimaj4pyvqmss" path="res://images/document-open.svg" id="2_kybg1"]
 [ext_resource type="Texture2D" uid="uid://dfwdqjwqv0h8r" path="res://images/document-open-folder.svg" id="3_1dym8"]
 [ext_resource type="Texture2D" uid="uid://2ns0l6s1axaa" path="res://images/document-save.svg" id="4_aqyiu"]
-[ext_resource type="Texture2D" uid="uid://dcxb2t5bpimg7" path="res://images/camera-photo.svg" id="5_tgoep"]
 [ext_resource type="Texture2D" uid="uid://cbpvoro46ati7" path="res://images/folder-language.svg" id="6_mj6nw"]
 [ext_resource type="Texture2D" uid="uid://ydpohhmlfrob" path="res://images/help-about.svg" id="7_w1aqd"]
 
@@ -25,13 +24,6 @@ size_flags_vertical = 0
 text = "M1_OUVRIR"
 icon = ExtResource("2_kybg1")
 
-[node name="Dossier" type="Button" parent="."]
-layout_mode = 2
-size_flags_vertical = 0
-theme_type_variation = &"BoutonMenu"
-text = "M2_ACCES_DOSSIER"
-icon = ExtResource("3_1dym8")
-
 [node name="Sauvegarder" type="Button" parent="."]
 layout_mode = 2
 size_flags_horizontal = 0
@@ -40,13 +32,12 @@ theme_type_variation = &"BoutonMenu"
 text = "M3_SAUVEGARDER"
 icon = ExtResource("4_aqyiu")
 
-[node name="Capturer" type="Button" parent="."]
+[node name="Dossier" type="Button" parent="."]
 layout_mode = 2
-size_flags_horizontal = 0
 size_flags_vertical = 0
 theme_type_variation = &"BoutonMenu"
-text = "M4_CAPTURER"
-icon = ExtResource("5_tgoep")
+text = "M2_ACCES_DOSSIER"
+icon = ExtResource("3_1dym8")
 
 [node name="Langue" type="Button" parent="."]
 layout_mode = 2
@@ -64,8 +55,7 @@ text = " "
 icon = ExtResource("7_w1aqd")
 
 [connection signal="about_to_popup" from="Ouvrir" to="." method="_on_ouvrir_about_to_popup"]
-[connection signal="pressed" from="Dossier" to="." method="_on_dossier_pressed"]
 [connection signal="pressed" from="Sauvegarder" to="." method="_on_sauvegarder_pressed"]
-[connection signal="pressed" from="Capturer" to="." method="_on_capturer_pressed"]
+[connection signal="pressed" from="Dossier" to="." method="_on_dossier_pressed"]
 [connection signal="pressed" from="Langue" to="." method="_on_langue_pressed"]
 [connection signal="pressed" from="Aide" to="." method="_on_aide_pressed"]

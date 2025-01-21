@@ -2,7 +2,8 @@ extends Node
 
 const CHEMIN_SAUVEGARDE = "user://sauvegarder"
 
-var noeud_murs: NodePath
+var dossier_video: String = ""
+var chemin_capture: String = ""
 
 func verifier_dossier_sauvegarder() -> bool:
 	var dir: DirAccess = DirAccess.open("user://")
@@ -54,31 +55,37 @@ func trouver_chemin_dossier_sauvegarder() -> String:
 func ouvrir_dossier(dossier: String) -> void:
 	if OS.get_name() in ["Linux", "Windows"]:
 		OS.shell_open(dossier)
-	
-func set_chemin_murs(murs: NodePath) -> void:
-	noeud_murs = murs
-	
-func capturer(nom: String) -> bool:
-	if noeud_murs.is_empty():
-		return false
-	var zone: Rect2 = _def_rect_murs()
-	if zone == Rect2(Vector2.ZERO, Vector2.ZERO):
-		return false
-	get_node(noeud_murs).montrer(zone)
-	get_tree().process_frame.connect(_capturer_suite.bind(nom, zone), CONNECT_ONE_SHOT)	
-	return true
-	
-func _def_rect_murs() -> Rect2:
-	var zone: Rect2 = Gestion.get_pos_min_max()
-	if zone == Rect2(Vector2.ZERO, Vector2.ZERO):
-		return Rect2(Vector2.ZERO, Vector2.ZERO)
-	zone.position = zone.position - Gestion.TAILLE_TABLE
-	zone.size = zone.size + 2 * Gestion.TAILLE_TABLE
-	return zone
 
-func _capturer_suite(nom: String, zone: Rect2) -> void:
+# Capture d'une image de plan
+func verifier_capturer(nom: String) -> bool:
+	if DirAccess.open(CHEMIN_SAUVEGARDE): 
+		chemin_capture = CHEMIN_SAUVEGARDE + "/" + nom + ".png"
+		return true
+	else: return false
+
+func capturer_image(zone: Rect2) -> void:
+	print("OK")
 	await RenderingServer.frame_post_draw
 	var tout_l_ecran: Image = get_viewport().get_texture().get_image()
 	var plan: Image = tout_l_ecran.get_region(zone)
-	var nom_sauvegarde: String = CHEMIN_SAUVEGARDE + "/" + nom + ".png"
+	plan.save_png(chemin_capture)
+
+# Capture d'une série d'images de plan
+func verifier_dossier_video(nom: String) -> bool:
+	var dir: DirAccess = DirAccess.open(CHEMIN_SAUVEGARDE)
+	if dir.dir_exists(nom): 
+		dossier_video = CHEMIN_SAUVEGARDE + "/" + nom + "/"
+		return true
+	elif dir.make_dir(nom) == OK:
+		dossier_video = CHEMIN_SAUVEGARDE + "/" + nom + "/"
+		return true
+	return false
+	
+func image_video(nom: String, zone: Rect2) -> void:
+	await RenderingServer.frame_post_draw
+	var tout_l_ecran: Image = get_viewport().get_texture().get_image()
+	var plan: Image = tout_l_ecran.get_region(zone)
+	var nom_sauvegarde: String = dossier_video + nom + ".png"
 	plan.save_png(nom_sauvegarde)
+	
+	

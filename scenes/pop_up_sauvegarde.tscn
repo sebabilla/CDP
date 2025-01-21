@@ -63,8 +63,7 @@ max_length = 20
 [node name="Extension" type="Label" parent="ColorRect/VBoxContainer/HBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 8
+size_flags_horizontal = 0
 text = ".ext"
 
 [node name="HBoxContainer2" type="HBoxContainer" parent="ColorRect/VBoxContainer"]

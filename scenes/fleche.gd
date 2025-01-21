@@ -1,7 +1,7 @@
 extends ColorRect
 
-enum {ORANGE, BLANC, VERT}
-const COULEURS = [Color("FFA726"), Color("EFEBE9"), Color("00E676")]
+enum {ORANGE, VERT}
+const COULEURS = [Color("FFA726"), Color("00E676")]
 
 var donneur : int
 var receveur : int
@@ -9,7 +9,7 @@ var couleur : int
 var depart: Vector2 = Vector2.ZERO
 var arrivee: Vector2 = Vector2.ZERO
 var longueur_max : float = 1000
-var shader_ligne = load("res://shaders/ligne.gdshader")
+@onready var shader_ligne: Shader = preload("res://shaders/ligne.gdshader")
 
 func _ready() -> void:
 	material = ShaderMaterial.new()
@@ -43,19 +43,20 @@ func _def_forme() -> void:
 	epaisseur = min(epaisseur, 10)
 	size.y = epaisseur
 	material.set_shader_parameter("frequency", size.x / 5.0) # phase du sinus du shader constante
-	
+
 func maj_col_arret(col: int) -> void:
-	if col == BLANC or col == couleur:
-		material.set_shader_parameter("color1", COULEURS[couleur])
-	else:
-		material.set_shader_parameter("color1", Color(0, 0, 0, 0))
+	if couleur == col:
+		if material.get_shader_parameter("color1") == Color(0, 0, 0, 0):
+			material.set_shader_parameter("color1", COULEURS[couleur])
+		else:
+			material.set_shader_parameter("color1", Color(0, 0, 0, 0))
 		
-func maj_mvmt(indice: int, col: int) -> void:
+func maj_mvmt(indice: int) -> void:
 	if indice == -1:
-		maj_col_arret(col)
+		modulate.a = 1.0
 		set_process(false)
 		return
 	if indice != donneur and indice != receveur:
-		material.set_shader_parameter("color1", Color(0, 0, 0, 0))
+		modulate.a = 0.0
 	else:
 		set_process(true)

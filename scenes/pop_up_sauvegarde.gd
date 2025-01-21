@@ -28,12 +28,15 @@ func _on_nom_sauveg_text_submitted(new_text: String) -> void:
 	match %Extension.text:
 		".tres":
 			if Enregistrer.sauvegarder(texte_formate):
-				hide()
-				return
+				_on_non_pressed()
 		".png":
-			if Enregistrer.capturer(texte_formate):
-				hide()
-				return
+			if Enregistrer.verifier_capturer(texte_formate):
+				message.emit("debuter_capture")
+				_on_non_pressed()
+		"/":
+			if Enregistrer.verifier_dossier_video(texte_formate):
+				message.emit("debuter_ronde")
+				_on_non_pressed()
 		_: message.emit("echec")			
 	
 func _on_oui_pressed() -> void:
