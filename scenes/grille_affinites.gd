@@ -1,7 +1,5 @@
 extends Control
 
-signal message(message: String)
-
 @onready var bouton_grille: PackedScene = preload("res://scenes/bouton_affinite.tscn")
 
 var N: int = 0
@@ -73,11 +71,14 @@ func _on_question_text_submitted(new_text: String) -> void:
 
 func _mauvaise_question() -> void:
 	%Question.clear()
-	message.emit("echec")
+	Reactions.echec()
 	if Gestion.get_question().is_empty() :
 		%Question.placeholder_text = tr("O13_QUESTION")  
 	else: %Question.text = Gestion.get_question()
 
 func _on_effacer_pressed() -> void:
+	if N <= 1:
+		Reactions.echec()
+		return
 	Gestion.effacer_toutes_affinites()
 	ouverture()

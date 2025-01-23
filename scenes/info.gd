@@ -16,15 +16,15 @@ func _ouverture() -> void:
 	_maj_textes()
 	_set_taille()
 	var tween: Tween = create_tween()
-	var ouv: float = get_viewport_rect().size.x - size.x -30
-	var ferm: float = get_viewport_rect().size.x + 1
+	var ouv: float = get_viewport_rect().size.x - size.x - 30
+	var ferm: float = get_viewport_rect().size.x + 10
 	tween.tween_property(self, "position:x", ouv, 0.2).from(ferm)
 		
 func _fermeture() -> void:
 	position.x = get_viewport_rect().size.x + 1
 	var tween: Tween = create_tween()
 	var ouv: float = get_viewport_rect().size.x - size.x - 30
-	var ferm: float = get_viewport_rect().size.x + 1
+	var ferm: float = get_viewport_rect().size.x + 10
 	tween.tween_property(self, "position:x", ferm, 0.2).from(ouv)
 	tween.finished.connect(func(): process_mode = PROCESS_MODE_DISABLED)
 	
@@ -43,25 +43,27 @@ func _aide() -> String:
 		" ",
 		"[b]" + tr("TITRE") + "[/b]" + tr("A1_INTRO"),
 		" ",
-		tr("A1_JAMAIS"),
+		tr("A1_DEBUTER"),
 		" ",
-		tr("A1_SAUVEGARDES"),
+		"[i]" + tr("M0_MENU") + "[/i]",
+		tr("A1_MENU"),
 		" ",
 		"[i]" + tr("O0_CLASSE_ELEVES") + "[/i]",
 		tr("A1_CLASSE_ELEVES"),
 		" ",
 		"[i]" + tr("O3_PLAN") + "[/i]",
-		tr("A1_PLAN1"),
-		tr("A1_PLAN2"),
-		tr("A1_PLAN3"),
-		tr("A1_CAPTURE"),
-		tr("A1_VIDEO"),
+		"[ul]" + tr("A1_PLAN1") + "[/ul]",
+		"[ul]" + tr("A1_PLAN2") + "[/ul]",
+		"[ul]" + tr("A1_PLAN3") + "[/ul]",
+		"[ul]" + tr("A1_CAPTURE") + "[/ul]",
+		"[ul]" + tr("A1_VIDEO") + "[/ul]",
 		" ",
 		"[i]" + tr("O1_AFFINITES") + "[/i]",
 		tr("A1_QUESTION"),
 		tr("A1_AFFINITES"),
 		" ",
 		"[i]" + tr("O2_SOCIOGRAMME") + "[/i]",
+		tr("A1_JAMAIS"),
 		tr("A1_SOCIOGRAMME")
 		]
 	var texte: String = ""
@@ -83,16 +85,7 @@ func _a_propos() -> String:
 	return texte
 
 func _on_rich_text_label_meta_clicked(meta: Variant) -> void:
-	if str(meta).contains("~/.local/"):
-		if OS.get_name() == "Linux": 
-			OS.shell_open(OS.get_data_dir() + "/Clan de place")
-		else: return
-	elif str(meta).contains("%APPDATA%"):
-		if OS.get_name() == "Windows":
-			OS.shell_open(OS.get_data_dir() + "\\Clan de place")
-		else: return
-	else:
-		OS.shell_open(str(meta))
+	OS.shell_open(str(meta))
 		
 func _on_rich_text_label_mouse_exited() -> void:
 	if get_global_mouse_position().x < get_viewport_rect().size.x * 0.75:

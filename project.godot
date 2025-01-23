@@ -23,6 +23,7 @@ config/windows_native_icon="res://icones/cdp.ico"
 
 Gestion="*res://scripts/gestion.gd"
 Enregistrer="*res://scripts/enregistrer.gd"
+Reactions="*res://scripts/reactions.gd"
 
 [debug]
 

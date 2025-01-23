@@ -1,8 +1,11 @@
 extends HBoxContainer
 
-signal message(message: String) #sauvegarde_ouverte, sauvegarder, capturer, langue_changee, aide, echec
+# Pour communication directe des noeuds statiques entre eux sans signaux
+var noeud_popup_sauvegarde: Node
+var noeud_info: Node
+var noeud_onglet: Node
 
-var sauvegarde_possible: bool = true
+var sauvegarde_possible: bool = true #pr une démo web qui n'enregistre rien?
 var noms_sauvegardes: PackedStringArray = ["rien"]
 var fr: Array[String] = ["fr", "fr_FR", "fr_BE", "fr_CA", "fr_CH", "fr_LU"]
 
@@ -20,18 +23,18 @@ func _on_ouvrir_about_to_popup() -> void:
 func _on_popup_ouvrir_pressed(index: int) -> void:
 	if noms_sauvegardes[index].get_extension() == "tres":
 		if Enregistrer.ouvrir(noms_sauvegardes[index]):
-			message.emit("sauvegarde_ouverte")
+			noeud_onglet.get_current_tab_control().ouverture()
 			return
-	message.emit("echec")
+	Reactions.echec()
 
 # Ouvrir le dossier des sauvegardes
 func _on_dossier_pressed() -> void:
 	var dossier: String = Enregistrer.trouver_chemin_dossier_sauvegarder()
 	if dossier != "": Enregistrer.ouvrir_dossier(dossier)
-	else: message.emit("echec")
+	Reactions.echec()
 
 func _on_sauvegarder_pressed() -> void:
-	message.emit("sauvegarder")
+	noeud_popup_sauvegarde.ouverture(".tres")
 	
 func cacher_manip_sauveg() -> void:
 	$Dossier.disabled = true
@@ -44,7 +47,6 @@ func _on_langue_pressed() -> void:
 	else:
 		TranslationServer.set_locale("fr")
 		$Langue.text = tr("M5_FRANCAIS")
-	message.emit("langue_changee")
 	
 func _on_aide_pressed() -> void:
-	message.emit("info")
+	noeud_info.ouverture_fermeture()

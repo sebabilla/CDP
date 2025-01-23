@@ -9,10 +9,10 @@ var couleur: int = -1
 
 func ouverture():
 	nettoyer_l_onglet()
-	N = Gestion.get_nb_eleves()
-	if N == 0: return
 	%Orange.button_pressed = true
 	%Vert.button_pressed = true
+	N = Gestion.get_nb_eleves()
+	if N == 0: return
 	if Gestion.get_pos_eleve(0) == Vector2.ZERO:
 		if not Gestion.set_nouvelles_pos(): return
 	get_tree().process_frame.connect(_ouverture_decalee, CONNECT_ONE_SHOT)
@@ -46,6 +46,9 @@ func _placer_fleches() -> void:
 			f.initialiser(i, Gestion.trouver_indice_eleve(n), ORANGE)
 		
 func _on_reset_pressed() -> void:
+	if N == 0:
+		Reactions.echec()
+		return
 	Gestion.set_nouvelles_pos()
 	couleur = -1
 	ouverture()

@@ -176,24 +176,29 @@ func set_nouvelles_pos() -> bool:
 	return true
 
 # https://fr.wikipedia.org/wiki/Tournoi_toutes_rondes
-func pos_paires_tournantes() -> Array[Array]:
+func pos_angle_paires_tournantes() -> Dictionary:
 	if get_nb_eleves() <= 2:
-		return []
+		return {}
 	var positions: Array = []
+	var angles: Array = []
 	for eleve in section.eleves:
 		positions.append(eleve.pos)
-	var tirages: Array[Array] = []
+		angles.append(eleve.angle)
+	if positions.size() != angles.size():
+		return {}
+	var positions_tournantes: Array[Array] = []
+	var angles_tournants: Array[Array]
 	for  i in (get_nb_eleves() - 1):
-		tirages.append(positions)
+		positions_tournantes.append(positions)
 		positions = [positions[0]] + [positions[-1]] + positions.slice(1, -1)
-	return tirages
+		angles_tournants.append(angles)
+		angles = [angles[0]] + [angles[-1]] + angles.slice(1, -1)
+	return {"pos" = positions_tournantes, "ang" = angles_tournants}
 	
-func set_pos_tous_eleves(positions: Array) -> bool:
-	if positions.size() != get_nb_eleves():
-		return false
+func set_pos_angles_tous_eleves(positions: Array, angles: Array) -> void:
 	for i in get_nb_eleves():
 		set_pos_eleve(i, positions[i])
-	return true
+		set_angle_eleve(i, angles[i])
 	
 # gerer les tables vierges
 func get_nb_tables_vierges() -> int:

@@ -1,6 +1,6 @@
 extends ColorRect
 
-signal message(message: String)
+var noeud_plan: Node
 
 func _ready() -> void:
 	hide()
@@ -23,21 +23,19 @@ func _on_nom_sauveg_text_submitted(new_text: String) -> void:
 	%NomSauveg.clear()
 	var texte_formate: String = new_text.strip_edges().dedent().strip_escapes().replace(" ", "_").replace('"', '').validate_filename()
 	if texte_formate == "":
-		message.emit("echec")
+		Reactions.echec()
 		return
 	match %Extension.text:
 		".tres":
 			if Enregistrer.sauvegarder(texte_formate):
 				_on_non_pressed()
 		".png":
-			if Enregistrer.verifier_capturer(texte_formate):
-				message.emit("debuter_capture")
-				_on_non_pressed()
+			noeud_plan.capturer(texte_formate)
+			_on_non_pressed()
 		"/":
-			if Enregistrer.verifier_dossier_video(texte_formate):
-				message.emit("debuter_ronde")
-				_on_non_pressed()
-		_: message.emit("echec")			
+			noeud_plan.paires_tournantes(texte_formate)
+			_on_non_pressed()
+		_: Reactions.echec()	
 	
 func _on_oui_pressed() -> void:
 	_on_nom_sauveg_text_submitted(%NomSauveg.text)

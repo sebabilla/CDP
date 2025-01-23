@@ -57,35 +57,28 @@ func ouvrir_dossier(dossier: String) -> void:
 		OS.shell_open(dossier)
 
 # Capture d'une image de plan
-func verifier_capturer(nom: String) -> bool:
-	if DirAccess.open(CHEMIN_SAUVEGARDE): 
-		chemin_capture = CHEMIN_SAUVEGARDE + "/" + nom + ".png"
-		return true
-	else: return false
-
-func capturer_image(zone: Rect2) -> void:
-	print("OK")
-	await RenderingServer.frame_post_draw
+func capturer_image(nom: String, zone: Rect2) -> bool:
+	if not DirAccess.open(CHEMIN_SAUVEGARDE): return false
 	var tout_l_ecran: Image = get_viewport().get_texture().get_image()
 	var plan: Image = tout_l_ecran.get_region(zone)
-	plan.save_png(chemin_capture)
+	var nom_sauvegarde: String = CHEMIN_SAUVEGARDE + "/" + nom + ".png"
+	plan.save_png(nom_sauvegarde)
+	return true
 
 # Capture d'une série d'images de plan
-func verifier_dossier_video(nom: String) -> bool:
+func verifier_dossier_video(nom_dossier: String) -> bool:
 	var dir: DirAccess = DirAccess.open(CHEMIN_SAUVEGARDE)
-	if dir.dir_exists(nom): 
-		dossier_video = CHEMIN_SAUVEGARDE + "/" + nom + "/"
+	if dir.dir_exists(nom_dossier): 
+		dossier_video = CHEMIN_SAUVEGARDE + "/" + nom_dossier + "/"
 		return true
-	elif dir.make_dir(nom) == OK:
-		dossier_video = CHEMIN_SAUVEGARDE + "/" + nom + "/"
+	elif dir.make_dir(nom_dossier) == OK:
+		dossier_video = CHEMIN_SAUVEGARDE + "/" + nom_dossier + "/"
 		return true
 	return false
-	
-func image_video(nom: String, zone: Rect2) -> void:
-	await RenderingServer.frame_post_draw
+
+func image_video(nom_dossier: String, nom_image: String, zone: Rect2) -> void:	
 	var tout_l_ecran: Image = get_viewport().get_texture().get_image()
 	var plan: Image = tout_l_ecran.get_region(zone)
-	var nom_sauvegarde: String = dossier_video + nom + ".png"
+	var nom_sauvegarde: String = CHEMIN_SAUVEGARDE + "/" + nom_dossier + "/" + nom_image + ".png"
 	plan.save_png(nom_sauvegarde)
-	
 	
