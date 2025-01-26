@@ -1,60 +1,89 @@
-[gd_resource type="Resource" script_class="Section" load_steps=9 format=3]
+[gd_resource type="Resource" script_class="Section" load_steps=17 format=3]
 
-[ext_resource type="Script" path="res://scripts/eleve.gd" id="1_ojn2c"]
-[ext_resource type="Script" path="res://scripts/section.gd" id="2_23b10"]
+[ext_resource type="Script" path="res://scripts/eleve.gd" id="1_d8bt0"]
+[ext_resource type="Script" path="res://scripts/table.gd" id="2_fwntb"]
+[ext_resource type="Script" path="res://scripts/section.gd" id="3_wak6g"]
 
-[sub_resource type="Resource" id="Resource_qc41x"]
-script = ExtResource("1_ojn2c")
-nom = "Chandler"
-pos = Vector2(384, 176)
+[sub_resource type="Resource" id="Resource_bp1cp"]
+script = ExtResource("2_fwntb")
+pos = Vector2(416, 192)
 angle = 0.0
+
+[sub_resource type="Resource" id="Resource_np8j7"]
+script = ExtResource("1_d8bt0")
+nom = "Chandler"
+table = SubResource("Resource_bp1cp")
 positifs = Array[String](["Joey", "Monica"])
 negatifs = Array[String](["Phoebe", "Rachel"])
 
-[sub_resource type="Resource" id="Resource_rp8s5"]
-script = ExtResource("1_ojn2c")
-nom = "Joey"
-pos = Vector2(512, 176)
+[sub_resource type="Resource" id="Resource_yyr46"]
+script = ExtResource("2_fwntb")
+pos = Vector2(544, 192)
 angle = 0.0
+
+[sub_resource type="Resource" id="Resource_u5dg4"]
+script = ExtResource("1_d8bt0")
+nom = "Joey"
+table = SubResource("Resource_yyr46")
 positifs = Array[String](["Chandler", "Rachel"])
 negatifs = Array[String]([])
 
-[sub_resource type="Resource" id="Resource_34f7t"]
-script = ExtResource("1_ojn2c")
+[sub_resource type="Resource" id="Resource_l222t"]
+script = ExtResource("2_fwntb")
+pos = Vector2(416, 464)
+angle = 0.0
+
+[sub_resource type="Resource" id="Resource_imlt6"]
+script = ExtResource("1_d8bt0")
 nom = "Monica"
-pos = Vector2(384, 480)
-angle = 180.0
-positifs = Array[String](["Chandler", "Phoebe"])
+table = SubResource("Resource_l222t")
+positifs = Array[String](["Phoebe", "Chandler"])
 negatifs = Array[String](["Ross"])
 
-[sub_resource type="Resource" id="Resource_d60je"]
-script = ExtResource("1_ojn2c")
+[sub_resource type="Resource" id="Resource_bdiyu"]
+script = ExtResource("2_fwntb")
+pos = Vector2(544, 464)
+angle = 0.0
+
+[sub_resource type="Resource" id="Resource_xq34k"]
+script = ExtResource("1_d8bt0")
 nom = "Phoebe"
-pos = Vector2(512, 480)
-angle = 180.0
-positifs = Array[String](["Monica", "Rachel"])
+table = SubResource("Resource_bdiyu")
+positifs = Array[String](["Rachel", "Monica"])
 negatifs = Array[String](["Ross", "Chandler"])
 
-[sub_resource type="Resource" id="Resource_5wil7"]
-script = ExtResource("1_ojn2c")
+[sub_resource type="Resource" id="Resource_mfao4"]
+script = ExtResource("2_fwntb")
+pos = Vector2(736, 288)
+angle = 0.0
+
+[sub_resource type="Resource" id="Resource_bidk8"]
+script = ExtResource("1_d8bt0")
 nom = "Rachel"
-pos = Vector2(704, 256)
-angle = 90.0
+table = SubResource("Resource_mfao4")
 positifs = Array[String](["Ross", "Joey"])
 negatifs = Array[String](["Chandler"])
 
-[sub_resource type="Resource" id="Resource_hiyie"]
-script = ExtResource("1_ojn2c")
+[sub_resource type="Resource" id="Resource_lys5h"]
+script = ExtResource("2_fwntb")
+pos = Vector2(736, 368)
+angle = 0.0
+
+[sub_resource type="Resource" id="Resource_6nlx1"]
+script = ExtResource("1_d8bt0")
 nom = "Ross"
-pos = Vector2(704, 384)
-angle = 90.0
+table = SubResource("Resource_lys5h")
 positifs = Array[String](["Rachel"])
-negatifs = Array[String](["Monica"])
+negatifs = Array[String]([])
+
+[sub_resource type="Resource" id="Resource_rvqxe"]
+script = ExtResource("2_fwntb")
+pos = Vector2(480, 336)
+angle = -170.0
 
 [resource]
-script = ExtResource("2_23b10")
-classe = "Friends"
-question = "Partager un sofa?"
-eleves = Array[ExtResource("1_ojn2c")]([SubResource("Resource_qc41x"), SubResource("Resource_rp8s5"), SubResource("Resource_34f7t"), SubResource("Resource_d60je"), SubResource("Resource_5wil7"), SubResource("Resource_hiyie")])
-tables_vierges_pos = Array[Vector2]([Vector2(448, 320)])
-tables_vierges_angle = Array[float]([10.0])
+script = ExtResource("3_wak6g")
+sec = "Friends"
+question = ""
+eleves = Array[ExtResource("1_d8bt0")]([SubResource("Resource_np8j7"), SubResource("Resource_u5dg4"), SubResource("Resource_imlt6"), SubResource("Resource_xq34k"), SubResource("Resource_bidk8"), SubResource("Resource_6nlx1")])
+tables_vierges = Array[ExtResource("2_fwntb")]([SubResource("Resource_rvqxe")])

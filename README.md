@@ -20,3 +20,4 @@ sous licence **zlib**
 * Fait avec [godotGodot](https://godotengine.org/) 4.3
 * Shader [cpt_metal](https://godotshaders.com/shader/line2d-animation/)
 * Icones : [Breeze Dark](https://github.com/KDE/breeze-icons)
+* Police d'écriture : [Carlito](https://github.com/googlefonts/carlito)

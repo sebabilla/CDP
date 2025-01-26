@@ -7,20 +7,22 @@ enum {ORANGE, VERT}
 var N: int = 0
 var couleur: int = -1
 
+## Affiche le sociogramme dans l'onglet de la classe en cours, si elle existe
 func ouverture():
 	nettoyer_l_onglet()
 	%Orange.button_pressed = true
 	%Vert.button_pressed = true
-	N = Gestion.get_nb_eleves()
+	N = Globals.section.get_nb_eleves()
 	if N == 0: return
-	if Gestion.get_pos_eleve(0) == Vector2.ZERO:
-		if not Gestion.set_nouvelles_pos(): return
+	if Globals.section.get_pos_eleve(0) == Vector2.ZERO:
+		Globals.section.set_nouvelles_pos()
 	get_tree().process_frame.connect(_ouverture_decalee, CONNECT_ONE_SHOT)
 	
-func _ouverture_decalee():
+func _ouverture_decalee(): # prevenir un évenuel bug d'affichage
 	_placer_etiquettes()
 	_placer_fleches()
 
+## Libère tous les noeuds du sociogramme de la mémoire	
 func nettoyer_l_onglet() -> void:
 	for noeud in $PorteEtiquette.get_children():
 		noeud.queue_free()
@@ -36,20 +38,20 @@ func _placer_etiquettes() -> void:
 		
 func _placer_fleches() -> void:
 	for i in N:
-		for p in Gestion.liste_positifs(i):
+		for p in Globals.section.liste_positifs(i):
 			var f: ColorRect = fleche.instantiate()
 			$PorteFleches.add_child(f)
-			f.initialiser(i, Gestion.trouver_indice_eleve(p), VERT)
-		for n in Gestion.liste_negatifs(i):
+			f.initialiser(i, Globals.section.trouver_indice_eleve(p), VERT)
+		for n in Globals.section.liste_negatifs(i):
 			var f: ColorRect = fleche.instantiate()
 			$PorteFleches.add_child(f)
-			f.initialiser(i, Gestion.trouver_indice_eleve(n), ORANGE)
+			f.initialiser(i, Globals.section.trouver_indice_eleve(n), ORANGE)
 		
 func _on_reset_pressed() -> void:
 	if N == 0:
 		Reactions.echec()
 		return
-	Gestion.set_nouvelles_pos()
+	Globals.section.set_nouvelles_pos()
 	couleur = -1
 	ouverture()
 

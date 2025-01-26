@@ -1,5 +1,6 @@
 extends Node
 
+## Feedback visuel, l'écran vibre
 func echec() -> void:
 	var racine: Node = get_tree().root.get_node("Main")
 	var tween: Tween = create_tween()

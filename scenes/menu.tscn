@@ -21,8 +21,10 @@ script = ExtResource("1_wvo4r")
 layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 0
+theme_type_variation = &"BoutonDeroulantMenu"
 text = "M1_OUVRIR"
 icon = ExtResource("2_kybg1")
+flat = false
 
 [node name="Sauvegarder" type="Button" parent="."]
 layout_mode = 2

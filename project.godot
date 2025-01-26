@@ -21,9 +21,9 @@ config/windows_native_icon="res://icones/cdp.ico"
 
 [autoload]
 
-Gestion="*res://scripts/gestion.gd"
-Enregistrer="*res://scripts/enregistrer.gd"
 Reactions="*res://scripts/reactions.gd"
+Globals="*res://scripts/globals.gd"
+Noeuds="*res://scripts/noeuds.gd"
 
 [debug]
 

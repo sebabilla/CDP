@@ -1,52 +1,51 @@
 keys,fr,en
 TITRE,Clan de place,Clan de place
 M0_MENU,Menu,Menu
-M1_OUVRIR,Ouvrir un fichier,Open
+M1_OUVRIR,Ouvrir,Open
 M1_RIEN_A_OUVRIR,Pas de fichier.,No file.
-M2_ACCES_DOSSIER,Accéder au dossier,Access folder
-M3_SAUVEGARDER,Sauvegarder comme,Save as
-M4_CAPTURER,Capturer comme,Capture as
+M2_ACCES_DOSSIER,Dossier des sauvegardes,Backups’ folder
+M3_SAUVEGARDER,Sauvegarder,Save
+M4_INFO,Aide et à propos,Help & About
 M5_FRANCAIS,fr,fr
 M5_ANGLAIS,en,en
-M6_AIDE,Aide et à propos,Help & About
-M7_RONDE,Ronde des paires,Round-robin pairing
-O0_CLASSE_ELEVES,Classe et élèves,Division and pupils
-O01_CLASSE,[b]Classe[/b],[b]Division[/b]
-O02_CLASSE,Nom de la classe,Division name
-O03_TITRE_ELEVES,[b]Élèves[/b],[b]Pupils[/b]
-O03_ELEVE,Nom à ajouter,New name
-O03_SUPPR_NOM,Effacer dernier,Delete last
-O03_EFFACER_ELEVES,Effacer tous,Delete all
-O04_TRIS,[b]Trier[/b],[b]Sort[/b]
-O04_AZ,A → Z,A → Z
-O04_ZA,Z → A,Z → A
-O05_ELEVES,Élève(s),Pupil(s)
-O1_AFFINITES,Affinités         ,Affinities         
-O11_LECTURE_TABLEAU,Lecture : Les élèves de la colonne de gauche ont donné des points d’affinité aux élèves de la ligne du haut.,Reading : Pupils in the left-hand column have awarded affinity points to pupils in the top row.
-O12_EFFACER_AFFINITES,Effacer toutes les affinités,Delete all affinities
-O13_QUESTION,Question posée,Poll question
-O2_SOCIOGRAMME,Sociogramme  ,Sociogram      
-O21_RESET_SOCIO,Réinitialiser,Reset
-O22_LIENS,[b]Liens[/b],[b]Links[/b]
-O3_PLAN,Plan de classe      ,Seating plan        
-O31_AJOUTER,Ajouter une table,Add a desk
-O32_ENLEVER,Enlever une table,Remove a desk
-O33_RETOURNER,Retourner le plan,Flip the plan
-A_AIDE_AP,Aide et à propos,Help & About
+C0_CLASSE_ELEVES,Classe et élèves,Division and pupils
+C11_CLASSE,[b]Classe[/b],[b]Division[/b]
+C12_CLASSE,Nom de la classe,Division name
+C21_TITRE_ELEVES,[b]Élèves[/b],[b]Pupils[/b]
+C22_ELEVE,Nom à ajouter,New name
+C23_SUPPR_NOM,Effacer dernier,Delete last
+C24_EFFACER_ELEVES,Effacer tous,Delete all
+C31_TRIS,[b]Trier[/b],[b]Sort[/b]
+C32_AZ,A → Z,A → Z
+C33_ZA,Z → A,Z → A
+C4_ELEVES,Élève(s),Pupil(s)
+P0_PLAN,Plan de classe      ,Seating plan        
+P1_AJOUTER,Ajouter une table,Add a desk
+P2_ENLEVER,Enlever une table,Remove a desk
+P3_RETOURNER,Retourner le plan,Flip the plan
+P4_CAPTURER,Capturer,Capture
+P5_RONDE,Ronde des paires,Round-robin pairing
+T0_AFFINITES,Affinités         ,Affinities         
+T1_LECTURE_TABLEAU,Lecture : Les élèves de la colonne de gauche ont donné des points d’affinité aux élèves de la ligne du haut.,Reading : Pupils in the left-hand column have awarded affinity points to pupils in the top row.
+T2_EFFACER_AFFINITES,Effacer toutes les affinités,Delete all affinities
+T3_QUESTION,Question posée,Poll question
+S0_SOCIOGRAMME,Sociogramme  ,Sociogram      
+S1_RESET_SOCIO,Réinitialiser,Reset
+S2_LIENS,[b]Liens[/b],[b]Links[/b]
 A1_INTRO," est un logiciel d'aide à la décision pour faire des plans de classe. Avec 30 élèves, et 30 places, il y 30! combinaisons pour les installer (un nombre à 33 chiffres). Ce logiciel devrait vous permettre d'y voir un peu plus clair à un instant t."," is a decision-support program for creating seating plans. With 30 students, and 30 seats, there is 30! arrangements to install them (a 33-digit number). This software should let you get a clearer picture at a given moment."
 A1_DEBUTER,"Pour vous familiariser avec le logiciel, cliquez sur « [b]ouvrir un fichier[/b] », ouvrez le fichier « [b]exemple.tres[/b] », et amusez-vous. Ou lisez le charabia ci-dessous.","To learn more about the software, click on ‘[b]open a file[/b]’, open the file ‘[b]exemple.tres[/b]’, and have fun. Or read the gibberish below."
 A1_MENU,"Sauvegardez classe, liste des élèves, disposition des tables, et affinités entre élèves à tout moment. Par défaut, le nom du fichier est celui de la classe. Pensez à sauvegardez avant d’ouvrir le fichier d’une autre classe. Dans le dossier, vous trouverez les fichiers de sauvegarde et les différents plans de classe capturés sous forme d’images.","Save the division, student list, table layout and student affinities at any time. By default, the file is named after the division. Remember to save before opening another division file. In the folder, you will find the backup files and the various seating plans captured as images."
 A1_CLASSE_ELEVES,Renseignez la classe et la liste de vos élèves.,"In this tab, enter the division and the pupils’ list."
+A1_PLAN1,Déplacez les tables avec le [b]clic-gauche[/b] et faîtes-les tourner avec le [b]clic-droit[/b].,Move desks with a [b]left-click[/b] and rotate them with a [b]right-click[/b].
+A1_PLAN2,Ajoutez des tables vierges pour combler les trous.,Add blank desks to fill in the gaps.
+A1_PLAN3,Retournez le plan pour obtenir une vue de votre bureau (ex : pour faire l’appel) ou une vue par les élèves (ex: pour projeter).,Flip the plan to get a view from your desk (ex : to call the register) or a view by pupils (ex : to screen it).
+A1_CAPTURE,La capture d’image enregistre un fichier .png sur fond blanc simple à imprimer ou à projeter.,"Image capture saves a .png file against a white background, easy to print or screen."
+A1_VIDEO,"La ronde des paires enregistre un série d’images dans un dossier représentant les permutations de vos binômes d’élèves. Par exemple, pour avoir des paires différentes à chaque TP.","The round-robin pairing saves a series of images in a folder representing the permutations of the pupils' pairs. For example, to get different pairs at each practical session."
 A1_QUESTION,La question posée devrait uniquement concerner les affinités des élèves pour travailler ensemble.,The poll question should only be about pupils’ affinities to study together.
 A1_AFFINITES,Changez les liens en cliquant dans une case du tableau : neutre → vert → orange → neutre.,Change the links by clicking in a cell of the table : neutral → green → orange → neutral. 
 A1_JAMAIS,"Avant toute chose, ne montrez [b]jamais[/b] le sociogramme à vos élèves si vous en faites un, seulement le plan de classe.","First and foremost, were you to draw one, [b]never[/b] show the the sociogram to your pupils, only the seating plan."
 A1_SOCIOGRAMME,Déplacez les étiquettes pour avoir des liens positifs (verts) forts et des liens oranges les plus minces possibles.,Move the labels around in order to get strong positive (green) links and as thin orange links as possible.
-A1_PLAN1,Déplacez les tables avec le [b]clic-gauche[/b] et faîtes-les tourner avec le [b]clic-droit[/b].,Move desks with a [b]left-click[/b] and rotate them with a [b]right-click[/b].
-A1_PLAN2,Ajoutez des tables vierges pour combler les trous.,Add blank desks to fill in the gaps.
-A1_PLAN3,"Capturez deux versions du plan : vu de votre bureau (ex : pour faire l’appel), et vu par les élèves (ex: pour projeter).","Capture two versions of the plan: seen from your desk (ex : to call the register), and seen by pupils (ex : to screen it)."
-A1_CAPTURE,La capture d’image enregistre un fichier .png sur fond blanc simple à imprimer ou à projeter.,"Image capture saves a .png file against a white background, easy to print or screen."
-A1_VIDEO,"La ronde des paires enregistre un série d’images dans un dossier représentant les permutations de vos binômes d’élèves. Par exemple, pour avoir des paires différentes à chaque TP.","The round-robin pairing saves a series of images in a folder representing the permutations of the pupils' pairs. For example, to get different pairs at each practical session."
 A2_AUTEUR," est développé par Sébastien Abilla, professeur de SVT, sur [i]son temps libre[/i]."," is developed by Sébastien Abilla, secondary school science teacher, during his [i]spare time[/i]."
 A2_INSPIRATION,Partie sociogramme d'après une idée glanée sur le super site de [color=#00E676][url=http://www.stephanecote.org/2014/03/27/gestion-de-classe-le-post-it-qui-supporte-lautonomie/]Stéphane Côté[/url][/color].,Sociogram part based on an idea I picked up from [color=#00E676][url=http://www.stephanecote.org/2014/03/27/gestion-de-classe-le-post-it-qui-supporte-lautonomie/]Stéphane Côté[/url][/color]'s great website.
-A2_CREDITS,"Fait sous [color=#00E676][url=https://godotengine.org/]Godot[/url][/color], icones: [color=#00E676][url=https://github.com/KDE/breeze-icons]Breeze Dark[/url][/color], shader :  [color=#00E676][url=https://godotshaders.com/shader/line2d-animation/]cpt_metal[/url][/color].","Made with [color=#00E676][url=https://godotengine.org/]Godot[/url][/color], icons: [color=#00E676][url=https://github.com/KDE/breeze-icons]Breeze Dark[/url][/color], shader :  [color=#00E676][url=https://godotshaders.com/shader/line2d-animation/]cpt_metal[/url][/color]."
+A2_CREDITS,"Fait sous [color=#00E676][url=https://godotengine.org/]Godot[/url][/color], icones : [color=#00E676][url=https://github.com/KDE/breeze-icons]Breeze Dark[/url][/color], police : [color=#00E676][url=https://github.com/googlefonts/carlito]Carlito[/url][/color], shader :  [color=#00E676][url=https://godotshaders.com/shader/line2d-animation/]cpt_metal[/url][/color].","Made with [color=#00E676][url=https://godotengine.org/]Godot[/url][/color], icons: [color=#00E676][url=https://github.com/KDE/breeze-icons]Breeze Dark[/url][/color], font : [color=#00E676][url=https://github.com/googlefonts/carlito]Carlito[/url][/color], shader :  [color=#00E676][url=https://godotshaders.com/shader/line2d-animation/]cpt_metal[/url][/color]."
 A2_LICENCE,"[p]Copyright (C) 2025 Sébastien Abilla[/p][p] [/p][p]Ce logiciel est fourni « en l'état », sans aucune garantie explicite ou implicite.  L'auteur ne peut en aucun cas être tenu pour responsable de quelque préjudice que ce soit résultant de l'utilisation de ce logiciel.[/p][p] [/p][p]Il est permis à quiconque d'utiliser ce logiciel à toutes fins, y compris commerciales, de le modifier et de le redistribuer librement, sous réserve des restrictions suivantes :[/p][p] [/p][p]1. L'origine de ce logiciel ne doit pas être présentée de manière trompeuse ; vous ne devez pas prétendre que vous avez écrit le logiciel original. Si vous utilisez ce logiciel dans un produit, une mention dans la documentation du produit serait appréciée mais n'est pas obligatoire.[/p][p]2. Les versions dont le code source a été modifié doivent être clairement identifiées comme telles et ne doivent pas être présentées comme étant le logiciel original.[/p][p]3. Cet avertissement ne doit pas être supprimé ou modifié lors de la diffusion de toute version du logiciel.[/p]","[p]Copyright (C) 2025 Sébastien Abilla[/p][p] [/p][p]This software is provided 'as-is', without any express or implied warranty. In no event will the authors be held liable for any damages arising from the use of this software.[/p][p] [/p][p]Permission is granted to anyone to use this software for any purpose, including commercial applications, and to alter it and redistribute it freely, subject to the following restrictions:[/p][p] [/p][p]1. The origin of this software must not be misrepresented; you must not claim that you wrote the original software. If you use this software in a product, an acknowledgment in the product documentation would be appreciated but is not required.[/p][p]2. Altered source versions must be plainly marked as such, and must not be misrepresented as being the original software.[/p][p]3. This notice may not be removed or altered from any source distribution.[/p]"

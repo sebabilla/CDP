@@ -1,121 +1,113 @@
 extends Control
 
 @onready var table: PackedScene = preload("res://scenes/bureau.tscn")
-var noeud_popup_sauvegarde: Node
 var N: int = 0
-var vue_prof: bool = true
 
+## Affiche le plan dans l'onglet de la classe en cours, si elle existe
 func ouverture():
 	nettoyer_l_onglet()
-	N = Gestion.get_nb_eleves()
-	if N == 0:
-		return
-	if Gestion.get_pos_eleve(0) == Vector2.ZERO:
-		if not Gestion.set_nouvelles_pos(): return
+	N = Globals.section.get_nb_eleves()
+	if N == 0: return
+	if Globals.section.get_pos_eleve(0) == Vector2.ZERO:
+		Globals.section.set_nouvelles_pos()
 	get_tree().process_frame.connect(_placer_tables, CONNECT_ONE_SHOT)
-	
+
+## Libère tous les noeuds du plan de la mémoire	
 func nettoyer_l_onglet() -> void:
 	for noeud in $PorteTables.get_children():
 		noeud.queue_free()
 	for noeud in $PorteTablesVierges.get_children():
 		noeud.queue_free()
-		
+	
 func _placer_tables() -> void:
 	for i in N:
 		var t: Control = table.instantiate()
 		$PorteTables.add_child(t)
 		t.initialiser(i)
-	for i in Gestion.get_nb_tables_vierges():
+	for i in Globals.section.get_nb_tables_vierges():
 		var t: Control = table.instantiate()
 		$PorteTablesVierges.add_child(t)
 		t.initialiser(-i - 1)
 
-# Tables vierges	
+# Ajouter des tables sans nom	
 func _on_ajouter_pressed() -> void:
 	var nombre: int = $PorteTablesVierges.get_child_count()
-	if nombre >= 50:
-		Reactions.echec()
-		return
-	Gestion.ajouter_table_vierge()
-	var t: Control = table.instantiate()
-	$PorteTablesVierges.add_child(t)
-	t.initialiser(-nombre - 1)
+	if nombre >= 50: Reactions.echec() # nombre arbitraire, aucun pb d'en avoir plus
+	else: 
+		Globals.section.ajouter_table_vierge()
+		var t: Control = table.instantiate()
+		$PorteTablesVierges.add_child(t)
+		t.initialiser(-nombre - 1)
 
 func _on_enlever_pressed() -> void:
 	var nombre: int = $PorteTablesVierges.get_child_count()
-	if nombre < 1:
-		Reactions.echec()
-		return
-	Gestion.enlever_derniere_table_vierge()
-	$PorteTablesVierges.get_child(nombre - 1).queue_free()
+	if nombre < 1: Reactions.echec()
+	else: 
+		Globals.section.enlever_derniere_table_vierge()
+		$PorteTablesVierges.get_child(nombre - 1).queue_free()
 
-# Changer de sens
+# Changer le plan de sens
 func _on_retourner_pressed() -> void:
 	if $PorteTables.get_child_count() == 0 and $PorteTablesVierges.get_child_count() == 0:
-		Reactions.echec()
-		return
+		Reactions.echec(); return
 	nettoyer_l_onglet()
-	vue_prof = not vue_prof
 	
-	var coins: Rect2 = Gestion.get_pos_min_max()
+	var coins: Rect2 = Globals.section.get_pos_min_max()
 	var centre: Vector2 = coins.position + coins.size / 2
-	Gestion.set_pos_eleves_sym_c(centre)
-	Gestion.set_pos_tables_sym_c(centre)
+	Globals.section.set_pos_eleves_sym_c(centre)
+	Globals.section.set_pos_tables_sym_c(centre)
 	_placer_tables()
 
 # Prendre une seule capture
 func _on_capturer_pressed() -> void:
-	if $PorteTables.get_child_count() == 0:
+	if $PorteTables.get_child_count() == 0: 
 		Reactions.echec()
-		return
-	noeud_popup_sauvegarde.ouverture(".png")
-	
+	else: Noeuds.popup_sauvegarde.ouverture(".png")
+
+## Enregistre une image de plan avec un nom normalement déjà vérifié
 func capturer(nom: String) -> void:
-	var zone: Rect2 = def_rect_murs()
+	var zone: Rect2 = $Murs.def_rect_murs()
 	$Murs.montrer(zone)
 	await RenderingServer.frame_post_draw
-	if Enregistrer.capturer_image(nom, zone):
+	if Globals.capturer_image(nom, zone):
 		await get_tree().create_timer(0.2).timeout
 		$Murs.cacher()
 	else: Reactions.echec()
-	
 	
 # Série de plans de classe en faisant tourner les élèves
 func _on_ronde_pressed() -> void:
 	if $PorteTables.get_child_count() == 0:
 		Reactions.echec()
-		return
-	noeud_popup_sauvegarde.ouverture("/")
+	else: Noeuds.popup_sauvegarde.ouverture("/")
 
+## Enregistre une série d'image de plan  dans un dossier avec un nom normalement
+## déjà vérifié 
 func paires_tournantes(nom: String) -> void:
-	if not Enregistrer.verifier_dossier_video(nom):
-		Reactions.echec()
-		return
-	
-	var toutes_combinaisons: Dictionary = Gestion.pos_angle_paires_tournantes()
-	if toutes_combinaisons.is_empty(): return
-	var positions: Array = toutes_combinaisons["pos"]
-	var angles: Array = toutes_combinaisons["ang"]
-	
-	var zone: Rect2 = def_rect_murs()
-	$Murs.montrer(zone)	
-	for i in positions.size():
-		Gestion.set_pos_angles_tous_eleves(positions[i], angles[i])
+	if not Globals.verifier_dossier_video(nom):
+		Reactions.echec(); return
+	# Récupère toutes les combinaisons de paires possibles
+	var toutes_combinaisons: Array[Array] = Globals.section.pos_angle_paires_tournantes()
+	if toutes_combinaisons.is_empty(): 
+		Reactions.echec(); return
+	# Definit la zone de l'écran à capturer
+	var zone: Rect2 = $Murs.def_rect_murs()
+	$Murs.montrer(zone)
+	# Affiche et enregistre dans une image tous les combinaisons une à une	
+	for i in toutes_combinaisons.size():
+		Globals.section.set_pos_angles_tous_eleves(toutes_combinaisons[i])
 		_rafraichir()
-		await get_tree().create_timer(0.2).timeout
-		Enregistrer.image_video(nom, str(i), zone)
-	await get_tree().create_timer(0.2).timeout
+		await get_tree().create_timer(0.1).timeout
+		Globals.image_video(nom, str(i), zone)
+	# Fin du processus
+	await get_tree().create_timer(0.1).timeout
 	$Murs.cacher()
 	
 func _rafraichir():
 	for noeud in $PorteTables.get_children():
 		noeud.queue_free()
 	get_tree().process_frame.connect(_placer_tables, CONNECT_ONE_SHOT)
-	
-func def_rect_murs() -> Rect2:
-	var zone: Rect2 = Gestion.get_pos_min_max()
-	if zone == Rect2(Vector2.ZERO, Vector2.ZERO):
-		return Rect2(Vector2.ZERO, Vector2.ZERO)
-	zone.position = zone.position - Gestion.TAILLE_TABLE
-	zone.size = zone.size + 2 * Gestion.TAILLE_TABLE
-	return zone
+
+## Appelé si pas de dossier user trouvé, version demo web?
+func cacher_manip_sauveg() -> void:
+	%Capturer.disabled = true
+	%Ronde.disabled = true

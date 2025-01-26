@@ -5,18 +5,20 @@ extends Control
 var N: int = 0
 var soulignage: Rect2 = Rect2(Vector2.ZERO, Vector2.ZERO)
 
+## Affiche la grille d'affinité dans l'onglet de la classe en cours, si elle existe
 func ouverture() -> void:
-	if Gestion.get_question().is_empty() :
-		%Question.placeholder_text = tr("O13_QUESTION")
-	else: %Question.text = Gestion.get_question()  
+	if Globals.section.get_question().is_empty() :
+		%Question.placeholder_text = tr("T3_QUESTION")
+	else: %Question.text = Globals.section.get_question()  
 	
 	nettoyer_l_onglet()
-	N = Gestion.get_nb_eleves()
+	N = Globals.section.get_nb_eleves()
 	if N == 0: return
 	%Affinites.columns = N + 1
 	_ajouter_les_cases()
 	get_tree().process_frame.connect(_def_rect_souslignage, CONNECT_ONE_SHOT)
-	
+
+## Libère tous les noeuds de la grille de la mémoire
 func nettoyer_l_onglet() -> void:
 	for noeud in %Affinites.get_children():
 		noeud.queue_free()
@@ -24,13 +26,13 @@ func nettoyer_l_onglet() -> void:
 # Affichage initial de la grille
 func _ajouter_les_cases() -> void:
 	var chemin: NodePath = get_path()
-	var liste: Array[String] = Gestion.liste_eleves()
+	var liste: Array[String] = Globals.section.liste_eleves()
 	_ajouter_label(%Affinites, "")
 	for nom in liste:
 		_ajouter_label(%Affinites, nom, HORIZONTAL_ALIGNMENT_CENTER)
 	for i in N:
 		_ajouter_label(%Affinites, liste[i], HORIZONTAL_ALIGNMENT_RIGHT)
-		for j in (N):
+		for j in N:
 			_ajouter_button_a_grille_relations(i, j, chemin)
 	
 func _ajouter_label(noeud: Control, texte: String, alignement := HORIZONTAL_ALIGNMENT_LEFT) -> void:
@@ -66,19 +68,18 @@ func maj_soulignage(globaly: float) -> void: #Appelé "en dur" par les boutons
 func _on_question_text_submitted(new_text: String) -> void:
 	var texte_formate: String = new_text.strip_edges().strip_escapes().replace('"', '')
 	if texte_formate == "": _mauvaise_question()
-	elif Gestion.set_question(texte_formate): return
+	elif Globals.section.set_question(texte_formate): return
 	else: _mauvaise_question()
 
 func _mauvaise_question() -> void:
 	%Question.clear()
 	Reactions.echec()
-	if Gestion.get_question().is_empty() :
+	if Globals.section.get_question().is_empty() :
 		%Question.placeholder_text = tr("O13_QUESTION")  
-	else: %Question.text = Gestion.get_question()
+	else: %Question.text = Globals.section.get_question()
 
 func _on_effacer_pressed() -> void:
-	if N <= 1:
-		Reactions.echec()
-		return
-	Gestion.effacer_toutes_affinites()
-	ouverture()
+	if N <= 1: Reactions.echec()
+	else:
+		Globals.section.effacer_toutes_affinites()
+		ouverture()

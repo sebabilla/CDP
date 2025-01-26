@@ -34,7 +34,7 @@ theme_override_constants/separation = 10
 [node name="Reset" type="Button" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 0
-text = "O21_RESET_SOCIO"
+text = "S1_RESET_SOCIO"
 icon = ExtResource("2_l51td")
 
 [node name="HSeparator" type="HSeparator" parent="MarginContainer/VBoxContainer"]
@@ -51,7 +51,7 @@ texture = ExtResource("3_stiey")
 layout_mode = 2
 size_flags_horizontal = 3
 bbcode_enabled = true
-text = "O22_LIENS"
+text = "S2_LIENS"
 fit_content = true
 
 [node name="HBoxContainer2" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]

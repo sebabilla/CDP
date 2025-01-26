@@ -9,17 +9,15 @@ func _ready() -> void:
 	$Label.mouse_filter = Control.MOUSE_FILTER_STOP
 	
 func _process(_delta: float) -> void:
-	var pos: Vector2 = get_global_mouse_position()
-	pos = pos.clamp(Vector2.ZERO, ecran)
-	global_position = pos
-	Gestion.set_pos_eleve(eleve, pos)
-	
-func initialiser(don: int) -> void:
-	ecran = get_viewport().get_visible_rect().size
-	eleve = don
-	$Label.text = Gestion.get_nom_eleve(eleve)
+	global_position = get_global_mouse_position().clamp(Vector2.ZERO, ecran)
+	Globals.section.set_pos_eleve(eleve, global_position)
+
+## indice de l'élève de l'étiquette
+func initialiser(indice: int) -> void:
+	eleve = indice
+	$Label.text = Globals.section.get_nom_eleve(eleve)
 	$Label.position = -$Label.size / 2
-	global_position = Gestion.get_pos_eleve(eleve)
+	global_position = Globals.section.get_pos_eleve(eleve)
 	set_process(false)
 
 func _on_label_gui_input(event: InputEvent) -> void:
@@ -29,6 +27,7 @@ func _on_label_gui_input(event: InputEvent) -> void:
 			if event.pressed:
 				set_process(true)
 				mouvement.emit(eleve)
+				ecran = get_viewport().get_visible_rect().size
 			else:
 				set_process(false)
 				mouvement.emit(-1)

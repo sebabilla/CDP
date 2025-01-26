@@ -1,6 +1,6 @@
 extends Control
 
-var eleve: int = -1
+var n_table: int
 var deplacer: bool = true
 var ecran: Vector2 = Vector2.ZERO
 
@@ -11,29 +11,25 @@ func _ready() -> void:
 	$Label.autowrap_mode = TextServer.AUTOWRAP_ARBITRARY
 	
 func _process(_delta: float) -> void:
-	if deplacer:
-		var pos: Vector2 = get_global_mouse_position().clamp(Vector2.ZERO, ecran)
-		global_position = pos
-		if eleve >= 0:
-			Gestion.set_pos_eleve(eleve, pos)
-		else:
-			Gestion.set_pos_table_vierge(-eleve-1, pos)
+	if deplacer: 
+		global_position = get_global_mouse_position().clamp(Vector2.ZERO, ecran)
 	else:
 		$Label.rotation = global_position.angle_to_point(get_global_mouse_position())
-		
-func initialiser(don: int) -> void:
+
+## Quel type de table? indice positif pour élève, indice négatif pour table vierge
+func initialiser(indice: int) -> void:
 	ecran = get_viewport().get_visible_rect().size
-	eleve = don
-	$Label.size = Gestion.TAILLE_TABLE
+	n_table = indice
+	$Label.size = Globals.section.taille_table
 	$Label.position = -$Label.size / 2
 	$Label.pivot_offset = $Label.size / 2
-	if eleve < 0:
-		global_position = Gestion.get_pos_table_vierge(-eleve-1)
-		rotation_degrees = Gestion.get_angle_table_vierge(-eleve-1)
-	else:
-		$Label.text = Gestion.get_nom_eleve(eleve)
-		global_position = Gestion.get_pos_eleve(eleve)
-		rotation_degrees = Gestion.get_angle_eleve(eleve)
+	if n_table < 0: # tables vierges
+		global_position = Globals.section.get_pos_table_vierge(-n_table - 1)
+		rotation_degrees = Globals.section.get_angle_table_vierge(-n_table - 1)
+	else: # tables avec nom
+		$Label.text = Globals.section.get_nom_eleve(n_table)
+		global_position = Globals.section.get_pos_eleve(n_table)
+		rotation_degrees = Globals.section.get_angle_eleve(n_table)
 	set_process(false)
 
 func _on_label_gui_input(event: InputEvent) -> void:
@@ -52,14 +48,14 @@ func _on_label_gui_input(event: InputEvent) -> void:
 func _aligner() -> void:
 	if deplacer:
 		global_position = global_position.snapped(Vector2(16, 16))
-		if eleve >= 0:
-			Gestion.set_pos_eleve(eleve, global_position)
+		if n_table >= 0:
+			Globals.section.set_pos_eleve(n_table, global_position)
 		else:
-			Gestion.set_pos_table_vierge(-eleve-1, global_position)
+			Globals.section.set_pos_table_vierge(- n_table -1, global_position)
 	else:
 		$Label.rotation_degrees = snapped($Label.rotation_degrees, 10)
-		if eleve >= 0:
-			Gestion.set_angle_eleve(eleve, $Label.rotation_degrees)
+		if n_table >= 0:
+			Globals.section.set_angle_eleve(n_table, $Label.rotation_degrees)
 		else:
-			Gestion.set_angle_table_vierge(-eleve-1, $Label.rotation_degrees)
+			Globals.section.set_angle_table_vierge(-n_table - 1, $Label.rotation_degrees)
 		

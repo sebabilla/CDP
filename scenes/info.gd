@@ -5,7 +5,8 @@ var ouvert: bool = false
 func _ready() -> void:
 	_set_taille()
 	position.x = 4000
-	
+
+## déclenche l'ouverture ou la fermeture de l'écran d'info selon l'état précédent
 func ouverture_fermeture() -> void:
 	if ouvert: _fermeture()
 	else: _ouverture()
@@ -30,7 +31,7 @@ func _fermeture() -> void:
 	
 
 func _set_taille() -> void:
-	size.x = get_viewport_rect().size.x / 4
+	size.x = get_viewport_rect().size.x * 0.25
 	size.y = get_viewport_rect().size.y
 
 func _maj_textes() -> void:
@@ -41,6 +42,8 @@ func _maj_textes() -> void:
 func _aide() -> String:
 	var aide: Array[String] = [
 		" ",
+		"[b][center]" + tr("M4_INFO") + "[/center][/b]",
+		" ",
 		"[b]" + tr("TITRE") + "[/b]" + tr("A1_INTRO"),
 		" ",
 		tr("A1_DEBUTER"),
@@ -48,21 +51,21 @@ func _aide() -> String:
 		"[i]" + tr("M0_MENU") + "[/i]",
 		tr("A1_MENU"),
 		" ",
-		"[i]" + tr("O0_CLASSE_ELEVES") + "[/i]",
+		"[i]" + tr("C0_CLASSE_ELEVES") + "[/i]",
 		tr("A1_CLASSE_ELEVES"),
 		" ",
-		"[i]" + tr("O3_PLAN") + "[/i]",
+		"[b][i]" + tr("P0_PLAN") + "[/i][/b]",
 		"[ul]" + tr("A1_PLAN1") + "[/ul]",
 		"[ul]" + tr("A1_PLAN2") + "[/ul]",
 		"[ul]" + tr("A1_PLAN3") + "[/ul]",
 		"[ul]" + tr("A1_CAPTURE") + "[/ul]",
 		"[ul]" + tr("A1_VIDEO") + "[/ul]",
 		" ",
-		"[i]" + tr("O1_AFFINITES") + "[/i]",
+		"[i]" + tr("T0_AFFINITES") + "[/i]",
 		tr("A1_QUESTION"),
 		tr("A1_AFFINITES"),
 		" ",
-		"[i]" + tr("O2_SOCIOGRAMME") + "[/i]",
+		"[i]" + tr("S0_SOCIOGRAMME") + "[/i]",
 		tr("A1_JAMAIS"),
 		tr("A1_SOCIOGRAMME")
 		]
@@ -86,7 +89,8 @@ func _a_propos() -> String:
 
 func _on_rich_text_label_meta_clicked(meta: Variant) -> void:
 	OS.shell_open(str(meta))
-		
+
+# fermeture automatique
 func _on_rich_text_label_mouse_exited() -> void:
 	if get_global_mouse_position().x < get_viewport_rect().size.x * 0.75:
 		ouverture_fermeture()

@@ -1,10 +1,6 @@
-## Sous ressource manipulée par gestion.gd. Coeur du programme.
-## Voir section.gd pour voir son parent.
-extends Resource
-class_name Eleve
+class_name Eleve extends Resource
 
 @export var nom: String
-@export var pos: Vector2 = Vector2.ZERO
-@export var angle: float = 0
-@export var positifs: Array[String] = []
-@export var negatifs: Array[String] = []
+@export var table: Table = Table.new()
+@export var positifs: Array[String]
+@export var negatifs: Array[String]
