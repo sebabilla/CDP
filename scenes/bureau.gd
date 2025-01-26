@@ -36,15 +36,16 @@ func _on_label_gui_input(event: InputEvent) -> void:
 	if event is InputEventMouseButton:
 		if event.pressed:
 			set_process(true)
+			move_to_front()
 			if event.button_index == MOUSE_BUTTON_LEFT:
 				ecran = get_viewport().get_visible_rect().size
 				deplacer = true
 			if event.button_index == MOUSE_BUTTON_RIGHT:
 				deplacer = false
 		else:
-			set_process(false)
 			_aligner()
-				
+			set_process(false)
+			
 func _aligner() -> void:
 	if deplacer:
 		global_position = global_position.snapped(Vector2(16, 16))

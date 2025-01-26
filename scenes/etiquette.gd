@@ -23,9 +23,9 @@ func initialiser(indice: int) -> void:
 func _on_label_gui_input(event: InputEvent) -> void:
 	if event is InputEventMouseButton:
 		if event.button_index == MOUSE_BUTTON_LEFT:
-			ecran = get_viewport().get_visible_rect().size
 			if event.pressed:
 				set_process(true)
+				move_to_front()
 				mouvement.emit(eleve)
 				ecran = get_viewport().get_visible_rect().size
 			else:
