@@ -10,14 +10,14 @@ sous licence **zlib**
 
 #### Téléchargement et utilisation
 
-* [Téléchargez l'archive adéquate (Windows ou Linux)](https://github.com/sebabilla/CDP/releases), et décompressez-là.
+* [Téléchargez l'archive adéquate (Windows ou Linux)](https://github.com/sebabilla/CDP/releases/latest), et décompressez-là.
 * Conservez l'executable et le fichier en .pck **ensemble**. Lancez le programme en cliquant sur l'executable.
 * Un fichier d'exemple est disponible en cliquant sur "Ouvrir".
 
 #### Crédits
 
 * Partie sociiogramme d'après une idée originale de [Stéphane Côté](http://www.stephanecote.org/2014/03/27/gestion-de-classe-le-post-it-qui-supporte-lautonomie/)
-* Fait avec [godotGodot](https://godotengine.org/) 4.3
+* Fait avec [Godot](https://godotengine.org/) 4.3
 * Shader [cpt_metal](https://godotshaders.com/shader/line2d-animation/)
 * Icones : [Breeze Dark](https://github.com/KDE/breeze-icons)
 * Police d'écriture : [Carlito](https://github.com/googlefonts/carlito)
