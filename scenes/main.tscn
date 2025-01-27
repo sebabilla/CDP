@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://djrjf0s7kmr1d"]
+[gd_scene load_steps=11 format=3 uid="uid://djrjf0s7kmr1d"]
 
 [ext_resource type="Script" path="res://scenes/main.gd" id="1_kncc2"]
 [ext_resource type="PackedScene" uid="uid://cn3swvne85rok" path="res://scenes/menu.tscn" id="2_sp3qf"]
@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://pe052tr7qrf1" path="res://scenes/plan.tscn" id="6_4wbmv"]
 [ext_resource type="PackedScene" uid="uid://ct5c8oe1c58wf" path="res://scenes/info.tscn" id="7_r3fpg"]
 [ext_resource type="PackedScene" uid="uid://biao1gflwm3w0" path="res://scenes/pop_up_sauvegarde.tscn" id="7_up58a"]
+[ext_resource type="PackedScene" uid="uid://g5qp6ih0w5hw" path="res://scenes/pop_up_message.tscn" id="9_54x0r"]
 
 [sub_resource type="Theme" id="Theme_at23l"]
 
@@ -18,6 +19,8 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
 theme = SubResource("Theme_at23l")
 script = ExtResource("1_kncc2")
 
@@ -76,6 +79,11 @@ grow_vertical = 1
 unique_name_in_owner = true
 visible = false
 z_index = 0
+layout_mode = 1
+
+[node name="PopUpMessage" parent="." instance=ExtResource("9_54x0r")]
+unique_name_in_owner = true
+visible = false
 layout_mode = 1
 
 [connection signal="tab_changed" from="VBoxContainer/Onglets" to="." method="_on_tab_container_tab_changed"]

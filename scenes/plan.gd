@@ -8,7 +8,7 @@ func ouverture():
 	nettoyer_l_onglet()
 	N = Globals.section.get_nb_eleves()
 	if N == 0: return
-	if Globals.section.get_pos_eleve(0) == Vector2.ZERO:
+	if Globals.section.get_pos_eleve(0) in [Vector2.ZERO, Globals.section.taille_table]:
 		Globals.section.set_nouvelles_pos()
 	get_tree().process_frame.connect(_placer_tables, CONNECT_ONE_SHOT)
 
@@ -76,8 +76,8 @@ func capturer(nom: String) -> void:
 	
 # Série de plans de classe en faisant tourner les élèves
 func _on_ronde_pressed() -> void:
-	if $PorteTables.get_child_count() == 0:
-		Reactions.echec()
+	if N == 0: Reactions.echec()
+	elif N % 2 == 1: Reactions.echec(tr("A1_VIDEO_IMPAIRE"))
 	else: Noeuds.popup_sauvegarde.ouverture("/")
 
 ## Enregistre une série d'image de plan  dans un dossier avec un nom normalement
@@ -86,7 +86,7 @@ func paires_tournantes(nom: String) -> void:
 	if not Globals.verifier_dossier_video(nom):
 		Reactions.echec(); return
 	# Récupère toutes les combinaisons de paires possibles
-	var toutes_combinaisons: Array[Array] = Globals.section.pos_angle_paires_tournantes()
+	var toutes_combinaisons: Array[Array] = Globals.section.paires_tournantes()
 	if toutes_combinaisons.is_empty(): 
 		Reactions.echec(); return
 	# Definit la zone de l'écran à capturer
@@ -96,10 +96,10 @@ func paires_tournantes(nom: String) -> void:
 	for i in toutes_combinaisons.size():
 		Globals.section.set_pos_angles_tous_eleves(toutes_combinaisons[i])
 		_rafraichir()
-		await get_tree().create_timer(0.1).timeout
+		await get_tree().create_timer(0.2).timeout
 		Globals.image_video(nom, str(i), zone)
 	# Fin du processus
-	await get_tree().create_timer(0.1).timeout
+	await get_tree().create_timer(0.2).timeout
 	$Murs.cacher()
 	
 func _rafraichir():

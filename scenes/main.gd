@@ -33,6 +33,7 @@ func _on_tab_container_tab_changed(tab: int) -> void:
 
 # Pour communication directe des noeuds statiques entre eux sans signaux
 func _references_des_noeuds() -> void:
+	Noeuds.main = self
 	Noeuds.menu = %Menu
 	Noeuds.onglets = %Onglets
 	Noeuds.section_eleves = %SectionEleves
@@ -41,3 +42,4 @@ func _references_des_noeuds() -> void:
 	Noeuds.sociogramme = %Sociogr
 	Noeuds.info = %Info
 	Noeuds.popup_sauvegarde = %PopUpSauvegarde
+	Noeuds.popup_message = %PopUpMessage

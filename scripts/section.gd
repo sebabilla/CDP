@@ -5,7 +5,7 @@ class_name Section extends Resource
 @export var question: String = ""
 @export var eleves: Array[Eleve] = []
 @export var tables_vierges: Array[Table] = []
-static var taille_table: Vector2 = Vector2(128, 80)
+@export var taille_table: Vector2 = Vector2(128, 80)
 
 ## définir le nom de la classe
 func set_nom_section(nom: String) -> bool:
@@ -44,6 +44,7 @@ func ajouter_eleve(nom: String) -> bool:
 		if eleve.nom == nom: return false
 	var nouveau: Eleve = Eleve.new()
 	nouveau.nom = nom
+	nouveau.table.pos = taille_table
 	eleves.append(nouveau)
 	return true
 
@@ -170,11 +171,29 @@ func set_nouvelles_pos() -> void:
 		var nv_pos: Vector2 = Vector2(i / lignes * taille_table.x, i % lignes * taille_table.y) + 2*taille_table
 		set_pos_eleve(i, nv_pos)
 
-## Retourne toutes les combinaisons de tables d'élèves tirées en round-robin (une Array par séance)
-## https://fr.wikipedia.org/wiki/Tournoi_toutes_rondes
-func pos_angle_paires_tournantes() -> Array[Array]:
-	if get_nb_eleves() <= 2:
-		return []
+## Retourne toutes les combinaisons de tables d'élèves tirées en round-robin
+## (une Array par séance), nécessite un nombre d'élèves paire pour bien fonctionner
+func paires_tournantes() -> Array[Array]:
+	if get_nb_eleves() <= 2: return []
+	# Determiner les élèves en binome / evite des fonctions pour le faire faire explictement au prof
+	var copie_eleves_entree: Array[Eleve] = eleves.duplicate()
+	var copie_eleves_sortie: Array[Eleve] = []
+	var securite = 0
+	while copie_eleves_entree.size() > 1:
+		securite += 1; if securite > 50: return []
+		var distances: Array = []
+		for eleve in copie_eleves_entree:
+			distances.append([eleve, eleve.table.pos.distance_to(copie_eleves_entree[0].table.pos)])
+		distances.pop_front()
+		var distance_min = distances.reduce(func(minimum, eleve):
+			return eleve if minimum[1] > eleve[1] else minimum)
+		copie_eleves_sortie.append(copie_eleves_entree[0])
+		copie_eleves_entree.pop_front()
+		copie_eleves_sortie.append(distance_min[0])
+		copie_eleves_entree.erase(distance_min[0])
+	copie_eleves_sortie.append_array(copie_eleves_entree)
+	eleves = copie_eleves_sortie
+	## https://fr.wikipedia.org/wiki/Tournoi_toutes_rondes
 	var tables: Array = []
 	for eleve in eleves:
 		tables.append(eleve.table)
