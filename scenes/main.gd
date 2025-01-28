@@ -17,14 +17,12 @@ func _input(event: InputEvent) -> void:
 		%PopUpSauvegarde.ouverture(".tres")
 
 func _nom_des_onglets() -> void:
-	%Onglets.set_tab_title(0, "C0_CLASSE_ELEVES")
-	%Onglets.set_tab_icon(0, load("res://images/user-group-new.svg"))
-	%Onglets.set_tab_title(1, "P0_PLAN")
-	%Onglets.set_tab_icon(1, load("res://images/homerun.svg"))
-	%Onglets.set_tab_title(2, "T0_AFFINITES")
-	%Onglets.set_tab_icon(2, load("res://images/view-grid.svg"))
-	%Onglets.set_tab_title(3, "S0_SOCIOGRAMME")
-	%Onglets.set_tab_icon(3, load("res://images/path-mode-polyline.svg"))
+	%Onglets.set_tab_title(0, "P0_PLAN")
+	%Onglets.set_tab_icon(0, load("res://images/homerun.svg"))
+	%Onglets.set_tab_title(1, "T0_AFFINITES")
+	%Onglets.set_tab_icon(1, load("res://images/view-grid.svg"))
+	%Onglets.set_tab_title(2, "S0_SOCIOGRAMME")
+	%Onglets.set_tab_icon(2, load("res://images/path-mode-polyline.svg"))
 
 func _on_tab_container_tab_changed(tab: int) -> void:
 	for noeud in %Onglets.get_children():

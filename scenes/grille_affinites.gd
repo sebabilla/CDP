@@ -7,10 +7,6 @@ var soulignage: Rect2 = Rect2(Vector2.ZERO, Vector2.ZERO)
 
 ## Affiche la grille d'affinité dans l'onglet de la classe en cours, si elle existe
 func ouverture() -> void:
-	if Globals.section.get_question().is_empty() :
-		%Question.placeholder_text = tr("T3_QUESTION")
-	else: %Question.text = Globals.section.get_question()  
-	
 	nettoyer_l_onglet()
 	N = Globals.section.get_nb_eleves()
 	if N == 0: return
@@ -48,11 +44,10 @@ func _ajouter_button_a_grille_relations(i: int, j: int, chemin: NodePath) -> voi
 
 # Rectangle de mise en évidence
 func _draw() -> void:
-	draw_rect(soulignage, Color("3e2723"))
+	draw_rect(soulignage, Color("546E7A"))
 
 func _def_rect_souslignage() -> void:
-	var dernier: Label = %Affinites.get_child(N)
-	var largeur: float = dernier.global_position.x + dernier.size.x + 2
+	var largeur: float = %Affinites.size.x
 	var hauteur: float =  %Affinites.get_child(1).size.y + 4
 	var decalage_y: float = $MarginContainer.global_position.y - $MarginContainer.position.y
 	var posy: float = %Affinites.get_child(N + 1).global_position.y - decalage_y - 2
@@ -63,20 +58,6 @@ func maj_soulignage(globaly: float) -> void: #Appelé "en dur" par les boutons
 	var decalage_y: int = $MarginContainer.global_position.y - $MarginContainer.position.y
 	soulignage.position.y = globaly - decalage_y - 2
 	queue_redraw()
-
-# Entrees hors tableau
-func _on_question_text_submitted(new_text: String) -> void:
-	var texte_formate: String = new_text.strip_edges().strip_escapes().replace('"', '')
-	if texte_formate == "": _mauvaise_question()
-	elif Globals.section.set_question(texte_formate): return
-	else: _mauvaise_question()
-
-func _mauvaise_question() -> void:
-	%Question.clear()
-	Reactions.echec()
-	if Globals.section.get_question().is_empty() :
-		%Question.placeholder_text = tr("O13_QUESTION")  
-	else: %Question.text = Globals.section.get_question()
 
 func _on_effacer_pressed() -> void:
 	if N <= 1: Reactions.echec()

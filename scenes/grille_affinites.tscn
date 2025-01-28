@@ -1,7 +1,6 @@
-[gd_scene load_steps=4 format=3 uid="uid://0dxdn3mt4t5n"]
+[gd_scene load_steps=3 format=3 uid="uid://0dxdn3mt4t5n"]
 
 [ext_resource type="Script" path="res://scenes/grille_affinites.gd" id="1_8y7td"]
-[ext_resource type="Texture2D" uid="uid://bkg88v204wqfa" path="res://images/question.svg" id="2_qfrox"]
 [ext_resource type="Texture2D" uid="uid://dspcbbsm5fysm" path="res://images/edit-clear-history.svg" id="3_2smpg"]
 
 [node name="GrilleAffinites" type="Control"]
@@ -23,30 +22,22 @@ grow_vertical = 2
 theme_override_constants/margin_left = 10
 theme_override_constants/margin_top = 10
 theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 5
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
 layout_mode = 2
 theme_override_constants/separation = 10
 
-[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
-layout_mode = 2
-
-[node name="TextureRect" type="TextureRect" parent="MarginContainer/VBoxContainer/HBoxContainer"]
-layout_mode = 2
-texture = ExtResource("2_qfrox")
-
-[node name="Question" type="LineEdit" parent="MarginContainer/VBoxContainer/HBoxContainer"]
-unique_name_in_owner = true
-layout_mode = 2
-size_flags_horizontal = 3
-placeholder_text = "T3_QUESTION"
-max_length = 200
-context_menu_enabled = false
-
 [node name="HBoxContainer2" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 4
-theme_override_constants/separation = 30
+theme_override_constants/separation = 10
+
+[node name="Conseil" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 0
+text = "T1_LECTURE_TABLEAU"
+horizontal_alignment = 1
 
 [node name="Effacer" type="Button" parent="MarginContainer/VBoxContainer/HBoxContainer2"]
 layout_mode = 2
@@ -54,18 +45,6 @@ size_flags_horizontal = 0
 size_flags_vertical = 0
 text = "T2_EFFACER_AFFINITES"
 icon = ExtResource("3_2smpg")
-
-[node name="Conseil" type="RichTextLabel" parent="MarginContainer/VBoxContainer/HBoxContainer2"]
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 4
-bbcode_enabled = true
-text = "T1_LECTURE_TABLEAU"
-fit_content = true
-
-[node name="HSeparator" type="HSeparator" parent="MarginContainer/VBoxContainer"]
-layout_mode = 2
-size_flags_vertical = 0
 
 [node name="ScrollContainer" type="ScrollContainer" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
@@ -78,5 +57,4 @@ layout_mode = 2
 size_flags_horizontal = 2
 size_flags_vertical = 2
 
-[connection signal="text_submitted" from="MarginContainer/VBoxContainer/HBoxContainer/Question" to="." method="_on_question_text_submitted"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/HBoxContainer2/Effacer" to="." method="_on_effacer_pressed"]

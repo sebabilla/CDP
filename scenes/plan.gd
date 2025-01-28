@@ -8,8 +8,6 @@ func ouverture():
 	nettoyer_l_onglet()
 	N = Globals.section.get_nb_eleves()
 	if N == 0: return
-	if Globals.section.get_pos_eleve(0) in [Vector2.ZERO, Globals.section.taille_table]:
-		Globals.section.set_nouvelles_pos()
 	get_tree().process_frame.connect(_placer_tables, CONNECT_ONE_SHOT)
 
 ## Libère tous les noeuds du plan de la mémoire	

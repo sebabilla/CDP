@@ -14,8 +14,6 @@ func ouverture():
 	%Vert.button_pressed = true
 	N = Globals.section.get_nb_eleves()
 	if N == 0: return
-	if Globals.section.get_pos_eleve(0) == Vector2.ZERO:
-		Globals.section.set_nouvelles_pos()
 	get_tree().process_frame.connect(_ouverture_decalee, CONNECT_ONE_SHOT)
 	
 func _ouverture_decalee(): # prevenir un évenuel bug d'affichage
@@ -47,13 +45,7 @@ func _placer_fleches() -> void:
 			$PorteFleches.add_child(f)
 			f.initialiser(i, Globals.section.trouver_indice_eleve(n), ORANGE)
 		
-func _on_reset_pressed() -> void:
-	if N == 0:
-		Reactions.echec()
-		return
-	Globals.section.set_nouvelles_pos()
-	couleur = -1
-	ouverture()
+
 
 func _on_orange_toggled(_toggled_on: bool) -> void:
 	for f in $PorteFleches.get_children():

@@ -18,45 +18,53 @@ grow_vertical = 2
 script = ExtResource("1_kncc2")
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
-layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 36.0
+grow_horizontal = 2
 theme_override_constants/margin_left = 10
 theme_override_constants/margin_top = 10
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer"]
 layout_mode = 2
-theme_override_constants/separation = 10
+size_flags_vertical = 0
 
-[node name="Ajouter" type="Button" parent="MarginContainer/VBoxContainer"]
+[node name="TableVierge" type="Label" parent="MarginContainer/HBoxContainer"]
 layout_mode = 2
-text = "P1_AJOUTER"
+size_flags_horizontal = 0
+text = "P1_TABLE_VIERGE"
+
+[node name="Ajouter" type="Button" parent="MarginContainer/HBoxContainer"]
+layout_mode = 2
 icon = ExtResource("2_g0xb0")
 
-[node name="Enlever" type="Button" parent="MarginContainer/VBoxContainer"]
+[node name="Enlever" type="Button" parent="MarginContainer/HBoxContainer"]
 layout_mode = 2
-text = "P2_ENLEVER"
 icon = ExtResource("3_u0i8o")
 
-[node name="HSeparator" type="HSeparator" parent="MarginContainer/VBoxContainer"]
+[node name="VSeparator" type="VSeparator" parent="MarginContainer/HBoxContainer"]
 layout_mode = 2
 
-[node name="Retourner" type="Button" parent="MarginContainer/VBoxContainer"]
+[node name="Retourner" type="Button" parent="MarginContainer/HBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 text = "P3_RETOURNER"
 icon = ExtResource("4_1ukos")
 
-[node name="HSeparator2" type="HSeparator" parent="MarginContainer/VBoxContainer"]
+[node name="VSeparator2" type="VSeparator" parent="MarginContainer/HBoxContainer"]
 layout_mode = 2
 
-[node name="Capturer" type="Button" parent="MarginContainer/VBoxContainer"]
+[node name="Capturer" type="Button" parent="MarginContainer/HBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 text = "P4_CAPTURER"
 icon = ExtResource("5_nxwvh")
 
-[node name="Ronde" type="Button" parent="MarginContainer/VBoxContainer"]
+[node name="VSeparator3" type="VSeparator" parent="MarginContainer/HBoxContainer"]
+layout_mode = 2
+
+[node name="Ronde" type="Button" parent="MarginContainer/HBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 text = "P5_RONDE"
@@ -78,8 +86,8 @@ anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 
-[connection signal="pressed" from="MarginContainer/VBoxContainer/Ajouter" to="." method="_on_ajouter_pressed"]
-[connection signal="pressed" from="MarginContainer/VBoxContainer/Enlever" to="." method="_on_enlever_pressed"]
-[connection signal="pressed" from="MarginContainer/VBoxContainer/Retourner" to="." method="_on_retourner_pressed"]
-[connection signal="pressed" from="MarginContainer/VBoxContainer/Capturer" to="." method="_on_capturer_pressed"]
-[connection signal="pressed" from="MarginContainer/VBoxContainer/Ronde" to="." method="_on_ronde_pressed"]
+[connection signal="pressed" from="MarginContainer/HBoxContainer/Ajouter" to="." method="_on_ajouter_pressed"]
+[connection signal="pressed" from="MarginContainer/HBoxContainer/Enlever" to="." method="_on_enlever_pressed"]
+[connection signal="pressed" from="MarginContainer/HBoxContainer/Retourner" to="." method="_on_retourner_pressed"]
+[connection signal="pressed" from="MarginContainer/HBoxContainer/Capturer" to="." method="_on_capturer_pressed"]
+[connection signal="pressed" from="MarginContainer/HBoxContainer/Ronde" to="." method="_on_ronde_pressed"]

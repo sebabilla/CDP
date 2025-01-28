@@ -2,15 +2,13 @@
 class_name Section extends Resource
 
 @export var sec: String = ""
-@export var question: String = ""
 @export var eleves: Array[Eleve] = []
 @export var tables_vierges: Array[Table] = []
 @export var taille_table: Vector2 = Vector2(128, 80)
 
-## définir le nom de la classe
+## définir le nom de la classe, devrait déjà avoir été chéqué pour format adapté à une sauvegarde
 func set_nom_section(nom: String) -> bool:
-	if nom.is_empty() or nom == sec: 
-		return false
+	if nom == sec: return false
 	sec = nom
 	set_titre_fenetre()
 	return true
@@ -23,17 +21,6 @@ func set_titre_fenetre() -> void:
 func get_nom_section() -> String:
 	return sec
 
-## définir la question posée aux élèves sur leurs affinités	
-func set_question(phrase: String) -> bool:
-	if question.is_empty() or question == phrase:
-		return false
-	question = phrase
-	return true
-
-## récupérer le nom de la question posée aux élèves
-func get_question() -> String:
-	return question
-
 ## Obtenir le nombre d'élèves
 func get_nb_eleves() -> int:
 	return eleves.size()
@@ -44,7 +31,7 @@ func ajouter_eleve(nom: String) -> bool:
 		if eleve.nom == nom: return false
 	var nouveau: Eleve = Eleve.new()
 	nouveau.nom = nom
-	nouveau.table.pos = taille_table
+	nouveau.table.pos = 3 * taille_table + Vector2(4,6) * get_nb_eleves()
 	eleves.append(nouveau)
 	return true
 
@@ -163,13 +150,6 @@ func get_angle_eleve(indice: int) -> float:
 func set_pos_eleves_sym_c(centre: Vector2) -> void:
 	for eleve in eleves:
 		eleve.table.pos = 2 * centre - eleve.table.pos
-
-## Range les élèves dans l'ordre de la liste
-func set_nouvelles_pos() -> void:
-	var lignes: int = floor(sqrt(get_nb_eleves()))
-	for i in get_nb_eleves():
-		var nv_pos: Vector2 = Vector2(i / lignes * taille_table.x, i % lignes * taille_table.y) + 2*taille_table
-		set_pos_eleve(i, nv_pos)
 
 ## Retourne toutes les combinaisons de tables d'élèves tirées en round-robin
 ## (une Array par séance), nécessite un nombre d'élèves paire pour bien fonctionner
