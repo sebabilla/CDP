@@ -116,7 +116,7 @@ func ajouter_negatif(indice: int, nom: String) -> void:
 
 ## Nom est enlevé de la liste des negatifs de eleves[indice]	
 func enlever_negatif(indice: int, nom: String) -> void:
-	eleves[indice].positifs.erase(nom)
+	eleves[indice].negatifs.erase(nom)
 
 ## Efface toutes les listes d'affinités de chaque élève
 func effacer_toutes_affinites() -> void:
