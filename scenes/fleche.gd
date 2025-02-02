@@ -29,25 +29,24 @@ func initialiser(don: int, rec: int, col: int) -> void:
 	global_position = Globals.section.get_pos_eleve(donneur)
 	material.set_shader_parameter("color1", COULEURS[couleur])
 	_def_forme()
-	set_process(false)
 	
 func _def_forme() -> void:
+	var mem_x: float = size.x
 	var arrivee: Vector2 = Globals.section.get_pos_eleve(receveur)
 	size.x = global_position.distance_to(arrivee)
-	rotation = global_position.angle_to_point(arrivee)
-	size.y = min(longueur_max / max(size.x, 1.0) / 2, 10)
-	material.set_shader_parameter("frequency", size.x / 5) # phase du sinus du shader constante
+	if mem_x != size.x:
+		rotation = global_position.angle_to_point(arrivee)
+		size.y = min(longueur_max / max(size.x, 1.0) / 2, 10)
+		material.set_shader_parameter("frequency", size.x / 5) # phase du sinus du shader constante
 
 ## Cache toutes les fleches non raccordées à l'étiquette en mouvement
 func maj_mvmt(indice: int) -> void:
 	if indice == -1:
 		modulate.a = 1.0
-		set_process(false)
 	elif indice != donneur and indice != receveur:
 		modulate.a = 0.0
 	else:
 		longueur_max = Vector2.ZERO.distance_to(get_viewport_rect().size)
-		set_process(true)
 
 ## Qd l'utilisateur ne veut voir qu'une couleur, ORANGE ou VERT
 func maj_col_arret(col: int) -> void:

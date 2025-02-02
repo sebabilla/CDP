@@ -1,4 +1,4 @@
-[gd_resource type="Theme" load_steps=36 format=3 uid="uid://beusi4cfvn3f6"]
+[gd_resource type="Theme" load_steps=37 format=3 uid="uid://beusi4cfvn3f6"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_pw5uc"]
 
@@ -88,13 +88,6 @@ content_margin_top = 0.0
 content_margin_right = 0.0
 content_margin_bottom = 0.0
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_mmlwo"]
-bg_color = Color(0.937255, 0.921569, 0.913725, 1)
-corner_radius_top_left = 5
-corner_radius_top_right = 5
-corner_radius_bottom_right = 5
-corner_radius_bottom_left = 5
-
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lji7v"]
 bg_color = Color(1, 1, 1, 1)
 border_width_left = 4
@@ -116,6 +109,20 @@ bg_color = Color(0.329412, 0.431373, 0.478431, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0c56f"]
 bg_color = Color(0.14902, 0.196078, 0.219608, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2gaa1"]
+bg_color = Color(0.14902, 0.196078, 0.219608, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rqf2u"]
+bg_color = Color(0.329412, 0.431373, 0.478431, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0f1d6"]
 bg_color = Color(0.215686, 0.278431, 0.309804, 1)
@@ -202,9 +209,8 @@ Label/colors/font_color = Color(0.92549, 0.937255, 0.945098, 1)
 Label/font_sizes/font_size = 16
 Label/styles/normal = SubResource("StyleBoxEmpty_os0pj")
 LabelEtiquette/base_type = &"Label"
-LabelEtiquette/colors/font_color = Color(0, 0, 0, 1)
+LabelEtiquette/colors/font_color = Color(0.92549, 0.937255, 0.945098, 1)
 LabelEtiquette/font_sizes/font_size = 24
-LabelEtiquette/styles/normal = SubResource("StyleBoxFlat_mmlwo")
 LabelTable/base_type = &"Label"
 LabelTable/colors/font_color = Color(0, 0, 0, 1)
 LabelTable/font_sizes/font_size = 24
@@ -221,6 +227,9 @@ PopupMenu/font_sizes/font_size = 16
 PopupMenu/font_sizes/title_font_size = 16
 PopupMenu/styles/hover = SubResource("StyleBoxFlat_m2dq0")
 PopupMenu/styles/panel = SubResource("StyleBoxFlat_0c56f")
+ProgressBar/colors/font_color = Color(0.92549, 0.937255, 0.945098, 1)
+ProgressBar/styles/background = SubResource("StyleBoxFlat_2gaa1")
+ProgressBar/styles/fill = SubResource("StyleBoxFlat_rqf2u")
 RichTextLabel/colors/default_color = Color(0.92549, 0.937255, 0.945098, 1)
 RichTextLabel/font_sizes/bold_font_size = 16
 RichTextLabel/font_sizes/bold_italics_font_size = 16

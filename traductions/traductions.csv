@@ -30,6 +30,13 @@ T2_EFFACER_AFFINITES,Effacer toutes les affinités,Delete all affinities
 T3_PAS_DE_QUESTION,Question posée inconnue,Poll question unknown
 T3_QUESTION,Question posée aux élèves,Poll question submitted to pupils
 S0_SOCIOGRAMME,Sociogramme  ,Sociogram      
+S1_CLANS,Rechercher un état stable,Searching for a stable state
+S2_ACTUEL,ACTUEL,CURRENT
+S2_MEILLEUR,MEILLEUR,BEST
+S3_INITIALISATION,Initialisation...,Initialization…
+S3_EN_COURS,"Recherche en cours, veuillez patienter…","Search in progress, please wait..."
+S3_PRESQUE,Test de stabilité en cours...,Stability test in progress…
+S4_ECHEC_SIM,Impossible de trouver un état stable.,Impossible to find a stable state.
 A1_INTRO," est un logiciel d'aide à la décision pour faire des plans de classe. Avec 30 élèves, et 30 places, il y 30! combinaisons pour les installer (un nombre à 33 chiffres). Ce logiciel devrait vous permettre d'y voir un peu plus clair à un instant t."," is a decision-support program for creating seating plans. With 30 students, and 30 seats, there is 30! arrangements to install them (a 33-digit number). This software should let you get a clearer picture at a given moment."
 A1_DEBUTER,"Pour vous familiariser avec le logiciel, cliquez sur « [b]ouvrir un fichier[/b] », ouvrez le fichier « [b]exemple.tres[/b] », et amusez-vous. Ou lisez le charabia ci-dessous.","To learn more about the software, click on ‘[b]open a file[/b]’, open the file ‘[b]exemple.tres[/b]’, and have fun. Or read the gibberish below."
 A1_MENU,"Sauvegardez classe, liste des élèves, disposition des tables, et affinités entre élèves à tout moment. Par défaut, le nom du fichier est celui de la classe. Pensez à sauvegardez avant d’ouvrir le fichier d’une autre classe. Dans le dossier, vous trouverez les fichiers de sauvegarde et les différents plans de classe capturés sous forme d’images.","Save the division, student list, table layout and student affinities at any time. By default, the file is named after the division. Remember to save before opening another division file. In the folder, you will find the backup files and the various seating plans captured as images."

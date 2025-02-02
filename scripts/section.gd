@@ -27,13 +27,22 @@ func get_nb_eleves() -> int:
 
 ## Ajouter un élève (class Eleve) à la section	
 func ajouter_eleve(nom: String) -> bool:
+	if get_nb_eleves() > 42: return false # arbitraire
 	for eleve in eleves:
 		if eleve.nom == nom: return false
 	var nouveau: Eleve = Eleve.new()
 	nouveau.nom = nom
-	nouveau.table.pos = 3 * taille_table + Vector2(4,6) * get_nb_eleves()
+	nouveau.table.pos = _nouvelle_position(get_nb_eleves())
 	eleves.append(nouveau)
 	return true
+	
+func _nouvelle_position(indice: int) -> Vector2:
+	var nb_lignes : int = indice/7
+	var nb_colonnes: int = indice%7
+	var nouvelle: Vector2 = taille_table * 2
+	nouvelle.x += nb_colonnes * taille_table.x
+	nouvelle.y += nb_lignes * taille_table.y
+	return nouvelle
 
 ## Enlève un élève et toute trace des affinités pour lui des autres élèves
 func enlever_dernier_eleve() -> bool:
@@ -136,6 +145,19 @@ func set_pos_eleve(indice: int, pos: Vector2) -> void:
 ## Retourne la position de la table de l'élève
 func get_pos_eleve(indice: int) -> Vector2:
 	return eleves[indice].table.pos
+
+## Définit les positions de tous les élèves
+func set_pos_tous_eleves(positions: Array[Vector2]) -> void:
+	if positions.size() == eleves.size():
+		for n in get_nb_eleves():
+			eleves[n].table.pos = positions[n]
+
+## Retourne les positions de tous les élèves		
+func get_pos_tous_eleves() -> Array[Vector2]:
+	var positions: Array[Vector2] = []
+	for eleve in eleves:
+		positions.append(eleve.table.pos)
+	return positions
 
 ## Définit un nouvel angle de la table de l'élève
 func set_angle_eleve(indice: int, angle_degres: float) -> void:

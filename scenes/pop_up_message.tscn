@@ -48,7 +48,9 @@ grow_vertical = 2
 unique_name_in_owner = true
 custom_minimum_size = Vector2(340, 23)
 layout_mode = 2
+size_flags_horizontal = 4
 text = "Message"
+horizontal_alignment = 1
 autowrap_mode = 2
 
 [node name="Oui" type="Button" parent="ColorRect/VBoxContainer"]

@@ -2,7 +2,8 @@ extends Control
 
 var n_table: int
 var deplacer: bool = true
-var ecran: Vector2 = Vector2.ZERO
+var coin_hg: Vector2
+var coin_bd: Vector2
 
 func _ready() -> void:
 	$Label.mouse_filter = Control.MOUSE_FILTER_STOP
@@ -12,14 +13,15 @@ func _ready() -> void:
 	
 func _process(_delta: float) -> void:
 	if deplacer: 
-		global_position = get_global_mouse_position().clamp(Vector2.ZERO, ecran)
+		global_position = get_global_mouse_position().clamp(coin_hg, coin_bd)
 	else:
 		$Label.rotation = global_position.angle_to_point(get_global_mouse_position())
 
 ## Quel type de table? indice positif pour élève, indice négatif pour table vierge
-func initialiser(indice: int) -> void:
-	ecran = get_viewport().get_visible_rect().size
+func initialiser(indice: int, limites: Rect2) -> void:
 	n_table = indice
+	coin_hg = limites.position + Vector2(10,10)
+	coin_bd = limites.end - Vector2(10,10)
 	$Label.size = Globals.section.taille_table
 	$Label.position = -$Label.size / 2
 	$Label.pivot_offset = $Label.size / 2
@@ -38,7 +40,6 @@ func _on_label_gui_input(event: InputEvent) -> void:
 			set_process(true)
 			move_to_front()
 			if event.button_index == MOUSE_BUTTON_LEFT:
-				ecran = get_viewport().get_visible_rect().size
 				deplacer = true
 			if event.button_index == MOUSE_BUTTON_RIGHT:
 				deplacer = false

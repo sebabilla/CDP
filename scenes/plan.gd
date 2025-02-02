@@ -21,11 +21,11 @@ func _placer_tables() -> void:
 	for i in N:
 		var t: Control = table.instantiate()
 		$PorteTables.add_child(t)
-		t.initialiser(i)
+		t.initialiser(i, Rect2(global_position, size))
 	for i in Globals.section.get_nb_tables_vierges():
 		var t: Control = table.instantiate()
 		$PorteTablesVierges.add_child(t)
-		t.initialiser(-i - 1)
+		t.initialiser(-i - 1, Rect2(global_position, size))
 
 # Ajouter des tables sans nom	
 func _on_ajouter_pressed() -> void:

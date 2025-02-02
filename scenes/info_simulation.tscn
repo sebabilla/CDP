@@ -1,0 +1,70 @@
+[gd_scene load_steps=2 format=3 uid="uid://dhfwp3j46qkxu"]
+
+[ext_resource type="Script" path="res://scenes/info_simulation.gd" id="1_l0wtd"]
+
+[node name="InfoSimulation" type="ColorRect"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+mouse_filter = 1
+color = Color(0.215686, 0.278431, 0.309804, 1)
+script = ExtResource("1_l0wtd")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -50.5
+offset_top = -112.5
+offset_right = 50.5
+offset_bottom = 112.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="GridContainer" type="GridContainer" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_constants/h_separation = 20
+columns = 2
+
+[node name="Actuel" type="Label" parent="VBoxContainer/GridContainer"]
+layout_mode = 2
+text = "S2_ACTUEL"
+
+[node name="Meilleur" type="Label" parent="VBoxContainer/GridContainer"]
+layout_mode = 2
+text = "S2_MEILLEUR"
+
+[node name="EtatActuel" type="ProgressBar" parent="VBoxContainer/GridContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(30, 200)
+layout_mode = 2
+size_flags_horizontal = 4
+value = 100.0
+rounded = true
+fill_mode = 3
+
+[node name="EtatMeilleur" type="ProgressBar" parent="VBoxContainer/GridContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(30, 200)
+layout_mode = 2
+size_flags_horizontal = 4
+value = 100.0
+rounded = true
+fill_mode = 3
+
+[node name="HSeparator" type="HSeparator" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="Recherche" type="Label" parent="VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "S3_INITIALISATION"
+horizontal_alignment = 1
