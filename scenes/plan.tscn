@@ -1,12 +1,13 @@
-[gd_scene load_steps=8 format=3 uid="uid://pe052tr7qrf1"]
+[gd_scene load_steps=9 format=3 uid="uid://pe052tr7qrf1"]
 
 [ext_resource type="Script" path="res://scenes/plan.gd" id="1_kncc2"]
 [ext_resource type="Texture2D" uid="uid://chryqun5spfyo" path="res://images/list-add.svg" id="2_g0xb0"]
 [ext_resource type="Script" path="res://scenes/murs.gd" id="2_wrbdn"]
 [ext_resource type="Texture2D" uid="uid://ccc1wypxk6wte" path="res://images/filename-dash-amarok.svg" id="3_u0i8o"]
-[ext_resource type="Texture2D" uid="uid://bit831pbja5e3" path="res://images/object-rotate-left.svg" id="4_1ukos"]
+[ext_resource type="Texture2D" uid="uid://cuf8pinxck56k" path="res://images/exchange-positions.svg" id="4_umre5"]
 [ext_resource type="Texture2D" uid="uid://b0uko6nlt02ux" path="res://images/camera-video.svg" id="5_lccy1"]
 [ext_resource type="Texture2D" uid="uid://dcxb2t5bpimg7" path="res://images/camera-photo.svg" id="5_nxwvh"]
+[ext_resource type="Texture2D" uid="uid://oy0fmca38uhs" path="res://images/path-mode-polyline.svg" id="7_85dlo"]
 
 [node name="Plan" type="Control"]
 layout_mode = 3
@@ -25,6 +26,7 @@ offset_bottom = 36.0
 grow_horizontal = 2
 theme_override_constants/margin_left = 10
 theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
 
 [node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer"]
 layout_mode = 2
@@ -50,7 +52,7 @@ layout_mode = 2
 unique_name_in_owner = true
 layout_mode = 2
 text = "P3_RETOURNER"
-icon = ExtResource("4_1ukos")
+icon = ExtResource("4_umre5")
 
 [node name="VSeparator2" type="VSeparator" parent="MarginContainer/HBoxContainer"]
 layout_mode = 2
@@ -69,6 +71,13 @@ unique_name_in_owner = true
 layout_mode = 2
 text = "P5_RONDE"
 icon = ExtResource("5_lccy1")
+
+[node name="AfficherSociogramme" type="Button" parent="MarginContainer/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 10
+text = "S0_SOCIOGRAMME"
+icon = ExtResource("7_85dlo")
 
 [node name="Murs" type="Control" parent="."]
 anchors_preset = 0
@@ -91,3 +100,4 @@ offset_bottom = 40.0
 [connection signal="pressed" from="MarginContainer/HBoxContainer/Retourner" to="." method="_on_retourner_pressed"]
 [connection signal="pressed" from="MarginContainer/HBoxContainer/Capturer" to="." method="_on_capturer_pressed"]
 [connection signal="pressed" from="MarginContainer/HBoxContainer/Ronde" to="." method="_on_ronde_pressed"]
+[connection signal="pressed" from="MarginContainer/HBoxContainer/AfficherSociogramme" to="." method="_on_afficher_sociogramme_pressed"]

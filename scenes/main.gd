@@ -2,7 +2,7 @@ extends Control
 
 func _ready() -> void:
 	_nom_des_onglets()
-	$PopUpSauvegarde.hide()
+	cacher_sociogramme()
 	if not Globals.verifier_dossier_sauvegarder(): 
 		%Menu.cacher_manip_sauveg() # si impossible d'avoir un dossier de sauvegarde, cacher les menus
 		%Plan.cacher_manip_sauveg()
@@ -18,11 +18,18 @@ func _input(event: InputEvent) -> void:
 
 func _nom_des_onglets() -> void:
 	%Onglets.set_tab_title(0, "P0_PLAN")
-	%Onglets.set_tab_icon(0, load("res://images/homerun.svg"))
+	%Onglets.set_tab_icon(0, load("res://images/distribute-randomize.svg"))
 	%Onglets.set_tab_title(1, "T0_AFFINITES")
 	%Onglets.set_tab_icon(1, load("res://images/view-grid.svg"))
 	%Onglets.set_tab_title(2, "S0_SOCIOGRAMME")
 	%Onglets.set_tab_icon(2, load("res://images/path-mode-polyline.svg"))
+
+## cache et desactive les ongles affinités et sociogramme
+func cacher_sociogramme() -> void:
+	%Onglets.set_tab_disabled(1, true)
+	%Onglets.set_tab_hidden(1, true)
+	%Onglets.set_tab_disabled(2, true)
+	%Onglets.set_tab_hidden(2, true)	
 
 func _on_tab_container_tab_changed(tab: int) -> void:
 	for noeud in %Onglets.get_children():

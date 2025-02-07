@@ -3,6 +3,9 @@ extends Control
 @onready var table: PackedScene = preload("res://scenes/bureau.tscn")
 var N: int = 0
 
+func _ready() -> void:
+	Noeuds.affich_sociogr = %AfficherSociogramme
+
 ## Affiche le plan dans l'onglet de la classe en cours, si elle existe
 func ouverture():
 	nettoyer_l_onglet()
@@ -35,7 +38,7 @@ func _on_ajouter_pressed() -> void:
 		Globals.section.ajouter_table_vierge()
 		var t: Control = table.instantiate()
 		$PorteTablesVierges.add_child(t)
-		t.initialiser(-nombre - 1)
+		t.initialiser(-nombre - 1, Rect2(global_position, size))
 
 func _on_enlever_pressed() -> void:
 	var nombre: int = $PorteTablesVierges.get_child_count()
@@ -104,6 +107,11 @@ func _rafraichir():
 	for noeud in $PorteTables.get_children():
 		noeud.queue_free()
 	get_tree().process_frame.connect(_placer_tables, CONNECT_ONE_SHOT)
+	
+func _on_afficher_sociogramme_pressed() -> void:
+	if Noeuds.onglets.is_tab_hidden(1):
+		Noeuds.popup_sauvegarde.ouverture("pswd")
+	else: Noeuds.main.cacher_sociogramme()
 
 ## Appelé si pas de dossier user trouvé, version demo web?
 func cacher_manip_sauveg() -> void:

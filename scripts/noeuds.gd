@@ -11,3 +11,4 @@ var info: Node
 var popup_sauvegarde: Node
 var popup_message: Node
 var info_carto: Node
+var affich_sociogr: Node

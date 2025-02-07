@@ -9,7 +9,8 @@ func _ready() -> void:
 func ouverture(extension: String) -> void:
 	process_mode = PROCESS_MODE_INHERIT
 	%NomSauveg.grab_focus()
-	_set_sauvegarde_conseillee()
+	if extension == "pswd": %NomSauveg.secret = true
+	else: _set_sauvegarde_conseillee()
 	_set_extension(extension)
 	show()
 
@@ -34,11 +35,25 @@ func _on_nom_sauveg_text_submitted(new_text: String) -> void:
 		"/":
 			Noeuds.plan.paires_tournantes(texte_formate)
 			_on_non_pressed()
+		"pswd":
+			_check_mdp_sociogramme(texte_formate)
 		_: Reactions.echec()	
 	
 func _on_oui_pressed() -> void:
 	_on_nom_sauveg_text_submitted(%NomSauveg.text)
 
 func _on_non_pressed() -> void:
+	%NomSauveg.clear()
 	hide()
 	process_mode = PROCESS_MODE_DISABLED
+	
+func _check_mdp_sociogramme(texte_formate) -> void:
+	if texte_formate == "pswd":
+		Noeuds.onglets.set_tab_disabled(1, false)
+		Noeuds.onglets.set_tab_hidden(1, false)
+		Noeuds.onglets.set_tab_disabled(2, false)
+		Noeuds.onglets.set_tab_hidden(2, false)
+	else:
+		Reactions.echec()
+	%NomSauveg.secret = false
+	_on_non_pressed()

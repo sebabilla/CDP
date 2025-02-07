@@ -7,7 +7,7 @@ const SHADER: String = "res://shaders/ligne.gdshader"
 var donneur : int
 var receveur : int
 var couleur : int
-@onready var longueur_max : float = Vector2.ZERO.distance_to(get_viewport_rect().size)
+@onready var longueur_max : float = get_viewport_rect().size.length()
 
 func _ready() -> void:
 	material = ShaderMaterial.new()
@@ -46,7 +46,7 @@ func maj_mvmt(indice: int) -> void:
 	elif indice != donneur and indice != receveur:
 		modulate.a = 0.0
 	else:
-		longueur_max = Vector2.ZERO.distance_to(get_viewport_rect().size)
+		longueur_max = get_viewport_rect().size.length()
 
 ## Qd l'utilisateur ne veut voir qu'une couleur, ORANGE ou VERT
 func maj_col_arret(col: int) -> void:

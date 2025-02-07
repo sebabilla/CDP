@@ -10,9 +10,9 @@ var couleur: int = -1
 ## Affiche le sociogramme dans l'onglet de la classe en cours, si elle existe
 func ouverture():
 	nettoyer_l_onglet()
+	_couper_physique()
 	%Orange.button_pressed = true
 	%Vert.button_pressed = true
-	
 	N = Globals.section.get_nb_eleves()
 	if N == 0: return
 	get_tree().process_frame.connect(_ouverture_decalee, CONNECT_ONE_SHOT)
@@ -20,6 +20,7 @@ func ouverture():
 func _ouverture_decalee(): # prevenir un évenuel bug d'affichage
 	_placer_etiquettes()
 	_placer_fleches()
+	_retablir_physique()
 
 ## Libère tous les noeuds du sociogramme de la mémoire	
 func nettoyer_l_onglet() -> void:
@@ -28,6 +29,14 @@ func nettoyer_l_onglet() -> void:
 	for noeud in $PorteFleches.get_children():
 		noeud.queue_free()
 	$AlgoSimulation.arret_force()
+	
+func _couper_physique() -> void:
+	for noeud in $PorteEtiquettes.get_children():
+		noeud.set_physics_process(false)
+	
+func _retablir_physique() -> void:
+	for noeud in $PorteEtiquettes.get_children():
+		noeud.set_physics_process(true)
 
 func _placer_etiquettes() -> void:
 	for i in N:
@@ -58,3 +67,12 @@ func _on_vert_toggled(_toggled_on: bool) -> void:
 func _on_mouvement(indice: int) -> void:
 	for f in $PorteFleches.get_children():
 		f.maj_mvmt(indice)
+
+func _on_cercles_pressed() -> void:
+	tracer_cercles(true)
+	ouverture()
+	
+func tracer_cercles(meilleur: bool) -> void:
+	var centre: Vector2 = get_viewport().size / 2
+	var positions: Array[Vector2] = Globals.section.positions_sur_cercles(centre, centre.y * 0.8, meilleur)
+	Globals.section.set_pos_tous_eleves(positions)

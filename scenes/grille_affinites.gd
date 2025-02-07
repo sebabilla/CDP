@@ -21,15 +21,14 @@ func nettoyer_l_onglet() -> void:
 
 # Affichage initial de la grille
 func _ajouter_les_cases() -> void:
-	var chemin: NodePath = get_path()
-	var liste: Array[String] = Globals.section.liste_eleves()
+	var liste: Array = Globals.section.liste_eleves()
 	_ajouter_label(%Affinites, "")
 	for nom in liste:
 		_ajouter_label(%Affinites, nom, HORIZONTAL_ALIGNMENT_CENTER)
 	for i in N:
 		_ajouter_label(%Affinites, liste[i], HORIZONTAL_ALIGNMENT_RIGHT)
 		for j in N:
-			_ajouter_button_a_grille_relations(i, j, chemin)
+			_ajouter_button_a_grille_relations(i, j)
 	
 func _ajouter_label(noeud: Control, texte: String, alignement := HORIZONTAL_ALIGNMENT_LEFT) -> void:
 	var nouveau: Label = Label.new()
@@ -37,10 +36,10 @@ func _ajouter_label(noeud: Control, texte: String, alignement := HORIZONTAL_ALIG
 	nouveau.horizontal_alignment = alignement
 	noeud.add_child(nouveau)
 
-func _ajouter_button_a_grille_relations(i: int, j: int, chemin: NodePath) -> void:
+func _ajouter_button_a_grille_relations(i: int, j: int) -> void:
 	var b: TextureRect = bouton_grille.instantiate()
 	%Affinites.add_child(b)
-	b.qui_suis_je(i, j, chemin)
+	b.qui_suis_je(i, j)
 
 # Rectangle de mise en évidence
 func _draw() -> void:

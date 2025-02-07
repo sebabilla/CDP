@@ -1,10 +1,11 @@
-[gd_scene load_steps=7 format=3 uid="uid://reoh1tvug01v"]
+[gd_scene load_steps=8 format=3 uid="uid://reoh1tvug01v"]
 
 [ext_resource type="Script" path="res://scenes/sociogr.gd" id="1_s2jwi"]
 [ext_resource type="Script" path="res://scenes/algo_simulation.gd" id="2_70god"]
 [ext_resource type="Texture2D" uid="uid://b4vlntrrwe2ef" path="res://images/vert.png" id="3_aumt3"]
-[ext_resource type="Texture2D" uid="uid://b1eqd4gcukvtf" path="res://images/media-playback-start.svg" id="4_6f3nk"]
 [ext_resource type="Texture2D" uid="uid://wq6fgygo56jg" path="res://images/orange.png" id="4_b76em"]
+[ext_resource type="Texture2D" uid="uid://c3xaj6huiperj" path="res://images/kstars_solarsystem.svg" id="5_o0xmc"]
+[ext_resource type="Texture2D" uid="uid://xavtujmfvomn" path="res://images/roll.svg" id="6_07dal"]
 [ext_resource type="PackedScene" uid="uid://dhfwp3j46qkxu" path="res://scenes/info_simulation.tscn" id="6_fqs4m"]
 
 [node name="Sociogr" type="Control"]
@@ -41,54 +42,50 @@ anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 
-[node name="VBoxContainer" type="VBoxContainer" parent="."]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-mouse_filter = 2
-
-[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 2
+offset_right = 1280.0
+offset_bottom = 36.0
 size_flags_vertical = 0
 theme_override_constants/margin_left = 10
 theme_override_constants/margin_top = 10
 
-[node name="BoxBoutons" type="HBoxContainer" parent="VBoxContainer/MarginContainer"]
+[node name="BoxBoutons" type="HBoxContainer" parent="MarginContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 0
 
-[node name="Orange" type="CheckButton" parent="VBoxContainer/MarginContainer/BoxBoutons"]
+[node name="Orange" type="CheckButton" parent="MarginContainer/BoxBoutons"]
 unique_name_in_owner = true
 layout_mode = 2
 icon = ExtResource("4_b76em")
 icon_alignment = 1
 
-[node name="Vert" type="CheckButton" parent="VBoxContainer/MarginContainer/BoxBoutons"]
+[node name="Vert" type="CheckButton" parent="MarginContainer/BoxBoutons"]
 unique_name_in_owner = true
 layout_mode = 2
 icon = ExtResource("3_aumt3")
 icon_alignment = 1
 
-[node name="VSeparator" type="VSeparator" parent="VBoxContainer/MarginContainer/BoxBoutons"]
+[node name="VSeparator" type="VSeparator" parent="MarginContainer/BoxBoutons"]
 layout_mode = 2
 
-[node name="Clan" type="Label" parent="VBoxContainer/MarginContainer/BoxBoutons"]
+[node name="Cercles" type="Button" parent="MarginContainer/BoxBoutons"]
 layout_mode = 2
-text = "S1_CLANS"
+text = "Popularité"
+icon = ExtResource("5_o0xmc")
 
-[node name="Simulation" type="Button" parent="VBoxContainer/MarginContainer/BoxBoutons"]
+[node name="Simulation" type="Button" parent="MarginContainer/BoxBoutons"]
 unique_name_in_owner = true
 layout_mode = 2
-icon = ExtResource("4_6f3nk")
+text = "S1_CLANS"
+icon = ExtResource("6_07dal")
 
-[node name="InfoCartographie" parent="VBoxContainer" instance=ExtResource("6_fqs4m")]
+[node name="InfoCartographie" parent="." instance=ExtResource("6_fqs4m")]
 visible = false
-layout_mode = 2
+layout_mode = 1
 
-[connection signal="toggled" from="VBoxContainer/MarginContainer/BoxBoutons/Orange" to="." method="_on_orange_toggled"]
-[connection signal="toggled" from="VBoxContainer/MarginContainer/BoxBoutons/Vert" to="." method="_on_vert_toggled"]
-[connection signal="pressed" from="VBoxContainer/MarginContainer/BoxBoutons/Simulation" to="AlgoSimulation" method="_on_simulation_pressed"]
+[connection signal="toggled" from="MarginContainer/BoxBoutons/Orange" to="." method="_on_orange_toggled"]
+[connection signal="toggled" from="MarginContainer/BoxBoutons/Vert" to="." method="_on_vert_toggled"]
+[connection signal="pressed" from="MarginContainer/BoxBoutons/Cercles" to="." method="_on_cercles_pressed"]
+[connection signal="pressed" from="MarginContainer/BoxBoutons/Simulation" to="AlgoSimulation" method="_on_simulation_pressed"]

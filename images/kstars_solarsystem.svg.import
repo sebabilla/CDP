@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bit831pbja5e3"
-path="res://.godot/imported/object-rotate-left.svg-c3237df511eedf6fa1df31321efd73f0.ctex"
+uid="uid://c3xaj6huiperj"
+path="res://.godot/imported/kstars_solarsystem.svg-3463ea9477f403d1ea295024862c3a86.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://images/object-rotate-left.svg"
-dest_files=["res://.godot/imported/object-rotate-left.svg-c3237df511eedf6fa1df31321efd73f0.ctex"]
+source_file="res://images/kstars_solarsystem.svg"
+dest_files=["res://.godot/imported/kstars_solarsystem.svg-3463ea9477f403d1ea295024862c3a86.ctex"]
 
 [params]
 

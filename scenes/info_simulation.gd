@@ -15,6 +15,7 @@ func initialiser() -> void:
 	%EtatActuel.indeterminate = true
 	%EtatMeilleur.indeterminate = true
 	%Recherche.text = tr("S3_INITIALISATION")
+	show()
 
 ## Actualise l'écran de la simulation avec la vitesse moyenne (actuelle) et la 
 ## vitesse la plus basse (meilleur) trouvées

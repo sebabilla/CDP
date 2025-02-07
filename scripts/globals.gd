@@ -3,6 +3,8 @@ extends Node
 ## La variable au coeur du programme
 var section: Section = Section.new()
 
+var taille_table: Vector2 = Vector2(128,96)
+
 const CHEMIN_SAUVEGARDE = "user://sauvegarder"
 var dossier_video: String = ""
 
@@ -17,7 +19,7 @@ func sauvegarder(nom: String) -> bool:
 func ouvrir(nom_fichier: String) -> bool:
 	var nom_sauvegarde: String = CHEMIN_SAUVEGARDE + "/" + nom_fichier
 	if ResourceLoader.exists(nom_sauvegarde):
-		var nouveau: Resource = ResourceLoader.load(nom_sauvegarde, "", ResourceLoader.CACHE_MODE_IGNORE)
+		var nouveau: Resource = ResourceLoader.load(nom_sauvegarde, "", ResourceLoader.CACHE_MODE_IGNORE_DEEP)
 		if nouveau is Section:
 			section = nouveau
 			Globals.section.set_titre_fenetre()

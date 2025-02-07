@@ -60,6 +60,7 @@ func _aide() -> String:
 		"[ul]" + tr("A1_PLAN3") + "[/ul]",
 		"[ul]" + tr("A1_CAPTURE") + "[/ul]",
 		"[ul]" + tr("A1_VIDEO") + " " + tr("A1_VIDEO_IMPAIRE") + "[/ul]",
+		"[ul]" +tr("A1_MDP") + "[/ul]",
 		" ",
 		"[i]" + tr("T0_AFFINITES") + "[/i]",
 		tr("A1_QUESTION"),
@@ -67,7 +68,9 @@ func _aide() -> String:
 		" ",
 		"[i]" + tr("S0_SOCIOGRAMME") + "[/i]",
 		tr("A1_JAMAIS"),
-		tr("A1_SOCIOGRAMME")
+		tr("A1_SOCIOGRAMME"),
+		tr("A1_POPULARITE"),
+		tr("A1_SIMULATION")
 		]
 	var texte: String = ""
 	for a in aide:

@@ -24,6 +24,7 @@ config/windows_native_icon="res://icones/cdp.ico"
 Reactions="*res://scripts/reactions.gd"
 Globals="*res://scripts/globals.gd"
 Noeuds="*res://scripts/noeuds.gd"
+Utiles="*res://scripts/utiles.gd"
 
 [debug]
 
