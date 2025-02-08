@@ -1,8 +1,5 @@
 extends Node
 
-@onready var jouer: Texture = preload("res://images/media-playback-start.svg")
-@onready var suspendre: Texture = preload("res://images/media-playback-pause.svg")
-
 const T_INIT: int = 2000
 const T_STABLE: int = 5000
 const T_MAX: int = 150000

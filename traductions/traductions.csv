@@ -25,7 +25,7 @@ P3_RETOURNER,Retourner le plan,Flip the plan
 P4_CAPTURER,Capturer un plan,Capture one plan
 P5_RONDE,Ronde des paires,Round-robin pairing
 T0_AFFINITES,Affinités         ,Affinities         
-T1_LECTURE_TABLEAU,Les élèves de la colonne de gauche ont donné leurs affinités avec les élèves de la ligne du haut.,Pupils in the left-hand column gave affinities with pupils in the top row.
+T1_LECTURE_TABLEAU,Les élèves de la colonne de gauche ont donné leurs affinités aux élèves de la ligne du haut.,Pupils in the left-hand column gave affinities to pupils in the top row.
 T2_EFFACER_AFFINITES,Effacer toutes les affinités,Delete all affinities
 T3_PAS_DE_QUESTION,Question posée inconnue,Poll question unknown
 T3_QUESTION,Question posée aux élèves,Poll question submitted to pupils

@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://reoh1tvug01v"]
+[gd_scene load_steps=9 format=3 uid="uid://reoh1tvug01v"]
 
 [ext_resource type="Script" path="res://scenes/sociogr.gd" id="1_s2jwi"]
 [ext_resource type="Script" path="res://scenes/algo_simulation.gd" id="2_70god"]
@@ -7,6 +7,9 @@
 [ext_resource type="Texture2D" uid="uid://c3xaj6huiperj" path="res://images/kstars_solarsystem.svg" id="5_o0xmc"]
 [ext_resource type="Texture2D" uid="uid://xavtujmfvomn" path="res://images/roll.svg" id="6_07dal"]
 [ext_resource type="PackedScene" uid="uid://dhfwp3j46qkxu" path="res://scenes/info_simulation.tscn" id="6_fqs4m"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_5uw53"]
+bounce = 40.0
 
 [node name="Sociogr" type="Control"]
 layout_mode = 3
@@ -21,6 +24,7 @@ mouse_filter = 1
 script = ExtResource("1_s2jwi")
 
 [node name="LimitesStatiques" type="StaticBody2D" parent="."]
+physics_material_override = SubResource("PhysicsMaterial_5uw53")
 constant_linear_velocity = Vector2(10, 10)
 
 [node name="Limites" type="CollisionPolygon2D" parent="LimitesStatiques"]
