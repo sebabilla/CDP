@@ -26,19 +26,19 @@ func _on_entree_eleve_text_submitted(new_text: String) -> void:
 	if texte_formate == "":
 		Reactions.echec()
 	elif Globals.section.ajouter_eleve(texte_formate):
-		_afficher_liste()
+		_maj_affichage()
 	else: Reactions.echec()
 	
 func _on_enlever_dernier_pressed() -> void:
 	if Globals.section.enlever_dernier_eleve():
-		_afficher_liste()
+		_maj_affichage()
 	else: Reactions.echec()
 	
 func _on_reset_liste_pressed() -> void:
 	if Globals.section.get_nb_eleves() == 0: 
 		Reactions.echec(); return
 	Globals.section.enlever_tous_eleves()
-	_afficher_liste()
+	_maj_affichage()
 
 func _afficher_liste() -> void:
 	%Comptage.text = str(Globals.section.get_nb_eleves())
@@ -46,6 +46,10 @@ func _afficher_liste() -> void:
 	for nom in Globals.section.liste_eleves():
 		liste = liste + nom + "\n"
 	%Liste.text = liste
+	
+func _maj_affichage() -> void:
+	_afficher_liste()
+	Noeuds.onglets.get_current_tab_control().ouverture()
 
 func _on_alphabet_pressed() -> void:
 	if Globals.section.tri_alphabet(alphazeta): 
